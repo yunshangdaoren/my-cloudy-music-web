@@ -41,7 +41,14 @@ function onSendSMSCodeClick(){
 	let phone = $("#phone").val();
 	//判断手机号
 	if(!phone || phone==''){
-		alert("请输入手机号！");
+		//alert("请输入手机号！");
+		
+		//使用sweetalert提示框框架
+		swal("请输入手机号！",{
+			icon:"warning",
+			buttons:false,
+			timer:1000
+		});
 		return;
 	}
 	
