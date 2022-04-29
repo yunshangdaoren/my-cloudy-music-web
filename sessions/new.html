@@ -9,6 +9,9 @@
 		
 		<!-- bootstrap依赖 -->
 		<link rel="stylesheet" href="../vender/bootstrap/css/bootstrap.min.css" crossorigin="anonymous"/>
+		
+		<!-- form-validation表单验证框架样式 -->
+		<link rel="stylesheet" href="../vender/form-validation/css/formValidation.min.css"/>
 		<!-- /==================通用资源 -->
 		
 		<link rel="stylesheet" href="../css/seesions/new.css"/>
@@ -86,7 +89,6 @@
 			</div>
 		</div><!-- /内容容器 -->
 		
-		
 		<!-- ==================通用资源 -->
 		<!-- jquery框架 -->
 		<script src="../vender/jquery/jquery.min.js" crossorigin="anonymous"></script>
@@ -96,7 +98,49 @@
 		
 		<!-- bootstrap js依赖 -->
 		<script src="../vender/bootstrap/js/bootstrap.min.js" crossorigin="anonymous"></script>
+		
+		<!-- form-validation表单验证框架样式 js依赖 -->
+		<script src="../vender/form-validation/js/form-validation.min.js"></script>
+		
+		<!-- form-validation表单验证框架依赖bootstrap js依赖 -->
+		<script src="../vender/form-validation/js/framework/bootstrap.js"></script>
+		
+		<!-- form-validation表单验证框架中文语言提示 -->
+		<script src="../vender/form-validation/js/language/zh_CN.js"></script>
+		
 		<!-- /==================通用资源 -->
+		
+		
+		<!-- 当前页面JS逻辑 -->
+		<script type="text/javascript">
+			$(function(){
+				//初始化表单验证
+				$("#form").formValidation({
+					fields:{
+						username:{
+							validators:{
+								notEmpty:{
+									message:'用户名不能为空'
+								}
+							}
+						},
+						password:{
+							validators:{
+								notEmpty:{
+									message:'密码不能为空'
+								},
+								stringLength:{
+									min:6,
+									max:15,
+									message:'密码长度必须为6~15位'
+								}
+							}
+						},
+					}
+				});
+				
+			});
+		</script>
 		
 	</body>
 </html>
