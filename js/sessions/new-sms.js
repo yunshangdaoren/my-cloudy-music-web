@@ -60,12 +60,46 @@ function onSendSMSCodeClick(){
 
 /**
  * 发送短信验证码
+ * @param {Object} data 手机号
  */
 function sendSMSCode(data){
 	//TODO 发送验证码
+	//创建表单对象
+	var formData = new FormData();
 	
-	//开始倒计时
-	startCountDown();
+	//添加一个字段
+	//name, value
+	formData.append("phone", data);
+	
+	//提交表单
+	$.ajax({
+		url:'',
+		type:'POST',
+		data:formData,
+		processData:false,
+		contentType:false,
+		success:function(data){
+			//成功回调，判断是否成功
+			if(isSuccess(data)){
+				//发送成功
+				
+				//开始倒计时
+				startCountDown();
+			}else{
+				//TODO 处理错误
+			}
+			
+		}
+	});
+	
+}
+
+/**
+ * 请求是否成功
+ * @param {Object} data
+ */
+function isSuccess(data){
+	return data.status == 0;
 }
 
 /**
