@@ -1,0 +1,19 @@
+
+/**
+ * 登录页面logo
+ */
+.logo-login{
+	width: 4.6rem;
+	height: 4.6rem;
+}
+
+/**
+ * 登录表单样式
+ * rem：推荐使用的单位，默认情况下1rem=16px
+ */
+.login-form{
+	background-color: #fff;
+	padding: 1.5rem;
+	border: 1px solid #eee;
+	border-radius: 0.25rem;
+}
