@@ -4,3 +4,27 @@
 .bg{
 	background-color: #f9f9f9;
 }
+
+/**
+ * form-validation表单验证，不兼容bootstrap4，自定义样式
+ */
+.has-success label{
+	color: #28a745;
+}
+.has-success input
+{
+    border-color: #28a745;
+}
+.has-error label
+{
+    color: #dc3545;
+}
+
+.has-error input
+{
+    border-color: #dc3545;
+}
+
+.help-block{
+    border-color: #dc3545;
+}
