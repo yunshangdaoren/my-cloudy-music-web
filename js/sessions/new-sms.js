@@ -73,16 +73,16 @@ function sendSMSCode(data){
 	
 	//提交表单
 	$.ajax({
-		url:'',
+		url:'http://rap2api.taobao.org/app/mock/301937/codes/sms.json?phone=15310443790',
 		type:'POST',
 		data:formData,
-		processData:false,
-		contentType:false,
+		processData:false,//jQuery不要处理data
+		contentType:false,//jQuery不要自动设置内容类型
 		success:function(data){
 			//成功回调，判断是否成功
 			if(isSuccess(data)){
 				//发送成功
-				
+			
 				//开始倒计时
 				startCountDown();
 			}else{
