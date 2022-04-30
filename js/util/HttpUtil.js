@@ -1,4 +1,65 @@
-//封装JS网络请求错误处理工具类
+//封装JS网络请求处理工具类
+
+/**
+ * post请求
+ * @param {String} url 请求地址
+ * @param {Object} data 数据
+ * @param {Function()} onSuccess 成功回调，可以不传递 
+ * @param {Function()} onFailed  失败回调，可以不传递
+ */
+function httpPost(url, data, onSuccess=null, onFailed=null){
+	//发送ajax请求
+	ajax('post', url, data, onSuccess, onFailed);
+}
+
+/**
+ * 发送ajax请求
+ * @param {string} type 
+ * @param {string} url 
+ * @param {object} data 
+ * @param {Function()} onSuccess 
+ * @param {Function()} onFailed 
+ */
+function ajax(type, url, data, onSuccess=null, onFailed=null){
+	
+	$.ajax({
+		url:url,
+		type:type,
+		data:data ? data : {}, //判断是否为空
+		cache:false, //不缓存
+		processData:false,//jQuery不要处理data
+		contentType:false,//jQuery不要自动设置内容类型
+		success:function(data){
+			//判断是否成功
+			if(isSuccess(data)){
+				//请求正常
+				onSuccess && onSuccess(data);
+			}else{
+				//请求出错了
+				prepareHandleRequest(data, null, onFailed);
+			}
+		},
+		error:function(error){
+			prepareHandleRequest(null, data, onFailed);
+		}
+	});
+}
+
+/**
+ * 预处理请求响应
+ * @param {Object} data 
+ * @param {*} error 
+ * @param {Function()} onFalied 
+ */
+function prepareHandleRequest(data=null, error=null, onFalied=null){
+	if(onFalied && onFalied(data, error)){
+		//回调了请求失败方法，并且该方法返回了true
+		
+		//返回true表示外部手动处理错误，那么框架内部就不用做任何事情了
+	}else{
+		handleRequest(data, error);
+	}
+}
 
 /**
  * 判断请求是否成功
