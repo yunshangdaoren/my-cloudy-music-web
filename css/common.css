@@ -66,3 +66,11 @@ a:hover{
 	color: #d00;
 	text-decoration: none;
 }
+
+/**
+ * 音乐封面图片样式，设置固定宽高
+ */
+.container-song-banner{
+	width: 5.375rem;
+	height: 5.375rem;
+}

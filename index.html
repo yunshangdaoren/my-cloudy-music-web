@@ -217,7 +217,7 @@
 					<!--d-flex:使用flex布局，justify-content-between：内容两端对齐-->
 					<div class="d-flex justify-content-between">
 						<h5>推荐歌单</h5>
-						<a href="./sheets/index.html">更多></a>
+						<a href="./sheets/index.html" class="text-secondary">更多></a>
 					</div>
 				</div>
 			</div><!-- /移动设备显示的推荐歌单标题 -->
@@ -313,7 +313,7 @@
 					<div class="card-deck">
 						<div class="card">
 							<!-- 封面 -->
-							<img src="./assets/download/10.jpg" class="card-img-top">
+							<img src="./assets/download/9.jpg" class="card-img-top">
 						</div>
 					</div>
 					<!-- 标题容器 -->
@@ -328,14 +328,166 @@
 						</a>
 					</div>
 				</div>
+			</div>
+		</div>
 
+		<!-- 更多按钮行 -->
+		<div class="row mt-1 text-center">
+			<div class="col-12">
+				<a class="btn btn-primary pl-5 pr-5" href="../">更多</a>
+			</div>
+		</div>
+
+		<!-- 推荐单曲内容容器 -->
+		<div class="container">
+			<!-- 电脑页面推荐单曲标题 -->
+			<div class="row text-center mt-5 d-none d-sm-block">
+				<!-- 列 -->
+				<div class="col-12">
+					<h3>推荐单曲</h3>
+				</div>
+			</div>
+
+			<!-- 移动设备页面推荐单曲标题 -->
+			<div class="row mt-3 d-block d-sm-none">
+				<div class="col-12">
+					<div class="d-flex justify-content-between">
+						<h5>推荐单曲</h5>
+						<a href="./" class="text-secondary">更多》</a>
+					</div>
+				</div>
+			</div>
+
+			<!-- 歌曲分类行 -->
+			<div class="row mt-3 d-none d-sm-block">
+				<!-- 列 -->
+				<div class="col-12">
+					<ul class="nav justify-content-center">
+						<li class="nav-item">
+							<a class="nav-link" href="#">最新</a>
+						</li>
+						<li class="nav-item">
+							<a class="nav-link" href="#">内地</a>
+						</li>
+						<li class="nav-item">
+							<a class="nav-link" href="#">港台</a>
+						</li>
+						<li class="nav-item">
+							<a class="nav-link" href="#">欧美</a>
+						</li>
+						<li class="nav-item">
+							<a class="nav-link" href="#">韩国</a>
+						</li>
+					</ul>
+				</div>
+			</div><!-- /歌曲分类行 -->
+
+			<!-- 单曲行 -->
+			<div class="row mt-3">
+				<!-- 一个单曲一列 -->
+				<div class="col-12 col-md-4 mb-3">
+					<a href="./">
+						<div class="d-flex align-items-center border-bottom pb-3">
+							<!-- 音乐封面容器 -->
+							<div class="container-song-banner">
+								<img class="rounded card-img-top" src="./assets/download/14.jpg""/>
+							</div>
+							
+							<!-- 音乐信息容器 -->
+							<div class=" ml-3 mr-auto">
+								<span>藏不住的微笑</span><br />
+								<small>
+									<span class="text-secondary">Janery</span>
+								</small>
+							</div>
+
+							<!-- 音乐时长容器 -->
+							<div class="text-secondary">
+								<span>03:29</span>
+							</div>
+						</div>
+					</a>
+				</div><!-- /一个单曲一列 -->
+
+				<!-- 一个单曲一列 -->
+				<div class="col-12 col-md-4 mb-3">
+					<a href="./">
+						<div class="d-flex align-items-center border-bottom pb-3">
+							<!-- 音乐封面容器 -->
+							<div class="container-song-banner">
+								<img class="rounded card-img-top" src="./assets/download/15.jpg""/>
+							</div>
+							
+							<!-- 音乐信息容器 -->
+							<div class=" ml-3 mr-auto">
+								<span>游山恋</span><br />
+								<small>
+									<span class="text-secondary">海伦</span>
+								</small>
+							</div>
+
+							<!-- 音乐时长容器 -->
+							<div class="text-secondary">
+								<span>04:11</span>
+							</div>
+						</div>
+					</a>
+				</div><!-- /一个单曲一列 -->
+
+				<!-- 一个单曲一列 -->
+				<div class="col-12 col-md-4 mb-3">
+					<a href="./">
+						<div class="d-flex align-items-center border-bottom pb-3">
+							<!-- 音乐封面容器 -->
+							<div class="container-song-banner">
+								<img class="rounded card-img-top" src="./assets/download/17.jpg""/>
+							</div>
+							
+							<!-- 音乐信息容器 -->
+							<div class=" ml-3 mr-auto">
+								<span>照耀星河</span><br />
+								<small>
+									<span class="text-secondary">周深</span>
+								</small>
+							</div>
+
+							<!-- 音乐时长容器 -->
+							<div class="text-secondary">
+								<span>04:21</span>
+							</div>
+						</div>
+					</a>
+				</div><!-- /一个单曲一列 -->
 			</div>
 
 		</div>
 
+		<!-- 更多按钮行 -->
+		<div class="row mt-1 text-center">
+			<div class="col-12">
+				<a class="btn btn-primary pl-5 pr-5" href="../">更多</a>
+			</div>
+		</div>
 
+		<!-- 底部容器 -->
+		<footer class="mt-5 mb-5 small text-center">
+			<div class="container">
+				<div class="row">
+					<div class="col">
+						<div>
+							<a href="#" class="text-muted">关于我们</a> |
+							<a href="#" class="text-muted pl-1 pr-1">服务条款</a> |
+							<a href="#" class="text-muted pl-1 pr-1">隐私政策</a> |
+							<a href="#" class="text-muted">客服中心</a>
+						</div>
 
-
+						<div class="mt-3">
+							© 2020 <a target="_blank" href="#">xxx</a>, Inc. | <a target="_blank" href="//beian.miit.gov.cn" class="text-muted">xxICP备xxxxx号</a>
+						</div>
+					</div>
+				</div>
+			</div>
+		</footer>
 
 
 
