@@ -82,25 +82,21 @@ function sendSMSCode(data){
 			//成功回调，判断是否成功
 			if(isSuccess(data)){
 				//发送成功
-			
+				
 				//开始倒计时
 				startCountDown();
 			}else{
 				//TODO 处理错误
+				handleRequest(data, null);
 			}
-			
+		},
+		error:function(error){
+			handleRequest(null, error);
 		}
 	});
 	
 }
 
-/**
- * 请求是否成功
- * @param {Object} data
- */
-function isSuccess(data){
-	return data.status == 0;
-}
 
 /**
  * 开始倒计时
