@@ -40,41 +40,44 @@
 						<!-- 滑动验证码随机字符串 -->
 						<input type="hidden" id="randstr" name="randstr"/>
 						
-						<!-- 用户名 -->
-						<div class="form-group">
-							<label for="nickname">昵称</label>
-							<input type="text" class="form-control" id="nickname" name="nickname"
-								placeholder="请输入昵称（2~15个字符）" required>
-						</div>
-
-						<div class="form-group">
-							<label for="phone">手机号</label>
-							<input type="number" class="form-control" id="phone" name="phone" placeholder="请输入手机号">
-						</div>
-
-						<div class="form-group">
-							<label for="email">邮箱</label>
-							<input type="email" class="form-control" id="email" name="email" placeholder="请输入邮箱">
-						</div>
-
-						<div class="form-group">
-							<label for="password">密码</label>
-							<input type="password" class="form-control" id="password" name="password"
-								placeholder="请输入密码(长度为6~15位)">
-						</div>
-
-						<div class="form-group">
-							<label for="confirmPassword">确认密码</label>
-							<input type="password" class="form-control" id="confirmPassword" name="confirmPassword"
-								placeholder="请输入确认密码">
-						</div>
-
-						<div class="form-group form-check">
-							<input type="checkbox" class="form-check-input" id="accept" name="accept">
-							<label class="form-check-label" for="accept">
-								<small>
-									同意《<a href="//www.ixuea.com/posts/1" target="_blank">用户协议</a>》</label>
-							</small>
+						<div class="form-content">
+							<!-- 用户名 -->
+							<div class="form-group">
+								<label for="nickname">昵称</label>
+								<input type="text" class="form-control" id="nickname" name="nickname"
+									placeholder="请输入昵称（2~15个字符）" required>
+							</div>
+							
+							<div class="form-group">
+								<label for="phone">手机号</label>
+								<input type="number" class="form-control" id="phone" name="phone" placeholder="请输入手机号">
+							</div>
+							
+							<div class="form-group">
+								<label for="email">邮箱</label>
+								<input type="email" class="form-control" id="email" name="email" placeholder="请输入邮箱">
+							</div>
+							
+							<div class="form-group">
+								<label for="password">密码</label>
+								<input type="password" class="form-control" id="password" name="password"
+									placeholder="请输入密码(长度为6~15位)">
+							</div>
+							
+							<div class="form-group">
+								<label for="confirmPassword">确认密码</label>
+								<input type="password" class="form-control" id="confirmPassword" name="confirmPassword"
+									placeholder="请输入确认密码">
+							</div>
+							
+							<div class="form-group form-check">
+								<input type="checkbox" class="form-check-input" id="accept" name="accept">
+								<label class="form-check-label" for="accept">
+									<small>
+										同意<a href="//www.ixuea.com/posts/1" target="_blank">《用户协议》</a></label>
+								</small>
+							</div>
+							
 						</div>
 					</form>
 					
@@ -83,8 +86,7 @@
 					<button id="TencentCaptcha" data-appid="2086896421" data-cbfn="tencentCaptchaCallback" class="btn btn-primary btn-block">注册</button>
 
 					<!-- 其他按钮 -->
-					<a href="../sessions/new.html" type="button"
-						class="btn btn-outline-info btn-block mt-5">已有账号？点击登录</a>
+					<a href="../sessions/new.html" type="button" class="btn btn-outline-info btn-block mt-5">已有账号？点击登录</a>
 
 				</div>
 			</div>
@@ -117,7 +119,6 @@
 
 		<!-- 当前页面JS逻辑 -->
 		<script src="../js/users/new-code.js"></script>
-
 
 	</body>
 </html>

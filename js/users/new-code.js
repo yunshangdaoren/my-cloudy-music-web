@@ -92,3 +92,36 @@ $("#form").formValidation({
 
 	}
 });
+
+// //监听所有input输入框输入事件
+// $(".form-content input").bind("input propertychange", function(){
+// 	//处理提交表单按钮状态
+// 	computerButtonStatus();
+// });
+
+// /**
+//  * 处理提交表单按钮状态
+//  */
+// function computerButtonStatus(){
+// 	//定义disable
+// 	var disable = false;
+	
+// 	//遍历所有input输入框
+// 	$(".form-content input").each(function(){
+// 		//获取input输入框的值
+// 		let data = $(this).val();
+		
+// 		if(!data){
+// 			//如果值为空
+// 			disable = true;
+			
+// 			//终止循环
+// 			return false;
+// 		}
+// 	});
+	
+// 	//设置注册按钮状态
+// 	$("#TencentCaptcha").attr("disabled", disable);
+// }
+
+
