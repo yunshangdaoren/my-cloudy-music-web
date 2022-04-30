@@ -1,0 +1,20 @@
+//首页样式
+
+.nav-send .nav-item a {
+	height: 1.25rem;
+	line-height: 1.25rem;
+
+	padding: 0 0.813rem;
+	margin: .625rem 1.063rem;
+}
+
+/* 第二层导航栏 选中 */
+.nav-second a.active,
+.nav-second a:hover {
+	/* 背景颜色 */
+	background-color: #9B0909;
+
+	/* 圆角 */
+	border-radius: 1.25rem;
+}
+}
