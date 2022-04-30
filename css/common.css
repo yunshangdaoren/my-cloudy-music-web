@@ -50,3 +50,19 @@
 .dropdown-hover .dropdown > .dropdown-toggle:active{
 	pointer-events: none;
 }
+
+/**
+ * 全局a标签样式
+ */
+a{
+	color: #1a1a1a;
+	
+}
+
+/**
+ * 所有a标签，鼠标放上去样式
+ */
+a:hover{
+	color: #d00;
+	text-decoration: none;
+}

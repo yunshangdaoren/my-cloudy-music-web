@@ -1,11 +1,11 @@
-//首页样式
-
-.nav-send .nav-item a {
-	height: 1.25rem;
-	line-height: 1.25rem;
-
+/**
+ * 首页样式
+ */
+.nav-second .nav-item a {
+	height: 1.55rem;
+	line-height: 1.55rem;
 	padding: 0 0.813rem;
-	margin: .625rem 1.063rem;
+	margin: 0.55rem 1.063rem;
 }
 
 /* 第二层导航栏 选中 */
