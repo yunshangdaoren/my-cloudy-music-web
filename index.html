@@ -24,60 +24,93 @@
 		<!-- 头部 -->
 		<header>
 			<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-		
+
 				<div class="container">
 					<!-- logo -->
 					<a class="navbar-brand" href="./">
 						<img src="./assets/logo.png" class="logo" />
 					</a>
-		
+
 					<!-- 折叠菜单按钮；手机端才会显示 -->
-					<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarContent" aria-controls="navbarContent"
-					 aria-expanded="false" aria-label="Toggle navigation">
+					<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarContent"
+						aria-controls="navbarContent" aria-expanded="false" aria-label="Toggle navigation">
 						<span class="navbar-toggler-icon"></span>
 					</button>
-		
+
 					<!-- 导航栏内容容器 -->
+
 					<div class="collapse navbar-collapse" id="navbarContent">
 						<ul class="navbar-nav mr-auto">
 							<li class="nav-item active">
 								<a class="nav-link" href="./sheets">发现音乐</span></a>
 							</li>
-		
+
 							<li class="nav-item">
 								<a class="nav-link" href="./">我的音乐</a>
 							</li>
-		
+
 							<li class="nav-item">
 								<a class="nav-link" href="./videos">视频</a>
 							</li>
-		
+
 							<li class="nav-item">
 								<a class="nav-link" href="./feeds">朋友</a>
 							</li>
-		
+
 							<li class="nav-item">
 								<a class="nav-link" href="./foods">商城</a>
 							</li>
-		
+
 							<li class="nav-item">
 								<a class="nav-link" href="./d">客户端</a>
 							</li>
 						</ul>
-		
+
 						<!-- 搜索输入框 -->
 						<form class="form-inline my-2 my-lg-0">
 							<input class="form-control mr-sm-2" type="search" placeholder="搜索歌单,歌曲,音乐...">
 						</form>
-		
+
 						<!-- 创作中心按钮 -->
 						<a class="btn btn-outline-info rounded-pill mr-2" href="./admins">创作中心</a>
-		
+
 						<!-- 登录按钮；未登录时显示 -->
-						<a class="btn btn-primary" href="./login">快捷登录</a>
-		
+						<a class="btn btn-primary" href="./login" style="display: none;">快捷登录</a>
+
+						<!-- 用户下拉菜单；登录后显示 -->
+						<ul class="navbar-nav dropdown-hover">
+							<li class="nav-item dropdown">
+								<a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+									data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+									<img alt="avatar" class="rounded-circle avatar" src="./assets/avatar2.jpeg" />
+									<span>云上道人</span>
+								</a>
+
+								<!-- 下拉菜单 -->
+								<div class="dropdown-menu" aria-labelledby="navbarDropdown">
+									<a class="dropdown-item" href="./users/show.html">我的主页</a>
+									<a class="dropdown-item" href="./orders/index.html">我的订单</a>
+									<a class="dropdown-item" href="./chats/index.html">我的消息</a>
+
+									<div class="dropdown-divider"></div>
+
+									<a class="dropdown-item" href="/settings/profile.html">个人设置</a>
+									<a class="dropdown-item" href="/settings/avatar.html">头像设置</a>
+
+									<a class="dropdown-item" href="/admins/index.html">后台管理</a>
+									<a class="dropdown-item" href="/admins/index.html">创作者后台</a>
+
+									<div class="dropdown-divider"></div>
+
+									<!-- 退出表单 -->
+									<form method="post" action="./logout">
+										<button class="dropdown-item" type="submit">退出登录</button>
+									</form><!-- /退出表单 -->
+								</div><!-- /下拉菜单 -->
+							</li>
+						</ul>
 					</div>
-		
+
 				</div>
 			</nav>
 		</header>
@@ -105,7 +138,7 @@
 		<!-- /==================通用资源 -->
 
 
-		
+
 
 
 	</body>

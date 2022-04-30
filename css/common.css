@@ -32,3 +32,21 @@
 .logo{
 	height:1.6rem;
 }
+
+/**
+ * 导航栏图像样式
+ */
+.avatar{
+	width: 2rem;
+	height: 2rem;
+}
+
+/**
+ * 添加dropdown-hover 实现鼠标经过显示下拉框
+ */
+.dropdown-hover .dropdown:hover > .dropdown-menu{
+	display: block;
+}
+.dropdown-hover .dropdown > .dropdown-toggle:active{
+	pointer-events: none;
+}
