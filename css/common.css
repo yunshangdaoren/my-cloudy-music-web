@@ -102,3 +102,21 @@ a:hover{
 	/* 设置图片 */
 	background-image: url(../assets/ic-cover-play.png);
 }
+
+/* 鼠标放上去，放大里面的图片（css3动画效果） *
+/* 默认样式 */
+.scale-hover{	
+	/* 所有的，执行时间为0.7s */
+	transition: all 0.7s;
+}
+/* 鼠标放上去状态 */
+.scale-hover:hover{
+	/* x,y分别放大到1.2倍 */
+	transform: scale(1.2, 1.2);
+	
+	/* 所有的，执行时间为0.7s */
+	transition: all 0.7s;
+}
+
+/* /鼠标放上去，放大里面的图片（css3动画效果） *
+
