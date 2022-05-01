@@ -74,3 +74,31 @@ a:hover{
 	width: 5.375rem;
 	height: 5.375rem;
 }
+
+/**
+ * 鼠标放上去显示播放按钮，通过伪元素实现
+ */
+.button-hover-show-play:hover::after{
+	content: "";
+	
+	/**
+	 * 绝对定位
+	 */
+	position: absolute;
+	
+	/* 宽高 */
+	width: 4.375rem;
+	height: 4.375rem;
+	
+	/* 背景大小 */
+	background-size: 4.375rem;
+	
+	top: 50%;
+	left: 50%;
+	
+	margin-left: -2.1875rem;
+	margin-top: -2.1875rem;
+	
+	/* 设置图片 */
+	background-image: url(../assets/ic-cover-play.png);
+}
