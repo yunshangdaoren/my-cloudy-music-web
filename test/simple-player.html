@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>测试简单播放页面</title>
+	</head>
+	<body>
+		<p>测试简单播放页面</p>
+		
+		
+		<script src="../js/constants.js"></script>
+		<script src="../js/common.js"></script>
+		
+		<script type="text/javascript">
+			//获取播放列表数据
+			var data = localStorage.getItem(PLAYER_MUSIC_LIST);
+			
+			if(!isEmpty(data)){
+				//有播放列表数据
+				console.log("有播放列表数据....");
+				
+				//解析为Json对象
+				//data = JSON.parse(data);
+				
+				console.log("有播放列表数据....",data);
+			}
+			
+			
+			//添加本地储存监听器
+			window.addEventListener("storage", function(data){
+				console.log("addEventListener");
+				
+				//判断事件
+				if(data.key == PLAYER_MUSIC_LIST){
+					//播放列表数据改变了
+					console.log("播放列表数据改变了。。。")
+				}
+				if(data.key == PLAYER_MUSIC_INDEX && data.newValue){
+					//播放音乐索引改变了
+					console.log("播放音乐索引数据改变了。。。")
+				}
+			});
+			
+		</script>
+		
+	</body>
+</html>
