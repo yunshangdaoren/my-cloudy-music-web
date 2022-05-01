@@ -55,7 +55,13 @@ class ListManager{
 	 * 继续播放
 	 */
 	resume(){
-		
+		if(this.isPlay){
+			//播放器已经初始化了，原来已经播放了，则继续播放
+			this.musicPlayerManager.resume();
+		}else{
+			//播放器还没有初始化，点击继续播放按钮是不能播放的，需要调用play(data)方法
+			this.play(this.data);
+		}
 	}
 	
 	

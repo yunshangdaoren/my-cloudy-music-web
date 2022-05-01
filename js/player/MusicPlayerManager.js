@@ -83,7 +83,7 @@ class MusicPlayerManager {
 		//播放进度改变了
 		this.player.addEventListener("timeupdate", function() {
 			//设置时长
-			self.data.duration = self.player.currentTime;
+			self.data.progress = self.player.currentTime;
 			//回调监听器
 			self.eachListener(EVENT_PROGRESS)
 		});

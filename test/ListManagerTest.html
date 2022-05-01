@@ -11,7 +11,7 @@
 
 		<p>
 			<button type="button" onclick="onPreviousClick()">上一首</button>
-			<button type="button" onclick="onPlayClick()" id="play">播放</button>
+			<button type="button" onclick="onPlayClick()" id="playOrPause">播放</button>
 			<button type="button" onclick="onNextClick()">下一曲</button>
 			<button type="button" onclick="onLoopModelClick()" id="loopModel">循环模式</button>
 			<button type="button" onclick="onSeekClick()">跳转到音乐最后几秒</button>
@@ -25,7 +25,7 @@
 
 		<p>总时长：<span id="duration"></span></p>
 
-		<p>进度：<span id="progress"></span></p>
+		<p>当前进度：<span id="progress"></span></p>
 
 
 		<!-- ==================通用资源 -->
@@ -57,6 +57,29 @@
 			listener.onPrepare = function(data) {
 				$("#initAndPlay").text(data.title);
 			}
+			//总时长
+			listener.onPrepared = function(data){
+				$("#duration").text(data.duration);
+			}
+			//播放进度
+			listener.onProgress = function(data){
+				$("#progress").text(data.progress);
+			}
+			//已经播放了
+			listener.onPlaying = function(data){
+				$("#playOrPause").text("暂停");
+			}
+			//暂停了
+			listener.onPaused = function(data){
+				$("#playOrPause").text("播放");
+			}
+			//出错了
+			listener.onError = function(data, error){
+				$("#error").text("出错了，错误码:"+ error.code);
+			}
+			
+			//添加监听器到播放管理器
+			musicPlayerManager.addMusicPlayerListener(listener);
 			
 			/**
 			 * 初始化并播放音乐
@@ -85,7 +108,18 @@
 				
 				//播放第一首音乐
 				listManager.play(musicPlayList[0]);
-				
+			}
+			
+			/**
+			 * 播放点击了
+			 */
+			function onPlayClick(){
+				if(musicPlayerManager.isPlaying()){
+					//当前正在播放，则暂停
+					listManager.pause();
+				}else{
+					listManager.resume();
+				}
 			}
 			
 			
