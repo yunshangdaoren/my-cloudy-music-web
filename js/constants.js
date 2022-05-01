@@ -18,3 +18,18 @@ let PLAYER_MUSIC_INDEX = "player_music_index";
  * 资源端点
  */
 let RESOURCE_ENDPOINT = "//dev-courses-misuc.ixuea.com/";
+
+/**
+ * 列表循环
+ */
+let MODEL_LOOP_LIST = 0;
+
+/**
+ * 单曲循环
+ */
+let MODEL_LOOP_ONE = 1;
+
+/**
+ * 随机循环
+ */
+let MODEL_LOOP_RANDOM = 2;

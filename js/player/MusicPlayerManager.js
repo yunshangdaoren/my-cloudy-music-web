@@ -63,6 +63,9 @@ class MusicPlayerManager {
 		this.player.addEventListener("canplay", function() {
 			//设置歌曲播放时长到播放对象
 			self.data.duration = self.player.duration;
+			
+			console.log("title:"+self.player.title)
+			//self.data.title = self.player.title;
 
 			//回调监听器
 			self.eachListener(EVENT_PREPARE);
@@ -158,12 +161,12 @@ class MusicPlayerManager {
 	 * @param {Object} url 音乐播放的绝对地址
 	 * @param {Object} data 音乐对象
 	 */
-	play(url, data) {
+	play(uri, data) {
 		//保存音乐对象
 		this.data = data;
 
 		//保存播放地址
-		this.player.src = url;
+		this.player.src = uri;
 
 		//开始播放
 		this.player.play();

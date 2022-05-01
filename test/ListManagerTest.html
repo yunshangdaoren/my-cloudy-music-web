@@ -55,7 +55,9 @@
 			//设置需要关注的事件
 			//准备播放完成了
 			listener.onPrepare = function(data) {
-				$("#initAndPlay").text(data.title);
+				//设置标题
+				$("#title").text(data.title);
+				$("#duration").text(data.duration);
 			}
 			//总时长
 			listener.onPrepared = function(data){
@@ -122,6 +124,41 @@
 				}
 			}
 			
+			
+			/**
+			 * 循环模式点击
+			 */
+			function onLoopModelClick(){
+				//更改循环模式
+				listManager.changeLoopModel();
+				
+				//显示当前循环模式
+				showLoopModel();
+			}
+			
+			/**
+			 * 显示当前循环模式
+			 */
+			function showLoopModel(){
+				//获取当前循环模式
+				let model = listManager.getLoopModel();
+				
+				//循环模式按钮
+				let loopModel = $("#loopModel");
+				
+				//判断，更改循环模式内容
+				switch(model){
+					case MODEL_LOOP_RANDOM:
+						loopModel.text("随机循环");
+						break;
+					case MODEL_LOOP_LIST:
+						loopModel.text("列表循环");
+						break;
+					case MODEL_LOOP_ONE:
+						loopModel.text("单曲循环");
+						break;
+				}
+			}
 			
 		</script>
 

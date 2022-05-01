@@ -10,6 +10,9 @@ class ListManager{
 	constructor(props){
 		self = this;
 		
+		//定义循环模式为列表循环(0)
+		this.model = MODEL_LOOP_LIST;
+		
 		//初始化播放管理器
 		this.musicPlayerManager = new MusicPlayerManager();
 		//this.musicPlayerManager = new MusicPlayerManager();
@@ -65,7 +68,32 @@ class ListManager{
 	}
 	
 	
+	/**
+	 * 更改循环模式
+	 */
+	changeLoopModel(){
+		//循环模式+1
+		this.model++;
+		
+		//判断循环模式边界(是否超过2)
+		if(this.model > MODEL_LOOP_RANDOM){
+			//如果当前循环模式大于随机循环，则超出边界
+			//设置循环模式为列表循环(0)
+			this.model = MODEL_LOOP_LIST;
+		}
+		
+		//设置单曲循环
+		this.musicPlayerManager.setLooping(this.model == MODEL_LOOP_ONE)
+		
+		//返回循环模式
+		return this.model;
+	}
 	
-	
+	/**
+	 * 获取当前循环模式
+	 */
+	getLoopModel(){
+		return this.model;
+	}
 	
 }
