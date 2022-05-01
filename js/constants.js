@@ -1,5 +1,4 @@
 /* 常量 */
-
 /**
  * 音乐播放页面名称
  */
@@ -14,3 +13,4 @@ let PLAYER_MUSIC_LIST = "player_music_list";
  * 音乐播放索引key
  */
 let PLAYER_MUSIC_INDEX = "player_music_index";
+

@@ -8,7 +8,7 @@
 		<h3>测试音乐播放管理器</h3>
 		
 		<button type="button" onclick="play()">第一次播放</button>
-		<button type="button" onclick="playOrPause()">播放或暂停</button>
+		<button type="button" onclick="playOrPause()" id="playOrPause">播放或暂停</button>
 		<button type="button" onclick="onSeekClick()">跳转到30秒</button>
 		<button type="button" onclick="setLooping()">开启或禁用循环播放</button>
 		
@@ -16,6 +16,17 @@
 			音量<input type="range" id="volumeInput" min="0" max="1" step="0.1" oninput="onVolumechanged(this.value)"/>
 		</p>
 		
+		<p>时长：<span id="duration"></span></p>
+		
+		<p>进度：<span id="progress"></span></p>
+		
+		<!-- ==================通用资源 -->
+		<!-- jquery框架 -->
+		<script src="../vender/jquery/jquery.min.js" crossorigin="anonymous"></script>
+		<!-- /==================通用资源 -->
+		
+		<!-- 播放管理器监听器 -->
+		<script src="../js/player/MusicPlayerListener.js"></script>
 		<!-- 播放管理器 -->
 		<script src="../js/player/MusicPlayerManager.js"></script>
 		<script src="../js/constants.js"></script>
@@ -23,7 +34,36 @@
 		
 		
 		<script type="text/javascript">
+			//创建播放管理器
 			musicPlayerManager = new MusicPlayerManager();
+			
+			//创建播放管理器监听器
+			var listener = new MusicPlayerListener();
+			
+			//设置要关注的事件
+			//准备完毕了
+			listener.onPrepared = function(data){
+				$("#duration").text(data.duration);
+			}
+			//播放进度
+			listener.onProgress = function(data){
+				$("#progress").text(data.duration);
+			}
+			//已经播放了
+			listener.onPlaying = function(data){
+				$("#playOrPause").text("暂停");
+			}
+			//暂停了
+			listener.onPaused = function(data){
+				$("#playOrPause").text("继续播放");
+			}
+			
+			
+			
+			//添加监听器到播放管理器
+			musicPlayerManager.addMusicPlayerListener(listener);
+			
+			
 			
 			//第一次播放
 			function play(){
@@ -61,7 +101,6 @@
 			function onVolumechanged(data){
 				musicPlayerManager.setVolume(data);
 			}
-			
 			
 		</script>
 		
