@@ -1,0 +1,14 @@
+/* 歌单详情样式 */
+
+/**
+ * 歌曲行样式
+ */
+.row-song{
+	height:3.125rem;
+	line-height: 3.125rem;
+}
+
+/* 鼠标放上去，显示播放、收藏、下载、分享按钮 */
+.menu-hover:hover .menu-song{
+	display: block!important;
+}

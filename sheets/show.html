@@ -5,45 +5,49 @@
 		<!-- 编码 -->
 		<meta charset="utf-8">
 		<!--实现响应式 -->
-		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"></meta>
-		
+		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+		</meta>
+
 		<!-- bootstrap依赖 -->
-		<link rel="stylesheet" href="../vender/bootstrap/css/bootstrap.min.css" crossorigin="anonymous"/>
-		
+		<link rel="stylesheet" href="../vender/bootstrap/css/bootstrap.min.css" crossorigin="anonymous" />
+
 		<!-- form-validation表单验证框架样式 -->
-		<link rel="stylesheet" href="../vender/form-validation/css/formValidation.min.css"/>
+		<link rel="stylesheet" href="../vender/form-validation/css/formValidation.min.css" />
+
+		<!-- fontawesome图标库 -->
+		<link rel="stylesheet" href="../vender/fontawesome/css/all.min.css" />
 		<!-- /==================通用资源 -->
+
+		<link rel="stylesheet" href="../css/common.css" />
 		
-		<link rel="stylesheet" href="../css/seesions/new.css"/>
-		
-		<link rel="stylesheet" href="../css/common.css"/>
-		
-		<title>歌单名称</title>
+		<link rel="stylesheet" href="../css/sheets/show.css" />
+
+		<title>歌单详情</title>
 	</head>
-	<body class="bg">
-		<!-- 内容容器 -->
+	<body>
+		<!-- 歌单详细内容容器 -->
 		<div class="container mt-5 text-center text-md-left">
 			<!-- 行 -->
 			<div class="row">
 				<!-- 封面列 -->
 				<div class="col-12 col-md-3">
 					<!-- img-fluid:width 100% -->
-					<img src="../assets/download/17.jpg" class="rounded img-fluid"/>
+					<img src="../assets/download/17.jpg" class="rounded img-fluid" />
 				</div>
-				
+
 				<!-- 歌单信息列 -->
 				<div class="col-12 col-md-6 mt-3">
 					<!-- 歌单标题 -->
 					<h3>亲爱的！我又开始想念你了</h3>
-					
+
 					<!-- 创建歌单的用户信息 -->
 					<div>
 						<a href="../user/show.html">
-							<img src="../assets/awatar2.jpeg" class="rounded-circle avatar"/>
+							<img src="../assets/awatar2.jpeg" class="rounded-circle avatar" />
 							<span class="ml-2">云上道人</span>
 						</a>
 					</div>
-					
+
 					<!-- 歌单标签信息 -->
 					<div class="mt-2">
 						标签：
@@ -51,7 +55,7 @@
 						<a href="../sheets/index.html?tag=华语" class="badge badge-light border mr-2">轻音乐</a>
 						<a href="../sheets/index.html?tag=华语" class="badge badge-light border mr-2">安静</a>
 					</div>
-					
+
 					<!-- 点击数 -->
 					<div class="mt-2">
 						点击数：<span>19万</span>
@@ -60,59 +64,191 @@
 					<div class="mt-2">
 						收藏数：<span>1.2万</span>
 					</div>
-					
+
 					<!-- 按钮容器 -->
 					<div class="mt-2 d-flex">
-						<button type="button" class="btn btn-outline-primary flex-fill">播放全部</button>
-						
-						<a href="#" class="btn btn-outline-secondary flex-fill ml-2 d-none d-sm-block" role="button">歌单评论</a>
-						<a href="#" class="btn btn-outline-secondary flex-fill ml-2 d-none d-sm-block" role="button">编辑歌单</a>
-						<a href="#" class="btn btn-outline-secondary flex-fill ml-2 d-none d-sm-block" role="button">删除歌单</a>
+						<button type="button" class="btn btn-outline-primary flex-fill">
+							<i class="fas fa-play-circle"></i>
+							播放全部
+						</button>
+						<a href="#" class="btn btn-outline-secondary flex-fill ml-2 d-none d-sm-block">
+							<i class="fas fa-comment-dots"></i>
+							歌单评论
+						</a>
+						<a href="#" class="btn btn-outline-secondary flex-fill ml-2 d-none d-sm-block">
+							<i class="fas fa-edit"></i>
+							编辑歌单
+						</a>
+						<!-- 删除歌单-->
+						<form action="../sheets/id" method="POST" id="delete-form">
+							<!-- 指定请求方式为delete -->
+							<input type="hidden" name="_method" value="delete" />
+							<button type="button" class="btn btn-outline-secondary flex-fill ml-2 d-none d-sm-block"onclick="onDeleteClick()">
+								<i class="fas fa-calendar-times"></i>
+								删除歌单
+							</button>
+						</form>
 					</div>
 				</div>
-				
+
 				<!-- 歌单简介列 -->
 				<div class="col-3 d-none d-sm-block">
 					<h5>简介</h5>
 					<span>介绍： 纯音乐【愿大家每晚都能好眠感谢收听】意见都可以提出来，谢谢大家喜欢和收藏
-				（歌曲逐渐增多比较适合随机播放，要是遇到自己比较喜欢的可以循环播放，也可以按顺序播放，按自己喜欢意愿来定吧）</span>
+						（歌曲逐渐增多比较适合随机播放，要是遇到自己比较喜欢的可以循环播放，也可以按顺序播放，按自己喜欢意愿来定吧）</span>
 				</div>
 			</div>
-		</div><!-- /内容容器 -->
-		
+		</div><!-- /歌单详细内容容器 -->
+
+		<!-- 歌曲列表内容容器 -->
+		<div class="container container-song">
+			<!-- 歌曲标题行 -->
+			<div class="row row-song">
+				<div class="col-2 col-md-1">
+					序号
+				</div>
+				<div class="col-6 col-md-5">
+					歌曲
+				</div>
+				<div class="col-4 col-md-2">
+					歌手
+				</div>
+				<div class="col-0 col-md-2 d-none d-sm-block">
+					专技
+				</div>
+				<div class="col-0 col-md-2 d-none d-sm-block">
+					时长
+				</div>
+			</div>
+
+			<!-- 歌曲行 -->
+			<div class="row row-song bg menu-hover">
+				<!-- 歌曲序号 -->
+				<div class="col-2 col-md-1">
+					1
+				</div>
+				<!-- 歌曲列 -->
+				<div class="col-6 col-md-5 text-truncate d-flex justify-content-between">
+					<!-- 歌曲名称 -->
+					<div>
+						两相欢
+					</div>
+					<!-- 按钮容器 -->
+					<div class="menu-song d-none">
+						<!-- 播放 -->
+						<button type="button" class="btn btn-link text-primary" data-music-play="音乐索引0">
+							<i class="far fa-play-circle fa-lg"></i>
+						</button>
+						
+						<!-- 收藏 -->
+						<button type="button" class="btn btn-link text-primary">
+							<i class="fab fa-gratipay fa-lg"></i>
+						</button>
+						
+						<!-- 下载 -->
+						<button type="button" class="btn btn-link text-primary">
+							<i class="fas fa-arrow-circle-down fa-lg"></i>
+						</button>
+						
+						<!-- 分享 -->
+						<button type="button" class="btn btn-link text-primary">
+							<i class="fas fa-share-alt-square fa-lg"></i>
+						</button>
+					</div>
+				</div>
+				<div class="col-4 col-md-2 text-truncate">
+					音阙诗听/昆玉
+				</div>
+				<div class="col-4 col-md-2 text-truncate d-none d-sm-block">
+					两相欢
+				</div>
+				<div class="col-4 col-md-2 text-truncate d-none d-sm-block">
+					04:22
+				</div>
+			</div>
+
+			<!-- 歌曲行 -->
+			<div class="row row-song menu-hover">
+				<!-- 歌曲序号 -->
+				<div class="col-2 col-md-1">
+					2
+				</div>
+				<div class="col-6 col-md-5 text-truncate d-flex justify-content-between">
+					<!-- 歌曲名称 -->
+					<div>
+						桃花庵
+					</div>
+					<!-- 按钮容器 -->
+					<div class="menu-song d-none">
+						<!-- 播放 -->
+						<button type="button" class="btn btn-link text-primary" data-music-play="音乐索引0">
+							<i class="far fa-play-circle fa-lg"></i>
+						</button>
+						
+						<!-- 收藏 -->
+						<button type="button" class="btn btn-link text-primary">
+							<i class="fab fa-gratipay fa-lg"></i>
+						</button>
+						
+						<!-- 下载 -->
+						<button type="button" class="btn btn-link text-primary">
+							<i class="fas fa-arrow-circle-down fa-lg"></i>
+						</button>
+						
+						<!-- 分享 -->
+						<button type="button" class="btn btn-link text-primary">
+							<i class="fas fa-share-alt-square fa-lg"></i>
+						</button>
+					</div>
+				</div>
+				<div class="col-4 col-md-2 text-truncate">
+					音阙诗听/封茗囧菌
+				</div>
+				<div class="col-4 col-md-2 text-truncate d-none d-sm-block">
+					桃花庵
+				</div>
+				<div class="col-4 col-md-2 text-truncate d-none d-sm-block">
+					05:01
+				</div>
+			</div>
+		</div>
+		<!-- 歌曲列表内容容器 -->
+
+
+
 		<!-- ==================通用资源 -->
 		<!-- jquery框架 -->
 		<script src="../vender/jquery/jquery.min.js" crossorigin="anonymous"></script>
-		
+
 		<!-- popper框架（Bootstrap4需要的） -->
 		<script src="../vender/poper/popper.min.js" crossorigin="anonymous"></script>
-		
+
 		<!-- bootstrap js依赖 -->
 		<script src="../vender/bootstrap/js/bootstrap.min.js" crossorigin="anonymous"></script>
-		
+
 		<!-- form-validation表单验证框架样式 js依赖 -->
 		<script src="../vender/form-validation/js/form-validation.min.js"></script>
-		
+
 		<!-- form-validation表单验证框架依赖bootstrap js依赖 -->
 		<script src="../vender/form-validation/js/framework/bootstrap.js"></script>
-		
+
 		<!-- form-validation表单验证框架中文语言提示 -->
 		<script src="../vender/form-validation/js/language/zh_CN.js"></script>
-		
+
 		<!-- sweetalert弹出提示框框架 -->
 		<script src="../vender/sweetalert/sweetalert.min.js"></script>
-		
+
 		<!-- Toast提示工具类 -->
 		<script src="../js/util/ToastUtil.js"></script>
-		
+
 		<!-- HTTP网络请求处理工具类 -->
 		<script src="../js/util/HttpUtil.js"></script>
-		
+
 		<!-- /==================通用资源 -->
-		
-		
+
+
 		<!-- 当前页面JS逻辑 -->
-		<script src="../js/sessions/new-sms.js"></script>
-		
+		<script src="../js/sheets/show.js"></script>
+
 	</body>
 </html>
