@@ -20,6 +20,8 @@
 		
 		<p>进度：<span id="progress"></span></p>
 		
+		<p>错误：<span id="error"></span></p>
+		
 		<!-- ==================通用资源 -->
 		<!-- jquery框架 -->
 		<script src="../vender/jquery/jquery.min.js" crossorigin="anonymous"></script>
@@ -57,7 +59,10 @@
 			listener.onPaused = function(data){
 				$("#playOrPause").text("继续播放");
 			}
-			
+			//出错了
+			listener.onError = function(data, error){
+				$("#error").text("出错了，错误码:"+ error.code);
+			}
 			
 			
 			//添加监听器到播放管理器
