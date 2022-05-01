@@ -64,7 +64,7 @@ class MusicPlayerManager {
 			//设置歌曲播放时长到播放对象
 			self.data.duration = self.player.duration;
 			
-			console.log("title:"+self.player.title)
+			//console.log("title:"+self.player.title)
 			//self.data.title = self.player.title;
 
 			//回调监听器
@@ -167,7 +167,9 @@ class MusicPlayerManager {
 
 		//保存播放地址
 		this.player.src = uri;
-
+		
+		//this.player.title = data.title;
+		
 		//开始播放
 		this.player.play();
 	}

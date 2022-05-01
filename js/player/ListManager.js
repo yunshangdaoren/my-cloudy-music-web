@@ -15,7 +15,7 @@ class ListManager{
 		
 		//初始化播放管理器
 		this.musicPlayerManager = new MusicPlayerManager();
-		//this.musicPlayerManager = new MusicPlayerManager();
+		
 	}
 	
 	
@@ -28,6 +28,12 @@ class ListManager{
 		this.datum = data;
 	}
 	
+	/**
+	 * 获取当前播放的音乐对象
+	 */
+	getData(){
+		return this.data;
+	}
 	
 	/**
 	 * 播放歌曲
