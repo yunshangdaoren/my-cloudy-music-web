@@ -102,4 +102,38 @@ class ListManager{
 		return this.model;
 	}
 	
+	/**
+	 * 下一首
+	 */
+	next(){
+		//音乐索引
+		var index = 0;
+		
+		//判断当前音乐播放的循环模式
+		switch(this.model){
+			case MODEL_LOOP_RANDOM:
+				//随机循环，Math.random():返回 0 ~ 1 之间的随机数，包含 0 不包含 1
+				index = parseInt(Math.random()*this.datum.length);
+				break;
+			default:
+				//找到当前播放的音乐索引
+				index = this.datum.indexOf(this.data);
+				if(index != -1){
+					//找到了当前播放的音乐
+					//如果当前播放的音乐是列表中最后一个
+					if(index == this.datum.length-1){
+						//那么当前播放的音乐是列表中最后一个，则从第一首开始播放
+						index = 0;
+					}else{
+						index++;
+					}
+				}else{
+					//出现异常错误
+				}
+				break;
+		}
+		//返回需要下一曲播放的音乐
+		return this.datum[index];
+	}
+	
 }
