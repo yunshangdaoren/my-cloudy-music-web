@@ -14,3 +14,7 @@ let PLAYER_MUSIC_LIST = "player_music_list";
  */
 let PLAYER_MUSIC_INDEX = "player_music_index";
 
+/**
+ * 资源端点
+ */
+let RESOURCE_ENDPOINT = "//dev-courses-misuc.ixuea.com/";

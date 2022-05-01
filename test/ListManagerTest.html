@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>播放列表管理器测试</title>
+	</head>
+	<body>
+		<h3>测试音乐播放列表管理器</h3>
+
+		<button type="button" onclick="initAndPlay()">设置播放列表并播放</button>
+
+		<p>
+			<button type="button" onclick="onPreviousClick()">上一首</button>
+			<button type="button" onclick="onPlayClick()" id="play">播放</button>
+			<button type="button" onclick="onNextClick()">下一曲</button>
+			<button type="button" onclick="onLoopModelClick()" id="loopModel">循环模式</button>
+			<button type="button" onclick="onSeekClick()">跳转到音乐最后几秒</button>
+		</p>
+
+		<p>播放的音乐标题：<span id="title"></span></p>
+
+		<p>
+			音量：<input type="range" id="volumeInput" min="0" max="1" step="0.1" oninput="onVolumeChanged(this.value)" />
+		</p>
+
+		<p>总时长：<span id="duration"></span></p>
+
+		<p>进度：<span id="progress"></span></p>
+
+
+		<!-- ==================通用资源 -->
+		<!-- jquery框架 -->
+		<script src="../vender/jquery/jquery.min.js" crossorigin="anonymous"></script>
+		<!-- /==================通用资源 -->
+
+		<!-- 播放管理器监听器 -->
+		<script src="../js/player/MusicPlayerListener.js"></script>
+		<!-- 播放管理器 -->
+		<script src="../js/player/MusicPlayerManager.js"></script>
+		<!-- 播放列表管理器 -->
+		<script src="../js/player/ListManager.js"></script>
+		<script src="../js/constants.js"></script>
+		<script src="../js/common.js"></script>
+
+		<script>
+			//创建列表管理器
+			listManager = new ListManager();
+
+			//获取音乐播放管理器
+			musicPlayerManager = listManager.musicPlayerManager;
+
+			//创建播放管理器监听器
+			var listener = new MusicPlayerListener();
+
+			//设置需要关注的事件
+			//准备播放完成了
+			listener.onPrepare = function(data) {
+				$("#initAndPlay").text(data.title);
+			}
+			
+			/**
+			 * 初始化并播放音乐
+			 */
+			function initAndPlay(){
+				//设置测试模拟播放列表
+				var musicPlayList = [{
+						"id": 1,
+						"title": "拥抱你离去",
+						"uri": "assets/yong_bao_ni_de_ni_de_li_qu.mp3",
+					},
+					{
+						"id": 2,
+						"title": "缘分惹的祸",
+						"uri": "assets/yuanfengredehuo_andongyang.mp3",
+					},
+					{
+						"id": 3,
+						"title": "爱拼才会赢",
+						"uri": "assets/s1.mp3",
+					}
+				];
+				
+				//设置播放列表
+				listManager.setDatum(musicPlayList);
+				
+				//播放第一首音乐
+				listManager.play(musicPlayList[0]);
+				
+			}
+			
+			
+		</script>
+
+
+	</body>
+</html>
