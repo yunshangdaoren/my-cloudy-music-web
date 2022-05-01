@@ -38,8 +38,23 @@
 				if(data.key == PLAYER_MUSIC_INDEX && data.newValue){
 					//播放音乐索引改变了
 					console.log("播放音乐索引数据改变了。。。")
+					play(data.newValue);
 				}
 			});
+			
+			/**
+			 * 播放音乐
+			 * @param {Object} index
+			 */
+			function play(index){
+				//创建音乐对象
+				//地址为音乐绝对路径
+				//变量签名不写前缀，表示是全局变量
+				audio = new Audio("//dev-courses-misuc.ixuea.com/assets/shangxingzhantai_andongyang.mp3");
+				
+				//播放
+				audio.play();
+			}
 			
 		</script>
 		
