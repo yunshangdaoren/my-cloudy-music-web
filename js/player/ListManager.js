@@ -16,6 +16,30 @@ class ListManager{
 		//初始化播放管理器
 		this.musicPlayerManager = new MusicPlayerManager();
 		
+		//初始化音乐播放列表
+		this.initPlayList();
+		
+	}
+	
+	/**
+	 * 初始化音乐播放列表
+	 */
+	initPlayList(){
+		//查询播放列表
+		this.datum =  StorageUtil.queryPlayList();
+		
+		//判断播放列表是否为空
+		if(this.datum){
+			//播放列表不为空，则默认播放第一首音乐
+			this.defaultPlaySong();
+		}
+	}
+	
+	/**
+	 * 默认第一首音乐
+	 */
+	defaultPlaySong(){
+		this.data = this.datum[0];
 	}
 	
 	

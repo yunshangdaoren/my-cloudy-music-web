@@ -17,4 +17,11 @@
 	/* 圆角 */
 	border-radius: 1.25rem;
 }
+/**
+ * 绝对定位，左上0,0
+ */
+.abs00{
+	position: absolute;
+	left: 0;
+	top: 0;
 }

@@ -17,7 +17,7 @@
 		<link rel="stylesheet" href="./css/index.css" />
 
 		<link rel="stylesheet" href="./css/common.css" />
-
+		
 		<title>注册</title>
 	</head>
 	<body>
@@ -137,8 +137,10 @@
 		<!-- /第二层导航栏 -->
 
 		<!-- 轮播图 -->
-		<div style="background-color: bisque;">
-			<div class="container">
+		<div style="position: relative;">
+			 
+			<!-- 轮播图容器 -->
+			<div class="container container-banner" style="position: relative;z-index: 100;">
 				<!-- 行 -->
 				<div class="row">
 					<!-- 列 -->
@@ -193,7 +195,19 @@
 						<!-- /banner -->
 					</div>
 				</div>
+			</div><!-- /轮播图容器 -->
+			
+			<!-- 高斯模糊容器 -->
+			<div class="abs00 container-mask w-100 h-100" style="z-index: 60;background-size: cover;">
+				<canvas id="canvas-mask" class="img-background w-100 h-100"></canvas>
 			</div>
+			
+			<!-- 背景容器 -->
+			<div class="abs00 container-background w-100 h-100" style="z-index: 1;">
+				<img id="img-background" class="img-background w-100 h-100" src="./assets/download/6.jpg" />
+			</div> 
+			
+			
 		</div>
 		<!-- /轮播图 -->
 
@@ -518,12 +532,18 @@
 
 		<!-- form-validation表单验证框架中文语言提示 -->
 		<script src="./vender/form-validation/js/language/zh_CN.js"></script>
+		
+		<!-- 高斯模糊依赖 -->
+		<script src="./vender/StakBlur/stackblur.min.js"></script>
 
 		<!-- /==================通用资源 -->
 
 
-
-
+		<script src="./js/index.js"></script>
+		
+		<script>
+			//StackBlur.image('img-background', 'canvas-mask', 90, false);
+		</script>
 
 	</body>
 </html>
