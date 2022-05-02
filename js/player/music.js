@@ -59,7 +59,56 @@ function showInitData(){
 	$("#img-background").attr("src", uri);
 }
 
+//console.log("音乐列表："+datum);
+//console.log("当前播放的音乐："+data);
 
-console.log("音乐列表："+datum);
-console.log("当前播放的音乐："+data);
+/**
+ * 上一首
+ */
+function onPreviousClick(){
+	
+}
 
+/**
+ * 播放
+ */
+function onPlayClick(){
+	
+}
+
+/**
+ * 下一首
+ */
+function onNextClick(){
+	
+}
+
+/**
+ * 播放进度条改变了
+ * @param {Object} data 播放进度
+ */
+function onProgressChanged(data){
+	
+}
+
+/**
+ * 循环模式点击了
+ */
+function onLoopModelClick(){
+	
+}
+
+/**
+ * 音量滑块值改变了
+ * @param {Object} data
+ */
+function onVolumeChanged(data){
+	
+}
+
+/**
+ * 播放列表点击了
+ */
+function onListClick(){
+	
+}

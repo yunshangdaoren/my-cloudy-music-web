@@ -118,3 +118,27 @@ a:hover{
 	transition: all 0.7s;
 }
 /* /鼠标放上去，放大里面的图片（css3动画效果） */
+
+/**
+ * 小一点的图片
+ */
+.image-small{
+	width: 1.1rem;
+	height: 1.1rem;
+}
+
+/**
+ * 中等大小图片
+ */
+.image-mdddle{
+	width: 1.5625rem;
+	height: 1.5625rem;
+}
+
+/**
+ * 大一点的图片
+ */
+.image-large{
+	width: 3.125rem;
+	height: 3.125rem;
+}

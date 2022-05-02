@@ -37,7 +37,7 @@
 		</div>
 		
 		<!-- 内容容器 -->
-		<div class="h-100 w-100 d-flex flex-column" style="background-color: bisque;">
+		<div class="h-100 w-100 d-flex flex-column"">
 			<!-- 黑胶唱片及歌词容器 -->
 			<div class="container container-lg container-content flex-grow-1 w-100">
 				<div class="row h-100">
@@ -58,8 +58,51 @@
 			<div class="container container-play-control w-100">
 				<!-- 行 -->
 				<div class="row">
-					<div class="col-12" style="background-color: crimson;">
-						播放控制
+					<!-- 播放按钮列：手机上占12列，电脑上占3列-->
+					<div class="col-12 col-md-3 d-flex justify-content-between align-items-center">
+						<button type="button" class="btn btn-link" onclick="onPreviousClick()">
+							<img src="../assets/player/ic_music_previous.png" class="image-mdddle"/>
+						</button>
+						
+						<button type="button" class="btn btn-link" onclick="onPlayClick()">
+							<img src="../assets/player/ic_music_play.png" class="image-large"/>
+						</button>
+						
+						<button type="button" class="btn btn-link" onclick="onNextClick()">
+							<img src="../assets/player/ic_music_next.png" class="image-mdddle"/>
+						</button>
+					</div>
+					
+					<!-- 进度信息列：手机上占12列，电脑上占6列 -->
+					<!--  mt-3 mt-sm-0：表示手机屏幕上，margin-top为3 -->
+					<div class="col-12 col-md-6 d-flex justify-content-between align-items-center mt-3 mt-sm-0">
+						<span id="start" class="text-white">00:00</span>
+						
+						<!-- 进度条 -->
+						<form class="flex-fill ml-2 mr-2">
+							<input type="range" class="form-control-range" id="progress" value="0" min="0" max="1" oninput="onProgressChanged(this.value)"/>
+						</form>
+						
+						<span id="end" class="text-white">00:00</span>
+					</div>
+					
+					<!-- 更多按钮列 -->
+					<div class="col-12 col-md-3 d-flex justify-content-between align-items-center  mt-3 mt-sm-0">
+						<button type="button" class="btn btn-link" onclick="onLoopModelClick()">
+							<img src="../assets/player/ic_music_repeat_list.png" class="image-small"/>
+						</button>
+						
+						<button type="button" class="btn btn-link"">
+							<i class="fa fa-heart fa-lg text-white" class="image-small"></i>
+						</button>
+						
+						<form class="ml-1 mr-2">
+							<input type="range" class="form-control-range" id="volume" value="0" min="0" max="1" oninput="onVolumeChanged(this.value)"/>
+						</form>
+						
+						<button type="button" class="btn btn-link" onclick="onListClick()">
+							<img src="../assets/player/ic_music_list.png" class="image-small"/>
+						</button>
 					</div>
 				</div>
 			</div><!-- /播放控制器容器，高度为内容高度 -->
