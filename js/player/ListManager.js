@@ -20,12 +20,19 @@ class ListManager{
 	
 	
 	/**
-	 * 设置播放列表
+	 * 设置音乐的播放列表
 	 * @param {Object} data
 	 */
 	setDatum(data){
 		//保存数据
 		this.datum = data;
+	}
+	
+	/**
+	 * 获取当前音乐的播放列表
+	 */
+	getDatum(){
+		return this.datum;
 	}
 	
 	/**
@@ -167,6 +174,19 @@ class ListManager{
 		}
 		//返回需要下一曲播放的音乐
 		return this.datum[index];
+	}
+	
+	/**
+	 * 跳转到指定位置开始播放音乐
+	 * @param {Object} progress
+	 */
+	seekTo(progress){
+		this.musicPlayerManager.seekTo(progress);
+		
+		if(!this.musicPlayerManager.isPlaying()){
+			//如果此时音乐没有播放，则继续播放音乐
+			this.resume();
+		}
 	}
 	
 }

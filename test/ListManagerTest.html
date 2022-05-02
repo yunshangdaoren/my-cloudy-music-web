@@ -171,6 +171,21 @@
 						break;
 				}
 			}
+			
+			/**
+			 * 从指定进度位置开始播放音乐
+			 */
+			function onSeekClick(){
+				listManager.seekTo(235);
+			}
+			
+			/**
+			 * 修改播放音量
+			 * @param {Object} data
+			 */
+			function onVolumeChanged(data){
+				musicPlayerManager.setVolume(data);
+			}
 		</script>
 
 
