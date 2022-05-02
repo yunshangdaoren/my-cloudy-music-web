@@ -109,6 +109,13 @@
 				//播放第一首音乐
 				listManager.play(musicPlayList[0]);
 			}
+			
+			/**
+			 * 上一曲
+			 */
+			function onPreviousClick(){
+				listManager.play(listManager.previous());
+			}
 
 			/**
 			 * 播放点击了

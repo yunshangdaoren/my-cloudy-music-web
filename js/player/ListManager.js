@@ -103,6 +103,39 @@ class ListManager{
 	}
 	
 	/**
+	 * 上一首
+	 */
+	previous(){
+		//音乐索引
+		var index = 0;
+		
+		//判断当前音乐播放的循环模式
+		switch(this.model){
+			case MODEL_LOOP_RANDOM:
+				//当前为随机循环，则获取随机索引，Math.random():返回0~1之间的随机数，包含0不包含1
+				index = parseInt(Math.random()*this.datum.length);
+				break;
+			default:
+				//找到当前索引
+				index = this.datum.indexOf(this.data);
+				if(index != -1){
+					//如果当前播放的音乐是列表的第一首音乐
+					if(index == 0){
+						//上一首就是列表的最后一首音乐
+						index = this.datum.length -1;
+					}else{
+						index--;
+					}
+				}else{
+					//出现异常错误，没有找到当前音乐的索引，需要抛出异常
+				}
+				break;
+		}
+		//返回需要播放的音乐
+		return this.datum[index];
+	}
+	
+	/**
 	 * 下一首
 	 */
 	next(){
@@ -112,7 +145,7 @@ class ListManager{
 		//判断当前音乐播放的循环模式
 		switch(this.model){
 			case MODEL_LOOP_RANDOM:
-				//随机循环，Math.random():返回 0 ~ 1 之间的随机数，包含 0 不包含 1
+				//当前为随机循环，则获取随机索引，Math.random():返回0~1之间的随机数，包含0不包含1
 				index = parseInt(Math.random()*this.datum.length);
 				break;
 			default:
@@ -128,7 +161,7 @@ class ListManager{
 						index++;
 					}
 				}else{
-					//出现异常错误
+					//出现异常错误，没有找到当前音乐的索引，需要抛出异常
 				}
 				break;
 		}
