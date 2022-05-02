@@ -36,7 +36,7 @@ class ListManager{
 			
 			if(!isEmpty(id)){
 				//最后播放音乐id不为空，则获取最后播放的音乐
-				this.datum.forEach(s, index, array)=>{
+				this.datum.forEach(function(s, index, array){
 					//判断id是否相等
 					if(s.id == id){
 						//找到最后播放的音乐的id

@@ -20,14 +20,15 @@
 		
 		<title>登录</title>
 	</head>
-	<body class="h-100">
+	<body class="h-100" style="background-color: rgb(77, 77, 58);">
 		<!-- 背景容器 -->
 		<div class="abs00 container-background w-100 h-100">
 			<!-- crossorign:跨域访问图片，阿里云OSS权限控制台-跨域设置，配置允许跨域
 			     如果使用了阿里云CDN，还要在缓存-http头里面设置：
 				 Access-Control-Allow-Origin=*
 				 Access-Control-Allow-Methods=get、post、head、put、patch-->
-			<img id="img-background" class="img-background w-100 h-100" src="../assets/download/17.jpg" crossorigin="anonymous"/>
+			<!-- 设置display作用是为了防止网页刷新时，先显示背景图片，然后显示高斯模糊 -->
+			<img id="img-background" class="img-background w-100 h-100" crossorigin="anonymous" style="display: none;"/>
 		</div>
 		
 		<!-- 高斯模糊容器 -->
