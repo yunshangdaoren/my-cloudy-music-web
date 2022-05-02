@@ -12,7 +12,7 @@ let PLAYER_MUSIC_LIST = "player_music_list";
 /**
  * 音乐播放索引key
  */
-let PLAYER_MUSIC_INDEX = "player_music_index";
+let PLAYER_MUSIC_ID = "player_music_id";
 
 /**
  * 资源端点

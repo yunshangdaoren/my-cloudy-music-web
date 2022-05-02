@@ -35,9 +35,9 @@
 					//播放列表数据改变了
 					console.log("播放列表数据改变了。。。")
 				}
-				if(data.key == PLAYER_MUSIC_INDEX && data.newValue){
-					//播放音乐索引改变了
-					console.log("播放音乐索引数据改变了。。。")
+				if(data.key == PLAYER_MUSIC_ID && data.newValue){
+					//播放音乐id改变了
+					console.log("播放音乐id数据改变了。。。")
 					play(data.newValue);
 				}
 			});

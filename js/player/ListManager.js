@@ -18,7 +18,6 @@ class ListManager{
 		
 		//初始化音乐播放列表
 		this.initPlayList();
-		
 	}
 	
 	/**
