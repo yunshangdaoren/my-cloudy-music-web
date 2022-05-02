@@ -3,7 +3,12 @@
  * 目的是实现背景高斯模糊
  */
 window.onload = function(){
-	StackBlur.image('img-background', 'canvas-mask', 200, false);
+	//获取当前正在轮播的图片
+	var src = $(".carousel-inner .active img").attr("src");
+	//将轮播图背景设置为当前正在轮播的图片
+	$(".img-background").attr("src", src);
+	
+	StackBlur.image('img-background', 'canvas-mask', 100, false);
 };
 
 /**
@@ -16,11 +21,11 @@ $('#banner').on('slide.bs.carousel', function(event) {
 	//getIndex就是轮播到当前位置的索引
 	var index = hoder.index(items);
 	if(index == 0){
-		$("#img-background").attr("src", "./assets/download/6.jpg");
+		$(".img-background").attr("src", "./assets/download/6.jpg");
 	}else if(index == 1){
-		$("#img-background").attr("src", "./assets/download/5.jpg");
+		$(".img-background").attr("src", "./assets/download/5.jpg");
 	}else{
-		$("#img-background").attr("src", "./assets/download/7.jpg");
+		$(".img-background").attr("src", "./assets/download/7.jpg");
 	}
 	StackBlur.image('img-background', 'canvas-mask', 100, false);
 	
