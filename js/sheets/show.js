@@ -1,3 +1,14 @@
+
+/**
+ * 播放歌单所有歌曲按钮点击事件
+ */
+function onPlayAllClick(){
+	//触发歌单歌曲列表的第一首音乐播放按钮点击事件，去播放第一首音乐
+	//class为container-song，下面的class为row的第二行，属性为data-music-play的按钮button
+	$(".container-song .row:eq(1) button[data-music-play]").click();
+}
+
+
 /**
  * 删除歌单按钮点击
  */

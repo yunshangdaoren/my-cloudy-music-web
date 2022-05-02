@@ -66,7 +66,7 @@
 
 					<!-- 按钮容器 -->
 					<div class="mt-2 d-flex">
-						<button type="button" class="btn btn-outline-primary flex-fill" data-music-play="0">
+						<button type="button" class="btn btn-outline-primary flex-fill" onclick="onPlayAllClick()">
 							<i class="fas fa-play-circle"></i>
 							播放全部
 						</button>
@@ -82,7 +82,7 @@
 						<form action="../sheets/id" method="POST" id="delete-form">
 							<!-- 指定请求方式为delete -->
 							<input type="hidden" name="_method" value="delete" />
-							<button type="button" class="btn btn-outline-secondary flex-fill ml-2 d-none d-sm-block"onclick="onDeleteClick()">
+							<button type="button" class="btn btn-outline-secondary flex-fill ml-2 d-none d-sm-block" onclick="onDeleteClick()">
 								<i class="fas fa-calendar-times"></i>
 								删除歌单
 							</button>
@@ -100,7 +100,7 @@
 		</div><!-- /歌单详细内容容器 -->
 
 		<!-- 歌曲列表内容容器 -->
-		<div class="container container-song">
+		<div class="container container-song mt-4">
 			<!-- 歌曲标题行 -->
 			<div class="row row-song">
 				<div class="col-2 col-md-1">
