@@ -8,6 +8,7 @@ class ListManager{
 	 * @param {Object} props
 	 */
 	constructor(props){
+		//定义self，值=this
 		self = this;
 		
 		//定义循环模式为列表循环(0)
@@ -29,8 +30,33 @@ class ListManager{
 		
 		//判断播放列表是否为空
 		if(this.datum){
-			//播放列表不为空，则默认播放第一首音乐
-			this.defaultPlaySong();
+			//播放列表不为空
+			//获取最后播放的音乐的id
+			let id = StorageUtil.getLastPlaySongId();
+			
+			if(!isEmpty(id)){
+				//最后播放音乐id不为空，则获取最后播放的音乐
+				this.datum.forEach(s, index, array)=>{
+					//判断id是否相等
+					if(s.id == id){
+						//找到最后播放的音乐的id
+						self.data = s;
+						return false;
+					}
+				});
+				
+				if(this.data == null){
+					//没有找到最后播放的音乐id，则从第一首音乐开始播放
+					this.defaultPlaySong();
+				}else{
+					//找到了最后播放的音乐的id
+					
+				}
+			}else{
+				//id为空，没有找到最后播放的音乐id，则从第一首音乐开始播放
+				this.defaultPlaySong();
+			}
+			
 		}
 	}
 	

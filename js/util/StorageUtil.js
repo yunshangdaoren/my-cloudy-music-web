@@ -19,4 +19,11 @@ class StorageUtil{
 		//没有值，则返回null
 		return null;
 	}
+	
+	/**
+	 * 获取最后播放的音乐的id
+	 */
+	static getLastPlaySongId(){
+		return localStorage.getItem(PLAYER_MUSIC_ID);
+	}
 }
