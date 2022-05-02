@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html class="h-100">
+	<head>
+		<!-- ==================通用资源 -->
+		<!-- 编码 -->
+		<meta charset="utf-8">
+		<!--实现响应式 -->
+		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"></meta>
+		
+		<!-- bootstrap依赖 -->
+		<link rel="stylesheet" href="../vender/bootstrap/css/bootstrap.min.css" crossorigin="anonymous"/>
+		
+		<!-- fontawesome图标库 -->
+		<link rel="stylesheet" href="../vender/fontawesome/css/all.min.css" />
+		<!-- /==================通用资源 -->
+		
+		<link rel="stylesheet" href="../css/player/music.css"/>
+		
+		<link rel="stylesheet" href="../css/common.css"/>
+		
+		<title>登录</title>
+	</head>
+	<body class="h-100">
+		<!-- 背景容器 -->
+		<div class="abs00 container-background w-100 h-100">
+			<!-- crossorign:跨域访问图片，阿里云OSS权限控制台-跨域设置，配置允许跨域
+			     如果使用了阿里云CDN，还要在缓存-http头里面设置：
+				 Access-Control-Allow-Origin=*
+				 Access-Control-Allow-Methods=get、post、head、put、patch-->
+			<img id="img-background" class="img-background w-100 h-100" src="../assets/download/17.jpg" crossorigin="anonymous"/>
+		</div>
+		
+		<!-- 高斯模糊容器 -->
+		<div class="abs00 container-mask w-100 h-100">
+			<canvas id="canvas-mask" class="img-background w-100 h-100"></canvas>
+		</div>
+		
+		<!-- 内容容器 -->
+		<div class="h-100 w-100 d-flex flex-column" style="background-color: bisque;">
+			<!-- 黑胶唱片及歌词容器 -->
+			<div class="container container-lg container-content flex-grow-1 w-100">
+				<div class="row h-100">
+					<!-- 黑胶唱片列 -->
+					<div class="col-12 col-md-6 h-100" style="background-color: aquamarine;">
+						黑胶唱片
+					</div>
+					
+					<!-- 歌词列 -->
+					<div class="col-12 col-md-6 h-100" style="background-color: blueviolet;">
+						歌词
+					</div>
+				</div>
+				
+			</div><!-- /黑胶唱片及歌词容器 -->
+			
+			<!-- 底部播放控制器容器，高度为内容高度 -->
+			<div class="container container-play-control w-100">
+				<!-- 行 -->
+				<div class="row">
+					<div class="col-12" style="background-color: crimson;">
+						播放控制
+					</div>
+				</div>
+			</div><!-- /播放控制器容器，高度为内容高度 -->
+		</div>
+		
+		<!-- ==================通用资源 -->
+		<!-- jquery框架 -->
+		<script src="../vender/jquery/jquery.min.js" crossorigin="anonymous"></script>
+		
+		<!-- popper框架 -->
+		<script src="../vender/poper/popper.min.js" crossorigin="anonymous"></script>
+		
+		<!-- bootstrap js依赖 -->
+		<script src="../vender/bootstrap/js/bootstrap.min.js" crossorigin="anonymous"></script>
+	
+		
+		<!-- /==================通用资源 -->
+		
+		
+		<!-- 当前页面JS逻辑 -->
+		<script src="../js/player/music.js"></script>
+		
+	</body>
+</html>

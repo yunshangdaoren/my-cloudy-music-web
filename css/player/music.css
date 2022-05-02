@@ -1,0 +1,38 @@
+/**
+ * 绝对定位，左上0,0
+ */
+.abs00{
+	position: absolute;
+	left: 0;
+	top: 0;
+}
+
+/**
+ * 背景图片样式
+ */
+.img-background{
+	object-fit: cover;
+}
+
+/**
+ * 背景高斯模糊
+ */
+.canvas-mask{
+	
+}
+
+
+/**
+ * 黑胶唱片及歌词容器
+ */
+.container-content{
+	background-color: darkgoldenrod;
+}
+
+/**
+ * 播放控制容器
+ */
+.container-play-control{
+	margin-bottom: 2.5rem;
+}
+
