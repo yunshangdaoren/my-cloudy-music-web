@@ -137,6 +137,9 @@ listener.onPrepared = function(data){
 	
 	//显示音乐时长
 	showDuration();
+	
+	//保存最后播放的音乐的时长
+	PreferenceUtil.setLastPlaySongDuration(data.duration);
 }
 
 /**
@@ -172,6 +175,9 @@ listener.onProgress = function(data){
 		//如果有要播放的音乐，则显示播放进度
 		showProgress();
 	}
+	
+	//保存最后播放的音乐的进度
+	PreferenceUtil.setLastPlaySongProgress(data.progress);
 }
 
 /**

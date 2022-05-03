@@ -26,4 +26,34 @@ class PreferenceUtil{
 	static getLastPlaySongId(){
 		return localStorage.getItem(PLAYER_MUSIC_ID);
 	}
+	
+	/**
+	 * 保存最后播放的音乐的时长
+	 * @param {Object} data
+	 */
+	static setLastPlaySongDuration(data){
+		localStorage.setItem(LAST_PLAY_SONG_DURAION, data);
+	}
+	
+	/**
+	 * 获取最后播放的音乐的时长
+	 */
+	static getLastPlaySongDuration(){
+		return localStorage.getItem(LAST_PLAY_SONG_DURAION);
+	}
+	
+	/**
+	 * 保存最后播放的音乐的进度
+	 * @param {Object} data
+	 */
+	static setLastPlaySongProgress(data){
+		localStorage.setItem(LAST_PLAY_SONG_PROGRESS, data);
+	}
+	
+	/**
+	 * 获取最后播放的音乐的进度
+	 */
+	static getLastPlaySongProgress(){
+		return localStorage.getItem(LAST_PLAY_SONG_PROGRESS);
+	}
 }

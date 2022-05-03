@@ -46,3 +46,13 @@ let MUSIC_TIMER_INTERVAL = 16;
  * 360/60/16
  */
 let ROTATION_PER = 0.2304;
+
+/**
+ * 最后播放的音乐的时长的key
+ */
+let LAST_PLAY_SONG_DURAION = "last_play_song_duraion";
+
+/**
+ * 最后播放的音乐的进度的key
+ */
+let LAST_PLAY_SONG_PROGRESS = "last_play_song_progress";

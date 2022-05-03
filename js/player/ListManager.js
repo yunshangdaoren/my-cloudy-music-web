@@ -50,7 +50,11 @@ class ListManager{
 					this.defaultPlaySong();
 				}else{
 					//找到了最后播放的音乐的id
-					 
+					//获取最后播放的音乐的时长
+					this.data.duration = PreferenceUtil.getLastPlaySongDuration();
+					
+					//获取最后播放的音乐的进度
+					this.data.progress = PreferenceUtil.getLastPlaySongProgress();
 				}
 			}else{
 				//id为空，没有找到最后播放的音乐id，则从第一首音乐开始播放
@@ -127,6 +131,12 @@ class ListManager{
 		}else{
 			//播放器还没有初始化，点击继续播放按钮是不能播放的，需要调用play(data)方法
 			this.play(this.data);
+			
+			//判断是否有最后一次播放的音乐的进度
+			if(this.data.progress >0 ){
+				//有播放进度，则从该进度开始播放
+				this.musicPlayerManager.seekTo(this.data.progress);
+			}
 		}
 	}
 	
