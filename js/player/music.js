@@ -66,6 +66,15 @@ function showInitData(){
 	
 	//显示封面
 	$("#image-cover").attr("src", uri);
+	
+	//显示歌曲名称标题
+	$("#title").text(data.title);
+	
+	//显示专辑
+	
+	//显示歌手
+	$("#singer").text(data.singer.nickname);
+	
 }
 
 //console.log("音乐列表："+datum);
