@@ -50,15 +50,32 @@
  */
 .container-lyric{
 	height: 18.75rem;
-	overflow-y: scroll;
-	color: #eee;
+	overflow:hidden;
 }
+.container-lyric:hover{
+	overflow-y:scroll;
+}
+.container-lyric::-webkit-scrollbar{
+	width: 4px;
+	color: transparent;
+}
+.container-lyric::-webkit-scrollbar-thumb{
+	border-radius: 6px;
+	background-color: #bbb;
+}
+
 
 /**
  * 显示歌词的ul
  */
 .container-lyric-list{
 	line-height: 2.2rem;
+	/* 预留，防止滚动条挤占歌词内容宽度 */
+	padding-right: 4px;
+}
+
+.container-lyric:hover .container-lyric-list{
+	padding-right: 0px;
 }
 
 /**
@@ -66,4 +83,7 @@
  */
 .container-lyric .container-lyric-list li.active{
 	color: #dd0000;
+}
+.container-lyric .container-lyric-list li{
+	text-align: center;
 }

@@ -33,5 +33,23 @@ class TimeUtil{
 		return (Array(length).join('0') + data).slice(-length);
 	}
 	
+	/**
+	 * 将分:秒:毫秒转换为毫秒
+	 * @param {Object} data 时间，格式为:04:03.200
+	 */
+	static parseToInt(data){
+		//将:替换为.
+		data = data.replace(":", ".");
+		
+		//使用.进行拆分
+		let strings = data.split("\.");
+		
+		//分别取出分、秒、毫秒
+		let m = parseInt(strings[0]);
+		let s = parseInt(strings[1]);
+		let ms = parseInt(strings[2]);
+		//转换为毫秒
+		return (m * 60 + s) * 1000 + ms;
+	}
 	
 }
