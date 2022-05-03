@@ -17,6 +17,33 @@ class ListManager{
 		//初始化播放管理器
 		this.musicPlayerManager = new MusicPlayerManager();
 		
+		//创建播放管理器监听器
+		var listener = new MusicPlayerListener();
+		
+		//设置需要监听关注的事件
+		//播放完毕了
+		listener.onCompletion = function(){
+			//判断循环模式
+			if(MODEL_LOOP_ONE == self.getLoopModel()){
+				//如果为单曲循环，则继续播放当前音乐
+				self.play(self.data);
+			}else{
+				//如果为随机循环或列表循环，则播放下一首音乐
+				//获取下一首音乐
+				let data = self.next();
+				
+				if(data){
+					//如果下首有音乐，则播放
+					self.play(data);
+				}else{
+					//没有找到下首音乐，出错了
+				}
+			}
+		};
+		
+		//将监听器添加到播放管理器中
+		this.musicPlayerManager.addMusicPlayerListener(listener);
+		
 		//初始化音乐播放列表
 		this.initPlayList();
 		
