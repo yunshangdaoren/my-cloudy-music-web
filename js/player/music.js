@@ -1,58 +1,109 @@
 /**
- * 设置背景图片加载成功后，回调
- * 目的是实现背景高斯模糊
+ * 页面加载完成了，进行下面的操作
  */
-document.getElementById("img-background").onload = function() {
-	//显示背景图片
-	showBackgroundBlur();
-};
+$(function(){
+	//创建音乐播放列表管理器
+	listManager = new ListManager();
+	
+	//获取音乐播放管理器
+	musicPlayerManager = listManager.musicPlayerManager;
+	
+	//创建播放管理器监听器
+	var listener = new MusicPlayerListener();
+	
+	//设置要关注的事件
+	//音乐播放准备完毕了
+	listener.onPrepared = function(data) {
+		//显示初始化数据
+		showInitData();
+	
+		//显示音乐时长
+		showDuration();
+	}
+	
+	/**
+	 * 音乐播放了
+	 * @param {Object} data
+	 */
+	listener.onPlaying = function(data) {
+		//显示暂停状态
+		showPausedStatus();
+	
+		//开始旋转黑胶唱片
+		startRecordRotate();
+	}
+	
+	/**
+	 * 音乐暂停了
+	 * @param {Object} data
+	 */
+	listener.onPaused = function(data) {
+		//显示播放状态
+		showPlayingStatus();
+	
+		//停止旋转黑胶唱片
+		stopRecordRotate();
+	}
+	
+	/**
+	 * 音乐播放进度改变了
+	 * @param {Object} data
+	 */
+	listener.onProgress = function(data) {
+		if (listManager.getData()) {
+			//如果有要播放的音乐，则显示播放进度
+			showProgress();
+		}
+	}
+	
+	//添加监听器到播放管理器
+	musicPlayerManager.addMusicPlayerListener(listener);
+	
+	//获取播放列表数据
+	let datum = listManager.getDatum();
+	
+	//获取播放的音乐
+	let data = listManager.getData();
+	
+	/**
+	 * 页面加载后，判断是否有需要播放的音乐
+	 * @param {Object} data
+	 */
+	if (data) {
+		//如果要播放的音乐不为空，显示初始化数据
+		showInitData();
+	
+		//显示音乐时长
+		showDuration();
+	
+		//显示播放进度
+		showProgress();
+	
+		//显示音乐音量
+		$("#volume").val(musicPlayerManager.getVolume());
+	
+		//开始V播放音乐
+		listManager.resume();
+	}
+	
+	/**
+	 * 设置背景图片加载成功后，回调
+	 * 目的是实现背景高斯模糊
+	 */
+	document.getElementById("img-background").onload = function() {
+		//显示背景图片
+		showBackgroundBlur();
+	};
+	
+	/**
+	 * 显示背景图片
+	 */
+	function showBackgroundBlur() {
+		StackBlur.image('img-background', 'canvas-mask', 150, false);
+	}
+});
 
-/**
- * 显示背景图片
- */
-function showBackgroundBlur() {
-	StackBlur.image('img-background', 'canvas-mask', 150, false);
-}
 
-
-//创建音乐播放列表管理器
-listManager = new ListManager();
-
-//获取音乐播放管理器
-musicPlayerManager = listManager.musicPlayerManager;
-
-//创建播放管理器监听器
-var listener = new MusicPlayerListener();
-
-//添加监听器到播放管理器
-musicPlayerManager.addMusicPlayerListener(listener);
-
-//获取播放列表数据
-let datum = listManager.getDatum();
-
-//获取播放的音乐
-let data = listManager.getData();
-
-/**
- * 页面加载后，判断是否有需要播放的音乐
- * @param {Object} data
- */
-if (data) {
-	//如果要播放的音乐不为空，显示初始化数据
-	showInitData();
-
-	//显示音乐时长
-	showDuration();
-
-	//显示播放进度
-	showProgress();
-
-	//显示音乐音量
-	$("#volume").val(musicPlayerManager.getVolume());
-
-	//开始V播放音乐
-	listManager.resume();
-}
 
 /**
  * 显示初始化数据
@@ -182,58 +233,6 @@ function onVolumeChanged(data) {
  */
 function onListClick() {
 
-}
-
-
-//设置要关注的事件
-//音乐播放准备完毕了
-listener.onPrepared = function(data) {
-	//显示初始化数据
-	showInitData();
-
-	//显示音乐时长
-	showDuration();
-
-	//保存最后播放的音乐的时长
-	PreferenceUtil.setLastPlaySongDuration(data.duration);
-}
-
-/**
- * 音乐播放了
- * @param {Object} data
- */
-listener.onPlaying = function(data) {
-	//显示暂停状态
-	showPausedStatus();
-
-	//开始旋转黑胶唱片
-	startRecordRotate();
-}
-
-/**
- * 音乐暂停了
- * @param {Object} data
- */
-listener.onPaused = function(data) {
-	//显示播放状态
-	showPlayingStatus();
-
-	//停止旋转黑胶唱片
-	stopRecordRotate();
-}
-
-/**
- * 音乐播放进度改变了
- * @param {Object} data
- */
-listener.onProgress = function(data) {
-	if (listManager.getData()) {
-		//如果有要播放的音乐，则显示播放进度
-		showProgress();
-	}
-
-	//保存最后播放的音乐的进度
-	PreferenceUtil.setLastPlaySongProgress(data.progress);
 }
 
 /**

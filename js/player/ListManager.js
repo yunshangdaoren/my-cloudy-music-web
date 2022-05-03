@@ -21,7 +21,19 @@ class ListManager{
 		var listener = new MusicPlayerListener();
 		
 		//设置需要监听关注的事件
-		//播放完毕了
+		//监听准备播放音乐完成了
+		listener.onPrepared = function(data){
+			//保存最后播放的音乐的进度
+			PreferenceUtil.setLastPlaySongDuration(data.duration);
+		};
+		
+		//监听播放进度改变了
+		listener.onProgress = function(data){
+			//保存最后播放的音乐的进度
+			PreferenceUtil.setLastPlaySongProgress(data.progress);
+		};
+		
+		//监听音乐播放完毕了
 		listener.onCompletion = function(){
 			//判断循环模式
 			if(MODEL_LOOP_ONE == self.getLoopModel()){
