@@ -76,14 +76,14 @@
 					<!-- 进度信息列：手机上占12列，电脑上占6列 -->
 					<!--  mt-3 mt-sm-0：表示手机屏幕上，margin-top为3 -->
 					<div class="col-12 col-md-6 d-flex justify-content-between align-items-center mt-3 mt-sm-0">
-						<span id="start" class="text-white">00:00</span>
+						<span id="start" class="text-white"></span>
 						
 						<!-- 进度条 -->
 						<form class="flex-fill ml-2 mr-2">
 							<input type="range" class="form-control-range" id="progress" value="0" min="0" max="1" oninput="onProgressChanged(this.value)"/>
 						</form>
 						
-						<span id="end" class="text-white">00:00</span>
+						<span id="end" class="text-white"></span>
 					</div>
 					
 					<!-- 更多按钮列 -->
@@ -121,6 +121,12 @@
 		<script src="../js/constants.js"></script>
 		
 		<script src="../js/common.js""></script>
+		
+		<!-- 日期时间工具js -->
+		<script src="../js/util/TimeUtil.js"></script>
+		
+		<!-- 高斯模糊依赖 -->
+		<script src="../vender/StakBlur/stackblur.min.js"></script>
 	
 		
 		<!-- /==================通用资源 -->
@@ -137,8 +143,7 @@
 		
 		<!-- 当前页面JS逻辑 -->
 		<script src="../js/player/music.js"></script>
-		<!-- 高斯模糊依赖 -->
-		<script src="../vender/StakBlur/stackblur.min.js"></script>
+		
 		
 	</body>
 </html>

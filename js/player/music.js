@@ -33,9 +33,19 @@ let datum = listManager.getDatum();
 //获取播放的音乐
 let data = listManager.getData();
 
+/**
+ * 页面加载后，判断是否有需要播放的音乐
+ * @param {Object} data
+ */
 if(data){
-	//显示初始化数据
+	//如果要播放的音乐不为空，显示初始化数据
 	showInitData();
+	
+	//显示音乐时长
+	showDuration();
+	
+	//显示播放进度
+	showProgress();
 }
 
 /**
@@ -85,7 +95,8 @@ function onNextClick(){
  * @param {Object} data 播放进度
  */
 function onProgressChanged(data){
-	
+	//设置到列表管理器
+	listManager.seekTo(data);
 }
 
 /**
@@ -116,6 +127,9 @@ function onListClick(){
 listener.onPrepared = function(data){
 	//显示初始化数据
 	showInitData();
+	
+	//显示音乐时长
+	showDuration();
 }
 
 /**
@@ -137,6 +151,17 @@ listener.onPaused = function(data){
 }
 
 /**
+ * 音乐播放进度改变了
+ * @param {Object} data
+ */
+listener.onProgress = function(data){
+	if(listManager.getData()){
+		//如果有要播放的音乐，则显示播放进度
+		showProgress();
+	}
+}
+
+/**
  * 显示暂停状态
  */
 function showPausedStatus(){
@@ -148,4 +173,32 @@ function showPausedStatus(){
  */
 function showPlayingStatus(){
 	$("#image-play").attr("src", "../assets/player/ic_music_play.png");
+}
+
+/**
+ * 显示音乐播放时长
+ */
+function showDuration(){
+	//获取当前播放音乐的时长
+	let data = listManager.getData().duration;
+	
+	//格式化显示时长
+	$("#end").text(TimeUtil.s2ms(data));
+	
+	//设置进度条总长度
+	$("#progress").attr("max", data);
+}
+
+/**
+ * 显示播放进度
+ */
+function showProgress(){
+	//获取进度
+	let progress = listManager.getData().progress;
+	
+	//格式化并赋值进度值给标签
+	$("#start").text(TimeUtil.s2ms(progress));
+	
+	//设置进度值给进度条
+	$("#progress").val(progress);
 }
