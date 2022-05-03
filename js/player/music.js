@@ -89,7 +89,14 @@ function showInitData(){
  * 上一首
  */
 function onPreviousClick(){
+	//播放上一首音乐
 	listManager.play(listManager.previous());
+	
+	//删除当前播放音乐索引
+	//localStorage.removeItem(PLAYER_MUSIC_ID);
+	
+	//将本次localStorage储存的当前正在播放音乐id重新赋值
+	//PreferenceUtil.setLastPlaySongId(listManager.previous().id);
 }
 
 /**
@@ -107,7 +114,14 @@ function onPlayClick(){
  * 下一首
  */
 function onNextClick(){
+	//播放下一首音乐
 	listManager.play(listManager.next());
+	
+	//删除当前播放音乐索引
+	//localStorage.removeItem(PLAYER_MUSIC_ID);
+	
+	//将本次localStorage储存的当前正在播放音乐id重新赋值
+	//PreferenceUtil.setLastPlaySongId(listManager.next().id);
 }
 
 /**

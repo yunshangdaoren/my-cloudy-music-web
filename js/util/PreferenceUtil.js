@@ -28,6 +28,13 @@ class PreferenceUtil{
 	}
 	
 	/**
+	 * 设置最后播放的音乐的id
+	 */
+	static setLastPlaySongId(id){
+		localStorage.setItem(PLAYER_MUSIC_ID, id);
+	}
+	
+	/**
 	 * 保存最后播放的音乐的时长
 	 * @param {Object} data
 	 */

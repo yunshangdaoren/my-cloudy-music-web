@@ -44,6 +44,8 @@ class MusicPlayerManager {
 	constructor(props) {
 		//初始化播放器
 		this.player = new Audio();
+		
+		this.player.muted = false;
 
 		//创建监听器数组
 		this.listeners = new Array();

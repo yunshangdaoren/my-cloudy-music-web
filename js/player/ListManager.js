@@ -104,7 +104,6 @@ class ListManager{
 	 */
 	defaultPlaySong(){
 		this.data = this.datum[0];
-		alert("时长："+this.data);
 	}
 	
 	
@@ -172,8 +171,12 @@ class ListManager{
 		//将相对地址改为绝对地址
 		let uri = RESOURCE_ENDPOINT + data.uri;
 		
-		//播放
+		//console.log("uri:"+uri);
+		//播放 
 		musicPlayerManager.play(uri, data);
+		
+		//保存最后播放音乐的Id
+		PreferenceUtil.setLastPlaySongId(data.id);
 	}
 	
 	/**
@@ -192,6 +195,7 @@ class ListManager{
 			this.musicPlayerManager.resume();
 		}else{
 			//播放器还没有初始化，点击继续播放按钮是不能播放的，需要调用play(data)方法
+			//console.log("resume() title:"+this.data.title);
 			this.play(this.data);
 			
 			//判断是否有最后一次播放的音乐的进度
