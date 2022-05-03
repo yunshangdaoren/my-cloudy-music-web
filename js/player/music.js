@@ -63,6 +63,9 @@ function showInitData(){
 	
 	//将获取到的封面地址，赋值显示为背景图片
 	$("#img-background").attr("src", uri);
+	
+	//显示封面
+	$("#image-cover").attr("src", uri);
 }
 
 //console.log("音乐列表："+datum);
@@ -191,6 +194,8 @@ function showDuration(){
 	
 	//设置进度条总长度
 	$("#progress").attr("max", data);
+	
+	//alert("时长："+data);
 }
 
 /**

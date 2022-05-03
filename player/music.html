@@ -37,17 +37,34 @@
 		</div>
 		
 		<!-- 内容容器 -->
-		<div class="h-100 w-100 d-flex flex-column"">
+		<div class="h-100 w-100 d-flex flex-column">
 			<!-- 黑胶唱片及歌词容器 -->
 			<div class="container container-lg container-content flex-grow-1 w-100">
 				<div class="row h-100">
 					<!-- 黑胶唱片列 -->
-					<div class="col-12 col-md-6 h-100" >
-						黑胶唱片
+					<div class="col-12 col-md-4 h-100 d-flex flex-column justify-content-center align-items-center">
+						<!-- 封面 -->
+						<img src="../assets/placeholder.png" class="image-cover img-fluid rounded-circle" id="image-cover"/>
+						
+						<!-- 封面下面的按钮 -->
+						<div class="mt-4 d-flex justify-content-center">
+							<button type="button" class="btn btn-link"">
+								<i class="fa fa-heart fa-lg text-white" class="image-small"></i>
+							</button>
+							<button type="button" class="btn btn-link ml-4">
+								<i class="fas fa-comment-dots fa-lg text-white" class="image-small"></i>
+							</button>
+							<button type="button" class="btn btn-link ml-4">
+								<i class="fas fa-arrow-circle-down fa-lg text-white" class="image-small"></i>
+							</button>
+							<button type="button" class="btn btn-link ml-4">
+								<i class="fas fa-share-square fa-lg text-white" class="image-small"></i>
+							</button>
+						</div>
 					</div>
 					
 					<!-- 歌词列 -->
-					<div class="col-12 col-md-6 h-100" >
+					<div class="col-12 col-md-8 h-100" >
 						歌词
 					</div>
 				</div>
@@ -55,7 +72,7 @@
 			</div><!-- /黑胶唱片及歌词容器 -->
 			
 			<!-- 底部播放控制器容器，高度为内容高度 -->
-			<div class="container container-play-control w-100">
+			<div class="container container-play-control w-100 mt-5 mb-5">
 				<!-- 行 -->
 				<div class="row">
 					<!-- 播放按钮列：手机上占12列，电脑上占3列-->
@@ -91,15 +108,10 @@
 						<button type="button" class="btn btn-link" onclick="onLoopModelClick()">
 							<img src="../assets/player/ic_music_repeat_list.png" class="image-small"/>
 						</button>
-						
-						<button type="button" class="btn btn-link"">
-							<i class="fa fa-heart fa-lg text-white" class="image-small"></i>
-						</button>
-						
-						<form class="ml-1 mr-2">
+						<form class="ml-1 mr-2 d-flex justify-content-between align-items-center">
+							<i class="fas fa-volume-up fa-lg text-white" class="image-small mr-1" style="margin-right: 3px;"></i>
 							<input type="range" class="form-control-range" id="volume" value="0" min="0" max="1" step="0.1" oninput="onVolumeChanged(this.value)"/>
 						</form>
-						
 						<button type="button" class="btn btn-link" onclick="onListClick()">
 							<img src="../assets/player/ic_music_list.png" class="image-small"/>
 						</button>

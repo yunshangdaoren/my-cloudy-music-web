@@ -30,6 +30,15 @@
 }
 
 /**
+ * 音乐封面
+ */
+.image-cover{
+	width: 16rem;
+	height: 16rem;
+	border: 0.675rem solid #ccc;
+}
+
+/**
  * 播放控制容器
  */
 .container-play-control{

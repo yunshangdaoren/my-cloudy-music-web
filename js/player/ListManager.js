@@ -50,7 +50,7 @@ class ListManager{
 					this.defaultPlaySong();
 				}else{
 					//找到了最后播放的音乐的id
-					
+					 
 				}
 			}else{
 				//id为空，没有找到最后播放的音乐id，则从第一首音乐开始播放
@@ -65,6 +65,7 @@ class ListManager{
 	 */
 	defaultPlaySong(){
 		this.data = this.datum[0];
+		alert("时长："+this.data);
 	}
 	
 	
