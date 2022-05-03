@@ -232,7 +232,27 @@ function onVolumeChanged(data) {
  * 播放列表点击了
  */
 function onListClick() {
+	$("#playListModal").modal("show")
+	
+	//显示音乐播放列表数据
+	showPlayListData(listManager.getDatum());
+}
 
+/**
+ * 显示音乐播放列表数据
+ * @param {*} data 
+ */
+function showPlayListData(data){
+	//使用art-template模板引擎
+	
+	//渲染模板
+	let result = template("tpl-play-item", {
+		datum: data,
+		currentId:listManager.getData().id
+	});
+	
+	//把渲染后的html设置到容器中
+	$("#container-play-list").html(result);
 }
 
 /**

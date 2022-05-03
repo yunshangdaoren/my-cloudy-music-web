@@ -142,3 +142,11 @@ a:hover{
 	width: 3.125rem;
 	height: 3.125rem;
 }
+
+/**
+ * 歌曲行样式
+ */
+.row-song{
+	height:3.125rem;
+	line-height: 3.125rem;
+}

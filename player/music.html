@@ -5,19 +5,20 @@
 		<!-- 编码 -->
 		<meta charset="utf-8">
 		<!--实现响应式 -->
-		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"></meta>
-		
+		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+		</meta>
+
 		<!-- bootstrap依赖 -->
-		<link rel="stylesheet" href="../vender/bootstrap/css/bootstrap.min.css" crossorigin="anonymous"/>
-		
+		<link rel="stylesheet" href="../vender/bootstrap/css/bootstrap.min.css" crossorigin="anonymous" />
+
 		<!-- fontawesome图标库 -->
 		<link rel="stylesheet" href="../vender/fontawesome/css/all.min.css" />
 		<!-- /==================通用资源 -->
-		
-		<link rel="stylesheet" href="../css/player/music.css"/>
-		
-		<link rel="stylesheet" href="../css/common.css"/>
-		
+
+		<link rel="stylesheet" href="../css/player/music.css" />
+
+		<link rel="stylesheet" href="../css/common.css" />
+
 		<title>歌单-我的云音乐</title>
 	</head>
 	<body class="h-100" style="background-color: rgb(77, 77, 58);">
@@ -28,14 +29,15 @@
 				 Access-Control-Allow-Origin=*
 				 Access-Control-Allow-Methods=get、post、head、put、patch-->
 			<!-- 设置display作用是为了防止网页刷新时，先显示背景图片，然后显示高斯模糊 -->
-			<img id="img-background" class="img-background w-100 h-100" crossorigin="anonymous" style="display: none;"/>
+			<img id="img-background" class="img-background w-100 h-100" crossorigin="anonymous"
+				style="display: none;" />
 		</div>
-		
+
 		<!-- 高斯模糊容器 -->
 		<div class="abs00 container-mask w-100 h-100">
 			<canvas id="canvas-mask" class="img-background w-100 h-100"></canvas>
 		</div>
-		
+
 		<!-- 内容容器 -->
 		<div class="h-100 w-100 d-flex flex-column">
 			<!-- 黑胶唱片及歌词容器 -->
@@ -44,12 +46,13 @@
 					<!-- 黑胶唱片列 -->
 					<div class="col-12 col-md-4 h-100 d-flex flex-column justify-content-center align-items-center">
 						<!-- 封面 -->
-						<img src="../assets/placeholder.png" class="image-cover img-fluid rounded-circle" id="image-cover"/>
-						
+						<img src="../assets/placeholder.png" class="image-cover img-fluid rounded-circle"
+							id="image-cover" />
+
 						<!-- 封面下面的按钮 -->
 						<div class="mt-4 d-flex justify-content-center">
 							<button type="button" class="btn btn-link"">
-								<i class="fa fa-heart fa-lg text-white" class="image-small"></i>
+								<i class=" fa fa-heart fa-lg text-white" class="image-small"></i>
 							</button>
 							<button type="button" class="btn btn-link ml-4">
 								<i class="fas fa-comment-dots fa-lg text-white" class="image-small"></i>
@@ -62,12 +65,12 @@
 							</button>
 						</div>
 					</div>
-					
+
 					<!-- 歌词信息列 -->
 					<div class="col-12 col-md-8 h-100 d-flex flex-column justify-content-center align-items-center">
 						<!-- 歌曲标题容器 -->
 						<h3 class="text-white" id="title">两相欢</h3>
-						
+
 						<!-- 专辑和歌手名称容器 -->
 						<div class="mt-3 text-white">
 							<small>
@@ -75,7 +78,7 @@
 								歌手：<a href="../user/show.html" id="singer" class="text-white">这是歌手</a>
 							</small>
 						</div>
-						
+
 						<!-- 歌词容器 -->
 						<div class="mt-4 col-md-5 container-lyric" id="container-lyric">
 							<!-- list-unstyled：去掉ul默认的小黑点 -->
@@ -144,14 +147,14 @@
 								<li id="lyric-item-0">
 									这是歌词行
 								</li>
-								
+
 							</ul>
 						</div>
 					</div>
 				</div>
-				
+
 			</div><!-- /黑胶唱片及歌词容器 -->
-			
+
 			<!-- 底部播放控制器容器，高度为内容高度 -->
 			<div class="container container-play-control w-100 mt-5 mb-5">
 				<!-- 行 -->
@@ -159,87 +162,175 @@
 					<!-- 播放按钮列：手机上占12列，电脑上占3列-->
 					<div class="col-12 col-md-3 d-flex justify-content-between align-items-center">
 						<button type="button" class="btn btn-link" onclick="onPreviousClick()">
-							<img src="../assets/player/ic_music_previous.png" class="image-mdddle"/>
+							<img src="../assets/player/ic_music_previous.png" class="image-mdddle" />
 						</button>
-						
+
 						<button type="button" class="btn btn-link" onclick="onPlayClick()">
-							<img id="image-play" src="../assets/player/ic_music_play.png" class="image-large"/>
+							<img id="image-play" src="../assets/player/ic_music_play.png" class="image-large" />
 						</button>
-						
+
 						<button type="button" class="btn btn-link" onclick="onNextClick()">
-							<img src="../assets/player/ic_music_next.png" class="image-mdddle"/>
+							<img src="../assets/player/ic_music_next.png" class="image-mdddle" />
 						</button>
 					</div>
-					
+
 					<!-- 进度信息列：手机上占12列，电脑上占6列 -->
 					<!--  mt-3 mt-sm-0：表示手机屏幕上，margin-top为3 -->
 					<div class="col-12 col-md-6 d-flex justify-content-between align-items-center mt-3 mt-sm-0">
 						<span id="start" class="text-white"></span>
-						
+
 						<!-- 进度条 -->
 						<form class="flex-fill ml-2 mr-2">
-							<input type="range" class="form-control-range" id="progress" value="0" min="0" max="1" oninput="onProgressChanged(this.value)"/>
+							<input type="range" class="form-control-range" id="progress" value="0" min="0" max="1"
+								oninput="onProgressChanged(this.value)" />
 						</form>
-						
+
 						<span id="end" class="text-white"></span>
 					</div>
-					
+
 					<!-- 更多按钮列 -->
 					<div class="col-12 col-md-3 d-flex justify-content-between align-items-center  mt-3 mt-sm-0">
 						<button type="button" class="btn btn-link" onclick="onLoopModelClick()">
-							<img src="../assets/player/ic_music_repeat_list.png" class="image-small" id="image-loop-model"/>
+							<img src="../assets/player/ic_music_repeat_list.png" class="image-small"
+								id="image-loop-model" />
 						</button>
 						<form class="ml-1 mr-2 d-flex justify-content-between align-items-center">
-							<i class="fas fa-volume-up fa-lg text-white" class="image-small mr-1" style="margin-right: 3px;"></i>
-							<input type="range" class="form-control-range" id="volume" value="0" min="0" max="1" step="0.1" oninput="onVolumeChanged(this.value)"/>
+							<i class="fas fa-volume-up fa-lg text-white" class="image-small mr-1"
+								style="margin-right: 3px;"></i>
+							<input type="range" class="form-control-range" id="volume" value="0" min="0" max="1"
+								step="0.1" oninput="onVolumeChanged(this.value)" />
 						</form>
 						<button type="button" class="btn btn-link" onclick="onListClick()">
-							<img src="../assets/player/ic_music_list.png" class="image-small"/>
+							<img src="../assets/player/ic_music_list.png" class="image-small" />
 						</button>
 					</div>
 				</div>
 			</div><!-- /播放控制器容器，高度为内容高度 -->
 		</div>
-		
+
+		<!-- 播放列表modal -->
+		<div class="modal fade" id="playListModal" data-backdrop="static" data-keyboard="false" tabindex="-1"
+			aria-labelledby="playListModalLabel" aria-hidden="true">
+			<div class="modal-dialog modal-dialog-centered modal-dialog-scrollable modal-lg">
+				<div class="modal-content">
+					<!-- 头部容器 -->
+					<div class="modal-header">
+						<h5 class="modal-title" id="playListModalTitle">播放列表</h5>
+
+						<!-- 关闭按钮 -->
+						<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+							<span aria-hidden="true">&times;</span>
+						</button>
+					</div>
+
+					<!-- 中间内容容器-->
+					<div class="modal-body">
+						<!-- 容器：放置音乐播放标题和列表信息 -->
+						<div class="container" id="container-play-list">
+						</div>
+
+						<!-- 前端模板引擎：播放列表模板 -->
+						<script type="text/html" id="tpl-play-item">
+							<!-- 歌曲标题行 -->
+							<div class="row">
+								<div class="col-1">
+									序号
+								</div>
+								<div class="col-6">
+									歌曲
+								</div>
+
+								<div class="col-3">
+									歌手
+								</div>
+
+								<div class="col-2">
+									操作
+								</div>
+							</div><!-- /歌曲标题行 -->
+
+							<!-- 循环数据，创建音乐播放列表数据 -->
+							{{each datum}}
+								<!-- 歌曲行 -->
+								<!-- 判断是否为当前正在播放的音乐 -->
+								{{if currentId == $value.id}}
+									<!-- 为当前正在播放的音乐，则设置红色高亮 -->
+									<div class="row row-song d-flex flex-column align-items-center text-primary" >
+								{{else}}
+									<!-- 不为当前正在播放的音乐，不设置红色高亮 -->
+									<div class="row row-song d-flex flex-column align-items-center">
+								{{/if}}
+										<div class="col-1">
+											{{$index}}
+										</div>
+										<div class="col-6">
+											{{$value.title}}
+										</div>
+								
+										<div class="col-3">
+											{{$value.singer.nickname}}
+										</div>
+								
+										<div class="col-2">
+											<!-- 关闭按钮 -->
+											<button type="button" class="btn btn-link text-secondary" data-dismiss="modal" aria-label="Close" >
+												<i class="fas fa-times"></i>
+											</button>
+										</div>
+									</div><!-- /歌曲行 -->
+							{{/each}}
+						</script>
+					</div>
+
+					<!-- 底部容器 -->
+					<div class="modal-footer">
+						<button type="button" class="btn btn-outline-danger">清空播放列表</button>
+					</div>
+				</div>
+			</div>
+		</div>
+
+
 		<!-- ==================通用资源 -->
 		<!-- jquery框架 -->
 		<script src="../vender/jquery/jquery.min.js" crossorigin="anonymous"></script>
-		
+
 		<!-- popper框架 -->
 		<script src="../vender/poper/popper.min.js" crossorigin="anonymous"></script>
-		
+
 		<!-- bootstrap js依赖 -->
 		<script src="../vender/bootstrap/js/bootstrap.min.js" crossorigin="anonymous"></script>
-		
+
 		<script src="../js/constants.js"></script>
-		
+
 		<script src="../js/common.js""></script>
 		
 		<!-- 日期时间工具js -->
-		<script src="../js/util/TimeUtil.js"></script>
-		
+		<script src=" ../js/util/TimeUtil.js"></script>
+
 		<!-- 高斯模糊插件 -->
 		<script src="../vender/StakBlur/stackblur.min.js"></script>
-		
+
 		<!-- jquery旋转插件 -->
 		<script src="../vender/jQueryRotate/jQueryRotate.js"></script>
-		
-		
+
+		<!-- art-template前端模板引擎 -->
+		<script src="../vender/art-template/template-web.js"></script>
 		<!-- /==================通用资源 -->
-		
+
 		<!-- 本地储存工具类 -->
 		<script src="../js/util/PreferenceUtil.js"></script>
-		
+
 		<!-- 播放管理器监听器 -->
 		<script src="../js/player/MusicPlayerListener.js"></script>
 		<!-- 播放管理器 -->
 		<script src="../js/player/MusicPlayerManager.js"></script>
 		<!-- 播放列表管理器 -->
 		<script src="../js/player/ListManager.js"></script>
-		
+
 		<!-- 当前页面JS逻辑 -->
 		<script src="../js/player/music.js"></script>
-		
-		
+
+
 	</body>
 </html>
