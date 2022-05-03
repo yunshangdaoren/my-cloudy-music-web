@@ -11,7 +11,7 @@ document.getElementById("img-background").onload = function(){
  * 显示背景图片
  */
 function showBackgroundBlur(){
-	StackBlur.image('img-background', 'canvas-mask', 60, false);
+	StackBlur.image('img-background', 'canvas-mask', 150, false);
 }
 
 
@@ -146,6 +146,9 @@ listener.onPrepared = function(data){
 listener.onPlaying = function(data){
 	//显示暂停状态
 	showPausedStatus();
+	
+	//开始旋转黑胶唱片
+	startRecordRotate();
 }
 
 /**
@@ -155,6 +158,9 @@ listener.onPlaying = function(data){
 listener.onPaused = function(data){
 	//显示播放状态
 	showPlayingStatus();
+	
+	//停止旋转黑胶唱片
+	stopRecordRotate();
 }
 
 /**
@@ -210,4 +216,52 @@ function showProgress(){
 	
 	//设置进度值给进度条
 	$("#progress").val(progress);
+}
+
+//定义全局变量：旋转黑胶唱片的定时器
+var musicTimer = null;
+
+/**
+ * 开始旋转黑胶唱片
+ */
+function startRecordRotate(){
+	if(musicTimer){
+		//已经启动定时器，黑胶唱片在旋转了
+		return;
+	}
+	
+	//启动定时器
+	musicTimer =  setInterval(musicTimerTask, MUSIC_TIMER_INTERVAL);
+}
+
+//定义全局变量：黑胶唱片旋转的角度
+var recordRotation = 0;
+
+/**
+ * 旋转黑胶唱片
+ */
+function musicTimerTask(){
+	//判断角度边界
+	if(recordRotation >= 360){
+		//设置为0
+		recordRotation = 0;
+	}
+	
+	//加上要旋转的角度
+	recordRotation += ROTATION_PER;
+	
+	//旋转
+	$("#image-cover").rotate(recordRotation);
+}
+
+/**
+ * 停止旋转黑胶唱片
+ */
+function stopRecordRotate(){
+	if(musicTimer){
+		//如果musicTimer不为null，则清除musicTimer
+		clearInterval(musicTimer);
+		//设置为null
+		musicTimer = null;
+	}
 }
