@@ -46,6 +46,9 @@ if(data){
 	
 	//显示播放进度
 	showProgress();
+	
+	//显示音乐音量
+	$("#volume").val(musicPlayerManager.getVolume());
 }
 
 /**
@@ -95,7 +98,7 @@ function onNextClick(){
  * @param {Object} data 播放进度
  */
 function onProgressChanged(data){
-	//设置到列表管理器
+	//将拖拽的进度值，设置到列表管理器
 	listManager.seekTo(data);
 }
 
@@ -111,7 +114,8 @@ function onLoopModelClick(){
  * @param {Object} data
  */
 function onVolumeChanged(data){
-	
+	//将拖拽的音量值，设置到播放管理器
+	musicPlayerManager.setVolume(data);
 }
 
 /**
