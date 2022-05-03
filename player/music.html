@@ -224,7 +224,7 @@
 					</div>
 
 					<!-- 中间内容容器-->
-					<div class="modal-body">
+					<div class="modal-body" id="body-play-list">
 						<!-- 容器：放置音乐播放标题和列表信息 -->
 						<div class="container" id="container-play-list">
 						</div>
@@ -254,8 +254,8 @@
 								<!-- 歌曲行 -->
 								<!-- 判断是否为当前正在播放的音乐 -->
 								{{if currentId == $value.id}}
-									<!-- 为当前正在播放的音乐，则设置红色高亮 -->
-									<div class="row row-song d-flex flex-column align-items-center text-primary" >
+									<!-- 为当前正在播放的音乐，则设置红色高亮，同时设置索引index，方便音乐列表框打开后，自动滚动到红色高亮行 -->
+									<div class="row row-song d-flex flex-column align-items-center text-primary" data-index="{{$index}}">
 								{{else}}
 									<!-- 不为当前正在播放的音乐，不设置红色高亮 -->
 									<div class="row row-song d-flex flex-column align-items-center">

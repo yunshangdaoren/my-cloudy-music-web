@@ -101,6 +101,16 @@ $(function(){
 	function showBackgroundBlur() {
 		StackBlur.image('img-background', 'canvas-mask', 150, false);
 	}
+	
+	//监听播放列表对话框显示回调
+	$("#playListModal").on("shown.bs.modal", function(data){
+		
+		//获取当前需要红色高亮的行的索引index
+		let selectIndex = parseInt($("#playListModal #body-play-list .text-primary").data("index"));
+		
+		//滚动
+		$("#body-play-list").scrollTop(selectIndex * 50);
+	});
 });
 
 
