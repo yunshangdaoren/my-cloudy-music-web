@@ -2,7 +2,7 @@
  * 设置背景图片加载成功后，回调
  * 目的是实现背景高斯模糊
  */
-document.getElementById("img-background").onload = function(){
+document.getElementById("img-background").onload = function() {
 	//显示背景图片
 	showBackgroundBlur();
 };
@@ -10,7 +10,7 @@ document.getElementById("img-background").onload = function(){
 /**
  * 显示背景图片
  */
-function showBackgroundBlur(){
+function showBackgroundBlur() {
 	StackBlur.image('img-background', 'canvas-mask', 150, false);
 }
 
@@ -37,19 +37,19 @@ let data = listManager.getData();
  * 页面加载后，判断是否有需要播放的音乐
  * @param {Object} data
  */
-if(data){
+if (data) {
 	//如果要播放的音乐不为空，显示初始化数据
 	showInitData();
-	
+
 	//显示音乐时长
 	showDuration();
-	
+
 	//显示播放进度
 	showProgress();
-	
+
 	//显示音乐音量
 	$("#volume").val(musicPlayerManager.getVolume());
-	
+
 	//开始V播放音乐
 	listManager.resume();
 }
@@ -57,29 +57,29 @@ if(data){
 /**
  * 显示初始化数据
  */
-function showInitData(){
+function showInitData() {
 	//获取当前播放的音乐
-	let data =  listManager.getData();
-	
+	let data = listManager.getData();
+
 	//将封面地址转为绝对地址
 	let uri = RESOURCE_ENDPOINT + data.banner;
-	
+
 	//将获取到的封面地址，赋值显示为背景图片
 	$("#img-background").attr("src", uri);
-	
+
 	//显示封面
 	$("#image-cover").attr("src", uri);
-	
+
 	//显示歌曲名称标题
 	$("#title").text(data.title);
 	//让浏览器title显示歌曲名称标题
-	$("title").text(data.title+"-我的云音乐");
-	
+	$("title").text(data.title + "-我的云音乐");
+
 	//显示专辑
-	
+
 	//显示歌手
 	$("#singer").text(data.singer.nickname);
-	
+
 }
 
 //console.log("音乐列表："+datum);
@@ -88,13 +88,13 @@ function showInitData(){
 /**
  * 上一首
  */
-function onPreviousClick(){
+function onPreviousClick() {
 	//播放上一首音乐
 	listManager.play(listManager.previous());
-	
+
 	//删除当前播放音乐索引
 	//localStorage.removeItem(PLAYER_MUSIC_ID);
-	
+
 	//将本次localStorage储存的当前正在播放音乐id重新赋值
 	//PreferenceUtil.setLastPlaySongId(listManager.previous().id);
 }
@@ -102,10 +102,10 @@ function onPreviousClick(){
 /**
  * 播放
  */
-function onPlayClick(){
-	if(musicPlayerManager.isPlaying()){
+function onPlayClick() {
+	if (musicPlayerManager.isPlaying()) {
 		listManager.pause();
-	}else{
+	} else {
 		listManager.resume();
 	}
 }
@@ -113,13 +113,13 @@ function onPlayClick(){
 /**
  * 下一首
  */
-function onNextClick(){
+function onNextClick() {
 	//播放下一首音乐
 	listManager.play(listManager.next());
-	
+
 	//删除当前播放音乐索引
 	//localStorage.removeItem(PLAYER_MUSIC_ID);
-	
+
 	//将本次localStorage储存的当前正在播放音乐id重新赋值
 	//PreferenceUtil.setLastPlaySongId(listManager.next().id);
 }
@@ -128,7 +128,7 @@ function onNextClick(){
  * 播放进度条改变了
  * @param {Object} data 播放进度
  */
-function onProgressChanged(data){
+function onProgressChanged(data) {
 	//将拖拽的进度值，设置到列表管理器
 	listManager.seekTo(data);
 }
@@ -136,15 +136,43 @@ function onProgressChanged(data){
 /**
  * 循环模式点击了
  */
-function onLoopModelClick(){
-	
+function onLoopModelClick() {
+	//更改循环模式
+	listManager.changeLoopModel();
+
+	//显示循环模式：将播放音乐页面的循环模式图标更改
+	showLoopModel();
 }
+
+/**
+ * 显示循环模式：将播放音乐页面的循环模式图标更改
+ */
+function showLoopModel() {
+	//找到播放页面循环模式的图标
+	let loopModel = $("#image-loop-model");
+
+	//获取当前循环模式
+	let model = listManager.getLoopModel();
+
+	switch (model) {
+		case MODEL_LOOP_RANDOM:
+			loopModel.attr("src", "../assets/player/ic_music_repeat_random.png");
+			break;
+		case MODEL_LOOP_LIST:
+			loopModel.attr("src", "../assets/player/ic_music_repeat_LIST.png")
+			break;
+		case MODEL_LOOP_ONE:
+			loopModel.attr("src", "../assets/player/ic_music_repeat_one.png")
+			break;
+	}
+}
+
 
 /**
  * 音量滑块值改变了
  * @param {Object} data
  */
-function onVolumeChanged(data){
+function onVolumeChanged(data) {
 	//将拖拽的音量值，设置到播放管理器
 	musicPlayerManager.setVolume(data);
 }
@@ -152,20 +180,20 @@ function onVolumeChanged(data){
 /**
  * 播放列表点击了
  */
-function onListClick(){
-	
+function onListClick() {
+
 }
 
 
 //设置要关注的事件
 //音乐播放准备完毕了
-listener.onPrepared = function(data){
+listener.onPrepared = function(data) {
 	//显示初始化数据
 	showInitData();
-	
+
 	//显示音乐时长
 	showDuration();
-	
+
 	//保存最后播放的音乐的时长
 	PreferenceUtil.setLastPlaySongDuration(data.duration);
 }
@@ -174,10 +202,10 @@ listener.onPrepared = function(data){
  * 音乐播放了
  * @param {Object} data
  */
-listener.onPlaying = function(data){
+listener.onPlaying = function(data) {
 	//显示暂停状态
 	showPausedStatus();
-	
+
 	//开始旋转黑胶唱片
 	startRecordRotate();
 }
@@ -186,10 +214,10 @@ listener.onPlaying = function(data){
  * 音乐暂停了
  * @param {Object} data
  */
-listener.onPaused = function(data){
+listener.onPaused = function(data) {
 	//显示播放状态
 	showPlayingStatus();
-	
+
 	//停止旋转黑胶唱片
 	stopRecordRotate();
 }
@@ -198,12 +226,12 @@ listener.onPaused = function(data){
  * 音乐播放进度改变了
  * @param {Object} data
  */
-listener.onProgress = function(data){
-	if(listManager.getData()){
+listener.onProgress = function(data) {
+	if (listManager.getData()) {
 		//如果有要播放的音乐，则显示播放进度
 		showProgress();
 	}
-	
+
 	//保存最后播放的音乐的进度
 	PreferenceUtil.setLastPlaySongProgress(data.progress);
 }
@@ -211,43 +239,43 @@ listener.onProgress = function(data){
 /**
  * 显示暂停状态
  */
-function showPausedStatus(){
+function showPausedStatus() {
 	$("#image-play").attr("src", "../assets/player/ic_music_pause.png");
 }
 
 /**
  * 显示播放状态
  */
-function showPlayingStatus(){
+function showPlayingStatus() {
 	$("#image-play").attr("src", "../assets/player/ic_music_play.png");
 }
 
 /**
  * 显示音乐播放时长
  */
-function showDuration(){
+function showDuration() {
 	//获取当前播放音乐的时长
 	let data = listManager.getData().duration;
-	
+
 	//格式化显示时长
 	$("#end").text(TimeUtil.s2ms(data));
-	
+
 	//设置进度条总长度
 	$("#progress").attr("max", data);
-	
+
 	//alert("时长："+data);
 }
 
 /**
  * 显示播放进度
  */
-function showProgress(){
+function showProgress() {
 	//获取进度
 	let progress = listManager.getData().progress;
-	
+
 	//格式化并赋值进度值给标签
 	$("#start").text(TimeUtil.s2ms(progress));
-	
+
 	//设置进度值给进度条
 	$("#progress").val(progress);
 }
@@ -258,14 +286,14 @@ var musicTimer = null;
 /**
  * 开始旋转黑胶唱片
  */
-function startRecordRotate(){
-	if(musicTimer){
+function startRecordRotate() {
+	if (musicTimer) {
 		//已经启动定时器，黑胶唱片在旋转了
 		return;
 	}
-	
+
 	//启动定时器
-	musicTimer =  setInterval(musicTimerTask, MUSIC_TIMER_INTERVAL);
+	musicTimer = setInterval(musicTimerTask, MUSIC_TIMER_INTERVAL);
 }
 
 //定义全局变量：黑胶唱片旋转的角度
@@ -274,16 +302,16 @@ var recordRotation = 0;
 /**
  * 旋转黑胶唱片
  */
-function musicTimerTask(){
+function musicTimerTask() {
 	//判断角度边界
-	if(recordRotation >= 360){
+	if (recordRotation >= 360) {
 		//设置为0
 		recordRotation = 0;
 	}
-	
+
 	//加上要旋转的角度
 	recordRotation += ROTATION_PER;
-	
+
 	//旋转
 	$("#image-cover").rotate(recordRotation);
 }
@@ -291,8 +319,8 @@ function musicTimerTask(){
 /**
  * 停止旋转黑胶唱片
  */
-function stopRecordRotate(){
-	if(musicTimer){
+function stopRecordRotate() {
+	if (musicTimer) {
 		//如果musicTimer不为null，则清除musicTimer
 		clearInterval(musicTimer);
 		//设置为null
