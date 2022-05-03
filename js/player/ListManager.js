@@ -26,13 +26,13 @@ class ListManager{
 	 */
 	initPlayList(){
 		//查询播放列表
-		this.datum =  StorageUtil.queryPlayList();
+		this.datum =  PreferenceUtil.queryPlayList();
 		
 		//判断播放列表是否为空
 		if(this.datum){
 			//播放列表不为空
 			//获取最后播放的音乐的id
-			let id = StorageUtil.getLastPlaySongId();
+			let id = PreferenceUtil.getLastPlaySongId();
 			
 			if(!isEmpty(id)){
 				//最后播放音乐id不为空，则获取最后播放的音乐

@@ -1,7 +1,7 @@
 /**
  * 本地存储工具类，用于储存和操作音乐播放列表
  */
-class StorageUtil{
+class PreferenceUtil{
 	
 	/**
 	 * 查询播放列表
