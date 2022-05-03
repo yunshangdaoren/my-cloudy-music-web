@@ -49,6 +49,9 @@ if(data){
 	
 	//显示音乐音量
 	$("#volume").val(musicPlayerManager.getVolume());
+	
+	//开始V播放音乐
+	listManager.resume();
 }
 
 /**
@@ -70,7 +73,7 @@ function showInitData(){
 	//显示歌曲名称标题
 	$("#title").text(data.title);
 	//让浏览器title显示歌曲名称标题
-	$("title").text(data.title);
+	$("title").text(data.title+"-我的云音乐");
 	
 	//显示专辑
 	

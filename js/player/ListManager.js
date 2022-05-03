@@ -19,6 +19,9 @@ class ListManager{
 		
 		//初始化音乐播放列表
 		this.initPlayList();
+		
+		//初始化本地存储监听器
+		this.initLocalStorageListener();
 	}
 	
 	/**
@@ -64,6 +67,38 @@ class ListManager{
 		}
 	}
 	
+	//初始化本地存储监听器
+	initLocalStorageListener(){
+		//添加本地存储监听器
+		window.addEventListener("storage", function(data){
+			//判断事件类型
+			if(data.key == PLAYER_MUSIC_LIST){
+				//如果为播放列表数据改变了
+				
+				//判断是否有新的音乐播放列表
+				if(data.newValue){
+					//有值，则将新的播放列表解析为JSON对象，并赋值
+					self.datum = JSON.parse(data.newValue);
+				}else{
+					//没有值，则表示需要清空播放列表数据
+					//先尝试暂停音乐
+					self.pause();
+					
+					//清空播放列表数据
+					self.datum = null;
+					
+					//清空当前播放音乐
+					self.data = null;
+				}
+			}
+			
+			if(data.key == PLAYER_MUSIC_ID && data.newValue){
+				//如果是播放新的音乐，且新的音乐不为空，则开始播放新的音乐
+				self.playById(data.newValue);
+			}
+		});
+	}
+	
 	/**
 	 * 默认第一首音乐
 	 */
@@ -94,6 +129,33 @@ class ListManager{
 	 */
 	getData(){
 		return this.data;
+	}
+	
+	/**
+	 * 根据指定音乐id播放音乐
+	 * @param {Object} id
+	 */
+	playById(id){
+		//定义要播放的音乐对象
+		var data = null;
+		
+		//遍历音乐播放列表，根据该音乐id查询到要播放的音乐
+		this.datum.forEach(function(s, index, array){
+			if(s.id == id){
+				//找到要播放的音乐，则赋值
+				data = s;
+				//终止遍历
+				return false;
+			}
+		});
+		
+		if(data){
+			//要播放的音乐不为null，则开始播放这个音乐
+			this.play(data);
+		}else{
+			//要播放的音乐为null，则表示没有找到，抛出错误
+			console.log("没有找到要播放的音乐！id:"+id+"   datum:"+this.datum);
+		}
 	}
 	
 	/**
@@ -133,7 +195,7 @@ class ListManager{
 			this.play(this.data);
 			
 			//判断是否有最后一次播放的音乐的进度
-			if(this.data.progress >0 ){
+			if(this.data.progress > 0){
 				//有播放进度，则从该进度开始播放
 				this.musicPlayerManager.seekTo(this.data.progress);
 			}
