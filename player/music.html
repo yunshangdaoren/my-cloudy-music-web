@@ -254,30 +254,43 @@
 								<!-- 歌曲行 -->
 								<!-- 判断是否为当前正在播放的音乐 -->
 								{{if currentId == $value.id}}
-									<!-- 为当前正在播放的音乐，则设置红色高亮，同时设置索引index，方便音乐列表框打开后，自动滚动到红色高亮行 -->
-									<div class="row row-song d-flex flex-column align-items-center text-primary" data-index="{{$index}}">
+									<!-- 为当前正在播放的音乐，则文字设置红色高亮，同时设置索引index，方便音乐列表框打开后，自动滚动到红色高亮行 -->
+									<!-- 判断+1/2是否等于1 -->
+									{{if ($index+1) % 2 == 1}}
+										<!-- 设置背景为高亮灰色，通过添加bg实现 -->
+										<div class="row row-song d-flex flex-column align-items-center text-primary bg" data-index="{{$index}}">
+									{{else}}
+										<!-- 不设置背景，默认为白色-->
+										<div class="row row-song d-flex flex-column align-items-center text-primary" data-index="{{$index}}">
+									{{/if}}
 								{{else}}
-									<!-- 不为当前正在播放的音乐，不设置红色高亮 -->
-									<div class="row row-song d-flex flex-column align-items-center">
+									<!-- 不为当前正在播放的音乐，文字不设置红色高亮 -->
+									<!-- 判断+1/2是否等于1 -->
+									{{ if ($index+1) % 2 == 1 }}
+										<div class="row row-song d-flex flex-column align-items-center bg">
+									{{else}}
+										<!-- 不设置背景，默认为白色-->
+										<div class="row row-song d-flex flex-column align-items-center">
+									{{/if}}
 								{{/if}}
-										<div class="col-1">
-											{{$index}}
-										</div>
-										<div class="col-6">
-											{{$value.title}}
-										</div>
+											<div class="col-1">
+												{{$index+1}}
+											</div>
+											<div class="col-6">
+												{{$value.title}}
+											</div>
 								
-										<div class="col-3">
-											{{$value.singer.nickname}}
-										</div>
+											<div class="col-3">
+												{{$value.singer.nickname}}
+											</div>
 								
-										<div class="col-2">
-											<!-- 关闭按钮 -->
-											<button type="button" class="btn btn-link text-secondary" data-dismiss="modal" aria-label="Close" >
-												<i class="fas fa-times"></i>
-											</button>
-										</div>
-									</div><!-- /歌曲行 -->
+											<div class="col-2">
+												<!-- 关闭按钮 -->
+												<button type="button" class="btn btn-link text-secondary" data-dismiss="modal" aria-label="Close" >
+													<i class="fas fa-times"></i>
+												</button>
+											</div>
+										</div><!-- /歌曲行 -->
 							{{/each}}
 						</script>
 					</div>
