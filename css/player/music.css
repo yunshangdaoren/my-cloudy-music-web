@@ -45,3 +45,25 @@
 	margin-bottom: 2.5rem;
 }
 
+/**
+ * 歌词容器
+ */
+.container-lyric{
+	height: 18.75rem;
+	overflow-y: scroll;
+	color: #eee;
+}
+
+/**
+ * 显示歌词的ul
+ */
+.container-lyric-list{
+	line-height: 2.2rem;
+}
+
+/**
+ * 歌词高亮
+ */
+.container-lyric .container-lyric-list li.active{
+	color: #dd0000;
+}
