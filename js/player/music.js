@@ -24,13 +24,6 @@ musicPlayerManager = listManager.musicPlayerManager;
 //创建播放管理器监听器
 var listener = new MusicPlayerListener();
 
-//设置要关注的事件
-//音乐播放准备完毕了
-listener.onPrepared = function(data){
-	//显示初始化数据
-	showInitData();
-}
-
 //添加监听器到播放管理器
 musicPlayerManager.addMusicPlayerListener(listener);
 
@@ -55,7 +48,7 @@ function showInitData(){
 	//将封面地址转为绝对地址
 	let uri = RESOURCE_ENDPOINT + data.banner;
 	
-	//显示背景
+	//将获取到的封面地址，赋值显示为背景图片
 	$("#img-background").attr("src", uri);
 }
 
@@ -66,21 +59,25 @@ function showInitData(){
  * 上一首
  */
 function onPreviousClick(){
-	
+	listManager.play(listManager.previous());
 }
 
 /**
  * 播放
  */
 function onPlayClick(){
-	
+	if(musicPlayerManager.isPlaying()){
+		listManager.pause();
+	}else{
+		listManager.resume();
+	}
 }
 
 /**
  * 下一首
  */
 function onNextClick(){
-	
+	listManager.play(listManager.next());
 }
 
 /**
@@ -111,4 +108,44 @@ function onVolumeChanged(data){
  */
 function onListClick(){
 	
+}
+
+
+//设置要关注的事件
+//音乐播放准备完毕了
+listener.onPrepared = function(data){
+	//显示初始化数据
+	showInitData();
+}
+
+/**
+ * 音乐播放了
+ * @param {Object} data
+ */
+listener.onPlaying = function(data){
+	//显示暂停状态
+	showPausedStatus();
+}
+
+/**
+ * 音乐暂停了
+ * @param {Object} data
+ */
+listener.onPaused = function(data){
+	//显示播放状态
+	showPlayingStatus();
+}
+
+/**
+ * 显示暂停状态
+ */
+function showPausedStatus(){
+	$("#image-play").attr("src", "../assets/player/ic_music_pause.png");
+}
+
+/**
+ * 显示播放状态
+ */
+function showPlayingStatus(){
+	$("#image-play").attr("src", "../assets/player/ic_music_play.png");
 }
