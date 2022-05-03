@@ -1,26 +1,26 @@
 /**
  * 页面加载完成了，进行下面的操作
  */
-$(function(){
+$(function() {
 	//创建音乐播放列表管理器
 	listManager = new ListManager();
-	
+
 	//获取音乐播放管理器
 	musicPlayerManager = listManager.musicPlayerManager;
-	
+
 	//创建播放管理器监听器
 	var listener = new MusicPlayerListener();
-	
+
 	//设置要关注的事件
 	//音乐播放准备完毕了
 	listener.onPrepared = function(data) {
 		//显示初始化数据
 		showInitData();
-	
+
 		//显示音乐时长
 		showDuration();
 	}
-	
+
 	/**
 	 * 音乐播放了
 	 * @param {Object} data
@@ -28,11 +28,11 @@ $(function(){
 	listener.onPlaying = function(data) {
 		//显示暂停状态
 		showPausedStatus();
-	
+
 		//开始旋转黑胶唱片
 		startRecordRotate();
 	}
-	
+
 	/**
 	 * 音乐暂停了
 	 * @param {Object} data
@@ -40,11 +40,11 @@ $(function(){
 	listener.onPaused = function(data) {
 		//显示播放状态
 		showPlayingStatus();
-	
+
 		//停止旋转黑胶唱片
 		stopRecordRotate();
 	}
-	
+
 	/**
 	 * 音乐播放进度改变了
 	 * @param {Object} data
@@ -55,16 +55,16 @@ $(function(){
 			showProgress();
 		}
 	}
-	
+
 	//添加监听器到播放管理器
 	musicPlayerManager.addMusicPlayerListener(listener);
-	
+
 	//获取播放列表数据
 	let datum = listManager.getDatum();
-	
+
 	//获取播放的音乐
 	let data = listManager.getData();
-	
+
 	/**
 	 * 页面加载后，判断是否有需要播放的音乐
 	 * @param {Object} data
@@ -72,20 +72,20 @@ $(function(){
 	if (data) {
 		//如果要播放的音乐不为空，显示初始化数据
 		showInitData();
-	
+
 		//显示音乐时长
 		showDuration();
-	
+
 		//显示播放进度
 		showProgress();
-	
+
 		//显示音乐音量
 		$("#volume").val(musicPlayerManager.getVolume());
-	
+
 		//开始V播放音乐
 		listManager.resume();
 	}
-	
+
 	/**
 	 * 设置背景图片加载成功后，回调
 	 * 目的是实现背景高斯模糊
@@ -94,20 +94,20 @@ $(function(){
 		//显示背景图片
 		showBackgroundBlur();
 	};
-	
+
 	/**
 	 * 显示背景图片
 	 */
 	function showBackgroundBlur() {
 		StackBlur.image('img-background', 'canvas-mask', 150, false);
 	}
-	
+
 	//监听播放列表对话框显示回调
-	$("#playListModal").on("shown.bs.modal", function(data){
-		
+	$("#playListModal").on("shown.bs.modal", function(data) {
+
 		//获取当前需要红色高亮的行的索引index
 		let selectIndex = parseInt($("#playListModal #body-play-list .text-primary").data("index"));
-		
+
 		//滚动
 		$("#body-play-list").scrollTop(selectIndex * 50);
 	});
@@ -141,6 +141,8 @@ function showInitData() {
 	//显示歌手
 	$("#singer").text(data.singer.nickname);
 
+	//准备歌词
+	prepareLyric(data);
 }
 
 //console.log("音乐列表："+datum);
@@ -243,7 +245,7 @@ function onVolumeChanged(data) {
  */
 function onListClick() {
 	$("#playListModal").modal("show")
-	
+
 	//显示音乐播放列表数据
 	showPlayListData(listManager.getDatum());
 }
@@ -252,15 +254,15 @@ function onListClick() {
  * 显示音乐播放列表数据
  * @param {*} data 
  */
-function showPlayListData(data){
+function showPlayListData(data) {
 	//使用art-template模板引擎
-	
+
 	//渲染模板
 	let result = template("tpl-play-item", {
 		datum: data,
-		currentId:listManager.getData().id
+		currentId: listManager.getData().id
 	});
-	
+
 	//把渲染后的html设置到容器中
 	$("#container-play-list").html(result);
 }
@@ -354,5 +356,48 @@ function stopRecordRotate() {
 		clearInterval(musicTimer);
 		//设置为null
 		musicTimer = null;
+	}
+}
+
+/**
+ * 准备歌词
+ * @param {*} data 
+ */
+function prepareLyric(data) {
+	//如果本地localStorage的音乐播放列表没有歌词，就通过下面这个方式请求
+	// if (!data.lyric) {
+	//     //歌词处理
+	//     //真实项目可能会
+	//     //将歌词这个部分拆分到其他组件中
+	//
+	//     //没有歌词才请求
+	//
+	//     //真实项目中可以会缓存歌词
+	//     //获取歌词数据
+	//     $.get("/v1/songs/"+data.id+".json", function(result){
+	//         log.info(result);
+	//     });
+	// }
+	
+	if(data.lyric){
+		//如果有歌词
+		
+		//判断是否需要解析歌词
+		if(!data.parsedLyric){
+			//需要解析歌词
+			data.parsedLyric = LyricParser.parse(data.style, data.lyric);
+			console.log(data.parsedLyric.datum);
+		}
+		
+		//获取要显示的歌词信息
+		let result = template("tpl-music-item", {
+			datum: data.parsedLyric.datum
+		});
+		
+		//显示歌词
+		$("#container-lyric-list").html(result);
+	}else{
+		//没有歌词，则提示
+		$("#container-lyric-list").html("<li>没有歌词!</li>");
 	}
 }

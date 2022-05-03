@@ -81,74 +81,20 @@
 
 						<!-- 歌词容器 -->
 						<div class="mt-4 col-md-5 container-lyric" id="container-lyric">
-							<!-- list-unstyled：去掉ul默认的小黑点 -->
+							<!-- 歌词ul list-unstyled：去掉ul默认的小黑点 -->
 							<ul class="list-unstyled container-lyric-list" id="container-lyric-list">
-								<!-- 一行歌词 -->
-								<li id="lyric-item-0">
-									这是歌词行
-								</li>
-								<!-- 一行歌词 -->
-								<li id="lyric-item-0">
-									这是歌词行
-								</li>
-								<!-- 一行歌词 -->
-								<li id="lyric-item-0" class="active">
-									这是歌词行
-								</li>
-								<!-- 一行歌词 -->
-								<li id="lyric-item-0">
-									这是歌词行
-								</li>
-								<!-- 一行歌词 -->
-								<li id="lyric-item-0">
-									这是歌词行
-								</li>
-								<!-- 一行歌词 -->
-								<li id="lyric-item-0">
-									这是歌词行
-								</li>
-								<!-- 一行歌词 -->
-								<li id="lyric-item-0">
-									这是歌词行
-								</li>
-								<!-- 一行歌词 -->
-								<li id="lyric-item-0">
-									这是歌词行
-								</li>
-								<!-- 一行歌词 -->
-								<li id="lyric-item-0">
-									这是歌词行
-								</li>
-								<!-- 一行歌词 -->
-								<li id="lyric-item-0">
-									这是歌词行
-								</li>
-								<!-- 一行歌词 -->
-								<li id="lyric-item-0">
-									这是歌词行
-								</li>
-								<!-- 一行歌词 -->
-								<li id="lyric-item-0">
-									这是歌词行
-								</li>
-								<!-- 一行歌词 -->
-								<li id="lyric-item-0">
-									这是歌词行
-								</li>
-								<!-- 一行歌词 -->
-								<li id="lyric-item-0">
-									这是歌词行
-								</li>
-								<!-- 一行歌词 -->
-								<li id="lyric-item-0">
-									这是歌词行
-								</li>
-								<!-- 一行歌词 -->
-								<li id="lyric-item-0">
-									这是歌词行
-								</li>
-
 							</ul>
+							
+							<!-- 前端模板引擎：歌词行模板 -->
+							<script type="text/html" id="tpl-music-item">
+								{{each datum}}
+									<!-- 歌词行 -->
+									<li id="lyric-item-{{$index}}">
+										{{$value.data}}
+									</li>
+								{{/each}}
+							</script><!-- /前端模板引擎：歌词行模板 -->
+							
 						</div>
 					</div>
 				</div>
@@ -255,9 +201,9 @@
 								<!-- 判断是否为当前正在播放的音乐 -->
 								{{if currentId == $value.id}}
 									<!-- 为当前正在播放的音乐，则文字设置红色高亮，同时设置索引index，方便音乐列表框打开后，自动滚动到红色高亮行 -->
-									<!-- 判断+1/2是否等于1 -->
+									<!-- 判断index+1%2是否等于1 -->
 									{{if ($index+1) % 2 == 1}}
-										<!-- 设置背景为高亮灰色，通过添加bg实现 -->
+										<!-- 设置背景为高亮灰色(隔行变色)，通过添加bg实现 -->
 										<div class="row row-song d-flex flex-column align-items-center text-primary bg" data-index="{{$index}}">
 									{{else}}
 										<!-- 不设置背景，默认为白色-->
@@ -265,8 +211,9 @@
 									{{/if}}
 								{{else}}
 									<!-- 不为当前正在播放的音乐，文字不设置红色高亮 -->
-									<!-- 判断+1/2是否等于1 -->
+									<!-- 判断index+1%2是否等于1 -->
 									{{ if ($index+1) % 2 == 1 }}
+										<!-- 设置背景为高亮灰色(隔行变色)，通过添加bg实现 -->
 										<div class="row row-song d-flex flex-column align-items-center bg">
 									{{else}}
 										<!-- 不设置背景，默认为白色-->
@@ -344,6 +291,9 @@
 		<!-- 当前页面JS逻辑 -->
 		<script src="../js/player/music.js"></script>
 
+		<!-- 歌词解析JS -->
+		<script src="../js/lyric/LyricParser.js"></script>
+		<script src="../js/lyric/LRCLyricParser.js"></script>
 
 	</body>
 </html>
