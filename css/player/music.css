@@ -1,3 +1,8 @@
+/* 音乐播放界面body样式 */
+.player-music-bg-container{
+	background-color: rgb(77, 77, 58);
+	height: 100% !important;
+}
 /**
  * 绝对定位，左上0,0
  */
@@ -26,7 +31,7 @@
  * 黑胶唱片及歌词容器
  */
 .container-content{
-	
+	width: 100%;
 }
 
 /**
@@ -49,8 +54,9 @@
  * 歌词容器
  */
 .container-lyric{
-	height: 18.75rem;
-	overflow:hidden;
+	height: 26.6875rem;
+	overflow-y:hidden;
+	color: #eee;
 }
 .container-lyric:hover{
 	overflow-y:scroll;

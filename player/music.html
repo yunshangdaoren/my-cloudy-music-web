@@ -21,7 +21,7 @@
 
 		<title>歌单-我的云音乐</title>
 	</head>
-	<body class="h-100" style="background-color: rgb(77, 77, 58);">
+	<body class="player-music-bg-container">
 		<!-- 背景容器 -->
 		<div class="abs00 container-background w-100 h-100">
 			<!-- crossorign:跨域访问图片，阿里云OSS权限控制台-跨域设置，配置允许跨域
@@ -41,60 +41,62 @@
 		<!-- 内容容器 -->
 		<div class="h-100 w-100 d-flex flex-column">
 			<!-- 黑胶唱片及歌词容器 -->
-			<div class="container container-lg container-content flex-grow-1 w-100">
+			<div class="container container-content flex-grow-1">
 				<div class="row h-100">
 					<!-- 黑胶唱片列 -->
 					<div class="col-12 col-md-4 h-100 d-flex flex-column justify-content-center align-items-center">
 						<!-- 封面 -->
-						<img src="../assets/placeholder.png" class="image-cover img-fluid rounded-circle"
-							id="image-cover" />
+						<img src="../assets/placeholder.png" class="image-cover img-fluid rounded-circle" id="image-cover" />
 
 						<!-- 封面下面的按钮 -->
-						<div class="mt-4 d-flex justify-content-center">
-							<button type="button" class="btn btn-link"">
-								<i class=" fa fa-heart fa-lg text-white" class="image-small"></i>
-							</button>
-							<button type="button" class="btn btn-link ml-4">
-								<i class="fas fa-comment-dots fa-lg text-white" class="image-small"></i>
-							</button>
-							<button type="button" class="btn btn-link ml-4">
-								<i class="fas fa-arrow-circle-down fa-lg text-white" class="image-small"></i>
-							</button>
-							<button type="button" class="btn btn-link ml-4">
-								<i class="fas fa-share-square fa-lg text-white" class="image-small"></i>
-							</button>
+						<div class="d-none d-sm-block">
+							<div class="mt-4 d-flex justify-content-center">
+								<button type="button" class="btn btn-link"">
+									<i class=" fa fa-heart fa-lg text-white" class="image-small"></i>
+								</button>
+								<button type="button" class="btn btn-link ml-4">
+									<i class="fas fa-comment-dots fa-lg text-white" class="image-small"></i>
+								</button>
+								<button type="button" class="btn btn-link ml-4">
+									<i class="fas fa-arrow-circle-down fa-lg text-white" class="image-small"></i>
+								</button>
+								<button type="button" class="btn btn-link ml-4">
+									<i class="fas fa-share-square fa-lg text-white" class="image-small"></i>
+								</button>
+							</div>
 						</div>
 					</div>
 
 					<!-- 歌词信息列 -->
-					<div class="col-12 col-md-8 h-100 d-flex flex-column justify-content-center align-items-center">
-						<!-- 歌曲标题容器 -->
-						<h3 class="text-white" id="title">两相欢</h3>
-
-						<!-- 专辑和歌手名称容器 -->
-						<div class="mt-3 text-white">
-							<small>
-								专辑：<a href="#" id="album" class="mr-4 text-white">这是专辑</a>
-								歌手：<a href="../user/show.html" id="singer" class="text-white">这是歌手</a>
-							</small>
-						</div>
-
-						<!-- 歌词容器 -->
-						<div class="mt-4 col-md-5 container-lyric" id="container-lyric">
-							<!-- 歌词ul list-unstyled：去掉ul默认的小黑点 -->
-							<ul class="list-unstyled container-lyric-list" id="container-lyric-list">
-							</ul>
+					<div class="col-md-8 h-100 d-flex flex-column justify-content-center align-items-center text-center">
+						<div class="d-none d-sm-block w-100">
+							<!-- 歌曲标题容器 -->
+							<h3 class="text-white" id="title">两相欢</h3>
 							
-							<!-- 前端模板引擎：歌词行模板 -->
-							<script type="text/html" id="tpl-music-item">
-								{{each datum}}
-									<!-- 歌词行 -->
-									<li id="lyric-item-{{$index}}">
-										{{$value.data}}
-									</li>
-								{{/each}}
-							</script><!-- /前端模板引擎：歌词行模板 -->
+							<!-- 专辑和歌手名称容器 -->
+							<div class="mt-3 text-white">
+								<small>
+									专辑：<a href="#" id="album" class="mr-4 text-white">这是专辑</a>
+									歌手：<a href="../user/show.html" id="singer" class="text-white">这是歌手</a>
+								</small>
+							</div>
 							
+							<!-- 歌词容器 -->
+							<div class="mt-4 col-md-12 container-lyric d-flex justify-content-center text-center" id="container-lyric">
+								<!-- 歌词ul list-unstyled：去掉ul默认的小黑点 -->
+								<ul class="list-unstyled container-lyric-list" id="container-lyric-list">
+								</ul>
+								
+								<!-- 前端模板引擎：歌词行模板 -->
+								<script type="text/html" id="tpl-music-item">
+									{{each datum}}
+										<!-- 歌词行 -->
+										<li id="lyric-item-{{$index}}">
+											{{$value.data}}
+										</li>
+									{{/each}}
+								</script><!-- /前端模板引擎：歌词行模板 -->
+							</div>
 						</div>
 					</div>
 				</div>
