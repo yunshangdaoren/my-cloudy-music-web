@@ -62,3 +62,21 @@ function musicPlay(id) {
 	 */
 	onOpenPlayPageClick();
 }
+
+/**
+ * 点赞按钮点击事件
+ * @param {number} id 评论id
+ * @param {Object} self this
+ */
+function onLikeClick(id, self){
+	
+}
+
+/**
+ * 评论回复点击事件
+ * @param {number} id 
+ * @param {string} nickname 
+ */
+function onReplayClick(id, nickname){
+	
+}

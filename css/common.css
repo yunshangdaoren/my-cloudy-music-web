@@ -34,11 +34,18 @@
 }
 
 /**
- * 导航栏图像样式
+ * 默认图像样式
  */
 .avatar{
 	width: 2rem;
 	height: 2rem;
+}
+/**
+ * 中等图像样式
+ */
+.avatar-middel{
+	width: 3rem;
+	height: 3rem;
 }
 
 /**
@@ -164,7 +171,7 @@ a:hover{
 .container-menu{
 	position: fixed;
 	right: 2rem;
-	bottom: 5rem;
+	bottom: 20rem;
 	z-index: 500;
 }
 /**

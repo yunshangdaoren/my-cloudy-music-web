@@ -97,4 +97,5 @@
 .container-lyric .container-lyric-list li{
 	text-align: center;
 	font-size: 0.9rem;
+	cursor: pointer;
 }

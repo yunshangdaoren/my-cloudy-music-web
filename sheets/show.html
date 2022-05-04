@@ -18,7 +18,7 @@
 		<!-- /==================通用资源 -->
 
 		<link rel="stylesheet" href="../css/common.css" />
-		
+
 		<link rel="stylesheet" href="../css/sheets/show.css" />
 
 		<title>歌单详情</title>
@@ -82,7 +82,8 @@
 						<form action="../sheets/id" method="POST" id="delete-form">
 							<!-- 指定请求方式为delete -->
 							<input type="hidden" name="_method" value="delete" />
-							<button type="button" class="btn btn-outline-secondary flex-fill ml-2 d-none d-sm-block" onclick="onDeleteClick()">
+							<button type="button" class="btn btn-outline-secondary flex-fill ml-2 d-none d-sm-block"
+								onclick="onDeleteClick()">
 								<i class="fas fa-calendar-times"></i>
 								删除歌单
 							</button>
@@ -135,20 +136,21 @@
 					<!-- 按钮容器 -->
 					<div class="menu-song d-none">
 						<!-- 播放 -->
-						<button type="button" class="btn btn-link text-primary" data-music-play="5e8acf25eee833556c9854b6">
+						<button type="button" class="btn btn-link text-primary"
+							data-music-play="5e8acf25eee833556c9854b6">
 							<i class="far fa-play-circle fa-lg text-secondary"></i>
 						</button>
-						
+
 						<!-- 收藏 -->
 						<button type="button" class="btn btn-link text-primary">
 							<i class="fab fa-gratipay fa-lg text-secondary"></i>
 						</button>
-						
+
 						<!-- 下载 -->
 						<button type="button" class="btn btn-link text-primary">
 							<i class="fas fa-arrow-circle-down fa-lg text-secondary"></i>
 						</button>
-						
+
 						<!-- 分享 -->
 						<button type="button" class="btn btn-link text-primary">
 							<i class="fas fa-share-alt-square fa-lg text-secondary"></i>
@@ -180,20 +182,21 @@
 					<!-- 按钮容器 -->
 					<div class="menu-song d-none">
 						<!-- 播放 -->
-						<button type="button" class="btn btn-link text-primary" data-music-play="5e8acf25eee833556c9854b7">
+						<button type="button" class="btn btn-link text-primary"
+							data-music-play="5e8acf25eee833556c9854b7">
 							<i class="far fa-play-circle fa-lg text-secondary"></i>
 						</button>
-						
+
 						<!-- 收藏 -->
 						<button type="button" class="btn btn-link text-primary">
 							<i class="fab fa-gratipay fa-lg text-secondary"></i>
 						</button>
-						
+
 						<!-- 下载 -->
 						<button type="button" class="btn btn-link text-primary">
 							<i class="fas fa-arrow-circle-down fa-lg text-secondary"></i>
 						</button>
-						
+
 						<!-- 分享 -->
 						<button type="button" class="btn btn-link text-primary">
 							<i class="fas fa-share-alt-square fa-lg text-secondary"></i>
@@ -213,7 +216,69 @@
 		</div>
 		<!-- 歌曲列表内容容器 -->
 
+		<!-- 歌曲评论容器 -->
+		<div class="container mt-lg-5">
+			<!-- 热门评论标题行 -->
+			<div class="row">
+				<div class="col-12 ">
+					<h5>热门评论</h5>
+					<hr />
+				</div>
+			</div><!-- /热门评论标题行 -->
 
+			<!-- 热门评论内容行 -->
+			<div class="row">
+				<div class="col-12">
+					<ul class="list-unstyled">
+						<!-- 一条评论 -->
+						<li class="media">
+							<!-- 用户头像 -->
+							<a href="../user/show.html">
+								<img src="../assets/awatar2.jpeg" class="rounded-circle avatar-middel mr-3" class="mr-2"
+									alt="...">
+							</a>
+
+							<!-- 用户昵称、评论内容、评论时间、点赞、回复容器 -->
+							<div class="media-body">
+								<!-- 用户昵称 -->
+								<h5 class="mt-0 mb-1">云上道人</h5>
+
+								<!-- 用户评论内容 -->
+								<div class="">
+									All my girls vintage Chanel baby. So you can have your cake. Tonight, tonight,
+									tonight, I'm walking on air. Slowly swallowing down my fear, yeah yeah. Growing fast
+									into a bolt of lightning. So hot and heavy, 'Til dawn. That fairy tale ending with a
+									knight in shining armor. Heavy is the head that wears the crown.
+								</div>
+
+								<small>
+									<!-- 用户评论时间、点赞、回复容器 -->
+									<div class="d-flex justify-content-between mt-2">
+										<span>1小时前</span>
+										<!-- 点赞及点赞数 -->
+										<div>
+											<!-- 点赞和点赞数 -->
+											<a href="javascript:void(0);" class="text-secondary" onclick="onLikeClick('id', this)">
+												<i class="far fa-thumbs-up"></i>(<span>100</span>)
+											</a>
+											|
+											<!-- 回复 -->
+											<a href="javascript:void(0);" onclick="onReplayClick('id', '云上道人')">
+												回复
+											</a>
+										</div>
+									</div>
+								</small>
+							</div>
+						</li>
+						<hr />
+
+					</ul>
+				</div>
+			</div>
+			<!-- /热门评论内容行 -->
+		</div>
+		<!-- /歌曲评论容器 -->
 
 		<!-- ==================通用资源 -->
 		<!-- -->
@@ -221,11 +286,11 @@
 			<button type="button" class="btn btn-outline-primary rounded-circle shadow mb-3 d-none">
 				<i class="fa fa-arrow-up"></i>
 			</button>
-			<button type="button" class="btn btn-outline-primary rounded-circle shadow" onclick="onOpenPlayPageClick()">
-				<i class="fa fa-play"></i>
+			<button type="button" class="btn btn-outline-success rounded-circle shadow" onclick="onOpenPlayPageClick()">
+				<i class="fas fa-play-circle"></i>
 			</button>
 		</div>
-		
+
 		<!-- jquery框架 -->
 		<script src="../vender/jquery/jquery.min.js" crossorigin="anonymous"></script>
 
@@ -252,10 +317,10 @@
 
 		<!-- HTTP网络请求处理工具类 -->
 		<script src="../js/util/HttpUtil.js"></script>
-		
+
 		<!-- 常量JS -->
 		<script src="../js/constants.js"></script>
-		
+
 		<script src="../js/common.js"></script>
 		<!-- /==================通用资源 -->
 

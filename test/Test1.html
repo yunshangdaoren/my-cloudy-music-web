@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="../vender/jquery/jquery.min.js"></script>
+    <script>
+        $(document).ready(function(){
+            var marginTop =0;
+            var bool=false;
+            setInterval(function(){
+                if(bool) return;//判断运行和停止
+                $(".text li:first").animate({marginTop:marginTop--},10,function(){
+                    if(!($(this).is(":animated"))) {    //判断是否有一个动画节点
+                        if ((-marginTop) >= $(this).height()) {  //判断移出位置是否超过高度
+                            $(this).css("margin", "0");
+                            $(this).appendTo($(".text"));  //把第一个节点移到ul后面
+                            marginTop = 0;      //重新设置移动数值
+                        }
+                    }
+            });
+            },100);
+            $(".text").mouseover(function(){   //li鼠标移入，停止移动
+                bool=true;
+            });
+            $(".text").mouseout(function(){
+                bool=false;
+            });
+
+        });
+    </script>
+
+</head>
+<style>
+    *{ margin:0px; padding: 0px;}
+    .all{ width: 200px;margin: 0px auto;  }
+    .text  {margin-top:100px; border: 1px solid black; height: 300px; overflow: hidden;}
+    .text li{ list-style:none; text-align: center; height:30px; line-height:30px; border-bottom: 1px dashed #CCCCCC; }
+</style>
+
+
+<body>
+<div class="all">
+    <ul class="text">
+        <li>文学馆</li>
+        <li>文学</li>
+        <li>小说</li>
+        <li>青春文学</li>
+        <li>传记</li>
+        <li>动漫</li>
+        <li>少儿馆</li>
+        <li>儿童文学</li>
+        <li>绘本</li>
+        <li>科普百科</li>
+    </ul>
+</div>
+
+
+</body>
+</html>
