@@ -611,28 +611,13 @@ function checkEnableControl() {
 	}
 }
 
-
-/**
- * 启用或者禁用a标签
- * @param {*} element 
- * @param {boolean} enable  
- */
-function enableA(element, enable) {
-	if (enable) {
-		//启用
-		element.attr("disabled", false);
-		element.css("pointer-events", "auto");
-	} else {
-		//禁用
-		element.attr("disabled", true);
-		element.css("pointer-events", "none");
-	}
-}
-
 /**
  * 启用播放页面所有控制按钮
  */
 function enableControl() {
+	//启用所有a标签控制按钮
+	enableA($(".control-a"), true)
+	
 	//启用所有button控制按钮
 	$(".control-button").removeClass("disabled");
 
@@ -659,6 +644,9 @@ function disableControl() {
 
 	//清除歌词
 	showEmptyLyric();
+	
+	//禁用所有a标签控制按钮
+	enableA($(".control-a"), false)
 
 	//禁用所有button控制按钮
 	$(".control-button").addClass("disabled");
@@ -671,4 +659,21 @@ function disableControl() {
 	$("#end").text("00:00");
 	$("#progress").attr("max", 0);
 	$("#progress").val(0);
+}
+
+/**
+ * 启用或者禁用a标签
+ * @param {*} element 
+ * @param {boolean} enable  
+ */
+function enableA(element, enable) {
+	if (enable) {
+		//启用
+		element.attr("disabled", false);
+		element.css("pointer-events", "auto");
+	} else {
+		//禁用
+		element.attr("disabled", true);
+		element.css("pointer-events", "none");
+	}
 }
