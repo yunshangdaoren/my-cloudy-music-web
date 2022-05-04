@@ -86,10 +86,10 @@ $(function() {
 
 		//开始播放音乐
 		//listManager.resume();
-		
+
 		//有数据，则启用播放页面的所有控制按钮：如下一曲、上一曲、播放...
 		enableControl();
-	}else{
+	} else {
 		//没有数据，则禁用播放页面的所有控制按钮：如下一曲、上一曲、播放...
 		disableControl();
 	}
@@ -119,11 +119,35 @@ $(function() {
 		//滚动
 		$("#body-play-list").scrollTop(selectIndex * 50);
 	});
-	
-	
+
+
+	//设置键盘快捷键，实现键盘按钮进行上一曲、播放和暂停、下一曲、调整音量
+	hotkeys("left, space, right, up, down", function(event, handler) {
+		switch (handler.key) {
+			case 'left':
+				//左箭头：上一曲
+				onPreviousClick();
+				break;
+			case 'space':
+				//空格：播放或暂停
+				onPlayClick();
+				break;
+			case 'right':
+				//右箭头：下一曲
+				onNextClick();
+				break;
+			case 'up':
+				//上箭头：音量++
+				inCrementVolume();
+				break;
+			case  'down':
+				//下箭头：音量--
+				deCrementVolume();
+				break;
+		}
+	});
+
 });
-
-
 
 /**
  * 显示初始化数据
@@ -195,6 +219,53 @@ function onNextClick() {
 
 	//将本次localStorage储存的当前正在播放音乐id重新赋值
 	//PreferenceUtil.setLastPlaySongId(listManager.next().id);
+}
+
+/**
+ * 音量--
+ */
+function inCrementVolume(){
+	//获取当前音量
+	let currentVolume = parseFloat($("#volume").val());
+	
+	if(currentVolume >= 1.0){
+		//如果当前音量大于等于1，则不能增加音量
+	}else{
+		//当前音量小于1，则增加音量
+		currentVolume+=0.1;
+	}
+	
+	//设置新的音量
+	setVolumeValue(currentVolume);
+}
+
+/**
+ * 音量++
+ */
+function deCrementVolume(){
+	//获取当前音量
+	let currentVolume = parseFloat($("#volume").val());
+	
+	if(currentVolume <= 0.0){
+		//如果当前音量小于等于0，则不能减少音量
+	}else{
+		//当前音量小于等于0，则减少音量
+		currentVolume-=0.1;
+	}
+	
+	//设置新的音量
+	setVolumeValue(currentVolume);
+}
+
+/**
+ * 设置音量
+ */
+function setVolumeValue(data){
+	//播放页面音量设置
+	$("#volume").val(data);
+	
+	//触发改变了音量事件
+	$("#volume").trigger("input");
 }
 
 /**
@@ -361,24 +432,24 @@ function prepareLyric(data) {
 	//         log.info(result);
 	//     });
 	// }
-	
-	if(data.lyric){
+
+	if (data.lyric) {
 		//如果有歌词
-		
+
 		//判断是否需要解析歌词
-		if(!data.parsedLyric){
+		if (!data.parsedLyric) {
 			//需要解析歌词
 			data.parsedLyric = LyricParser.parse(data.style, data.lyric);
 		}
-		
+
 		//获取要显示的歌词信息
 		let result = template("tpl-music-item", {
 			datum: data.parsedLyric.datum
 		});
-		
+
 		//显示歌词
 		$("#container-lyric-list").html(result);
-	}else{
+	} else {
 		//没有歌词，则提示没有歌词
 		showEmptyLyric();
 	}
@@ -387,7 +458,7 @@ function prepareLyric(data) {
 /**
  * 显示没有歌词的提示
  */
-function showEmptyLyric(){
+function showEmptyLyric() {
 	$("#container-lyric-list").html("<li>没有歌词!</li>");
 }
 
@@ -400,23 +471,23 @@ var lineNumber = -1;
  * 用于显示歌词播放进度
  * @param {*} progress 
  */
-function showLyricProgress(progress){
+function showLyricProgress(progress) {
 	//获取当前正在播放的音乐歌词信息
 	let data = listManager.getData().parsedLyric;
-	
-	if(data){
+
+	if (data) {
 		//如果有歌词
 		//获取当前播放进度（时间）对应的歌词行号
 		let newLineNumber = LyricUtil.getLineNumber(data, progress);
-		
-		if(newLineNumber != lineNumber){
+
+		if (newLineNumber != lineNumber) {
 			//如果新的行号不等于原来的行号，则滚动到当前行
 			scrollLyricPosition(newLineNumber);
-			
+
 			lineNumber = newLineNumber;
 		}
 	}
-	
+
 }
 
 /**
@@ -428,26 +499,26 @@ var lastLyricItem = null;
  * 歌词页面，歌词滚动到当前正在播放的行
  * @param {Object} lineNumber
  */
-function scrollLyricPosition(lineNumber){
-	if(lastLyricItem){
+function scrollLyricPosition(lineNumber) {
+	if (lastLyricItem) {
 		//如果有上一次歌词行，则取消高亮
 		lastLyricItem.removeClass("active");
 	}
-	
+
 	//获取当前行歌词
-	let lyricItem = $("#lyric-item-"+lineNumber);
-	
+	let lyricItem = $("#lyric-item-" + lineNumber);
+
 	//选中该行歌词高亮
 	lyricItem.addClass("active");
-	
+
 	//减去一定行数，目的是为了让高亮歌词行显示歌词中间
 	lineNumber -= 4;
-	
-	if(lineNumber > 0){
+
+	if (lineNumber > 0) {
 		//歌词列表，滚动到该行歌词
 		$("#container-lyric").scrollTop(LYRIC_ITEM_HEIGHT * lineNumber);
 	}
-	
+
 	//保存当前歌词行
 	lastLyricItem = lyricItem;
 }
@@ -483,19 +554,19 @@ function showPlayListData(data) {
  * 从播放列表中删除指定id的歌曲
  * @param {Object} id
  */
-function onDeleteByIdClick(id, obj){
+function onDeleteByIdClick(id, obj) {
 	//阻止事件冒泡：防止点击了删除按钮，继续播放这首歌曲
 	event.cancelBubble = true;
-	
+
 	//将要删除的音乐，从播放列表中删除
 	listManager.deleteById(id);
-	
+
 	//将要删除的音乐，从页面中删除
 	$(obj).parent().parent().remove();
-	
+
 	//重新绘制音乐播放列表页面
 	showPlayListData(listManager.getDatum());
-	
+
 	//检查播放列表是否为空
 	checkEnableControl();
 }
@@ -505,10 +576,10 @@ function onDeleteByIdClick(id, obj){
  * 根据id播放音乐
  * @param {Object} id
  */
-function onPlayByIdClick(id){
+function onPlayByIdClick(id) {
 	//播放音乐
 	listManager.playById(id);
-	
+
 	//关闭音乐播放列表对话框
 	$("#playListModal").modal("hide");
 }
@@ -516,13 +587,13 @@ function onPlayByIdClick(id){
 /**
  * 从播放列表中删除所有音乐
  */
-function onDeleteAllClick(){
+function onDeleteAllClick() {
 	//删除播放列表所有数据
 	listManager.deleteAll();
-	
+
 	//关闭音乐播放列表对话框
 	$("#playListModal").modal("hide");
-	
+
 	//检查播放列表是否为空
 	checkEnableControl();
 }
@@ -530,11 +601,11 @@ function onDeleteAllClick(){
 /**
  * 检查播放列表是否为空
  */
-function checkEnableControl(){
-	if(listManager.getDatum()){
+function checkEnableControl() {
+	if (listManager.getDatum()) {
 		//如果播放列表不为空，则启用播放页面所有控制按钮
 		enableControl();
-	}else{
+	} else {
 		//如果播放列表为空，则禁用播放页面所有控制按钮
 		disableControl();
 	}
@@ -546,12 +617,12 @@ function checkEnableControl(){
  * @param {*} element 
  * @param {boolean} enable  
  */
-function enableA(element, enable){
-	if(enable){
+function enableA(element, enable) {
+	if (enable) {
 		//启用
 		element.attr("disabled", false);
 		element.css("pointer-events", "auto");
-	}else{
+	} else {
 		//禁用
 		element.attr("disabled", true);
 		element.css("pointer-events", "none");
@@ -561,40 +632,40 @@ function enableA(element, enable){
 /**
  * 启用播放页面所有控制按钮
  */
-function enableControl(){
+function enableControl() {
 	//启用所有button控制按钮
 	$(".control-button").removeClass("disabled");
-	
+
 	//启用所有表单：为了禁用进度条和音量
 	$(".control-form").attr("disabled", false);
-	
+
 }
 
 /**
  * 禁用启用播放页面所有控制按钮
  */
-function disableControl(){
+function disableControl() {
 	//清除封面，显示默认封面
 	$("#image-cover").attr("src", "../assets/placeholder.png");
 	//显示默认背景
 	$("#img-background").attr("src", "../assets/placeholder.png");
-	
+
 	//清除歌曲标题
 	$("#title").text("没有数据");
 	$("title-small").text("没有数据");
-	
+
 	//清除专辑和歌手
 	$("#singer").text("没有数据");
-	
+
 	//清除歌词
 	showEmptyLyric();
-	
+
 	//禁用所有button控制按钮
 	$(".control-button").addClass("disabled");
-	
+
 	//禁用所有表单：为了禁用进度条和音量
 	$(".control-form").attr("disabled", true);
-	
+
 	//清除进度
 	$("#start").text("00:00");
 	$("#end").text("00:00");
