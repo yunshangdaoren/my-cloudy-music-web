@@ -4,6 +4,18 @@
 $(function(){
 	//获取最新评论列表数据，默认页面不滚动到最新评论位置
 	getNewCommentList(0, false);
+	
+	//引入自定义的js里面的方法：用于输入框字数统计和限制，位于lib/jquery-limit/jquery-limit.js
+	//source：统计要输入内容字数的输入框
+	//count：要显示统计字数结果的标签
+	//max：限制输入的的最大字数
+	inputLimit({
+		source:$("#comment-content"),
+		count:$("#comment-content-count"),
+		max:140
+	});
+		
+	
 })
 
 /**
