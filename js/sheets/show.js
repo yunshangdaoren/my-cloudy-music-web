@@ -2,8 +2,8 @@
  * 页面加载完成了，进行下面的操作
  */
 $(function(){
-	//获取最新评论列表数据
-	getNewCommentList(0);
+	//获取最新评论列表数据，默认页面不滚动到最新评论位置
+	getNewCommentList(0, false);
 })
 
 /**
@@ -89,22 +89,35 @@ function onReplayClick(id, nickname){
 }
 
 /**
- * 获取最新评论列表数据
- * @param {Object} page
- */
-function getNewCommentList(page){
-	$.get("../data/comment/comments.html?sheetId=评论id&page="+page, function(data){
-		console.log();
-		
-		//设置到容器
-		$("#container-comment-new").html(data);
-		
-	});
-}
-
-/**
  * 取消回复按钮点击事件
  */
 function onCancelReplayClick(){
 	
+}
+
+/**
+ * 获取最新评论列表数据
+ * @param {*} page 分页页码
+ * @param {*} isScroll 是否进行页面滚动，页面滚动到最新评论位置，默认设置为true
+ */
+function getNewCommentList(page, isScroll=true){
+	$.get("../data/comment/comments.html?sheetId=评论id&page="+page, function(data){
+		console.log();
+		
+		//设置到最新评论容器
+		$("#container-comment-new").html(data);
+		
+		if(isScroll){
+			//需要滚动，页面滚动到最新评论位置
+			scrollCommentNew();
+		}
+	});
+}
+
+/**
+ * 页面滚动到最新评论位置
+ */
+function scrollCommentNew(){
+	//$("#comment-new").offset().top：表示获取id为comment-new的标签，到页面顶部的距离
+	$("html, body").animate({scrollTop:$("#comment-new").offset().top}, 500);
 }
