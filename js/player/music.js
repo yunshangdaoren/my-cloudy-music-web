@@ -245,33 +245,6 @@ function onVolumeChanged(data) {
 }
 
 /**
- * 播放列表点击了
- */
-function onListClick() {
-	$("#playListModal").modal("show")
-
-	//显示音乐播放列表数据
-	showPlayListData(listManager.getDatum());
-}
-
-/**
- * 显示音乐播放列表数据
- * @param {*} data 
- */
-function showPlayListData(data) {
-	//使用art-template模板引擎
-
-	//渲染模板
-	let result = template("tpl-play-item", {
-		datum: data,
-		currentId: listManager.getData().id
-	});
-
-	//把渲染后的html设置到容器中
-	$("#container-play-list").html(result);
-}
-
-/**
  * 显示暂停状态
  */
 function showPausedStatus() {
@@ -467,12 +440,69 @@ function scrollLyricPosition(lineNumber){
 }
 
 /**
+ * 播放列表点击了
+ */
+function onListClick() {
+	$("#playListModal").modal("show")
+
+	//显示音乐播放列表数据
+	showPlayListData(listManager.getDatum());
+}
+
+/**
+ * 显示音乐播放列表的歌曲数据
+ * @param {*} data 
+ */
+function showPlayListData(data) {
+	//使用art-template模板引擎
+
+	//渲染模板
+	let result = template("tpl-play-item", {
+		datum: data,
+		currentId: listManager.getData().id
+	});
+
+	//把渲染后的html设置到容器中
+	$("#container-play-list").html(result);
+}
+
+/**
+ * 从播放列表中删除指定id的歌曲
+ * @param {Object} id
+ */
+function onDeleteByIdClick(id, obj){
+	//阻止事件冒泡：防止点击了删除按钮，继续播放这首歌曲
+	event.cancelBubble = true;
+	
+	//将要删除的音乐，从播放列表中删除
+	listManager.deleteById(id);
+	
+	//将要删除的音乐，从页面中删除
+	$(obj).parent().parent().remove();
+	
+	//重新绘制音乐播放列表页面
+	showPlayListData(listManager.getDatum());
+}
+
+
+/**
  * 根据id播放音乐
  * @param {Object} id
  */
 function onPlayByIdClick(id){
 	//播放音乐
 	listManager.playById(id);
+	
+	//关闭音乐播放列表对话框
+	$("#playListModal").modal("hide");
+}
+
+/**
+ * 从播放列表中删除所有音乐
+ */
+function onDeleteAllClick(){
+	//删除播放列表所有数据
+	listManager.deleteAll();
 	
 	//关闭音乐播放列表对话框
 	$("#playListModal").modal("hide");

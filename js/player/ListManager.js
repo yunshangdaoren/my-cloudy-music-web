@@ -197,6 +197,56 @@ class ListManager{
 	}
 	
 	/**
+	 * 获取指定音乐id的音乐
+	 * @param {Object} id
+	 */
+	getById(id){
+		//定义要播放的音乐对象
+		var data = null;
+		
+		//遍历音乐播放列表，根据该音乐id查询到要播放的音乐
+		this.datum.forEach(function(s, index, array){
+			if(s.id == id){
+				//找到要播放的音乐，则赋值
+				data = s;
+				//终止遍历
+				return false;
+			}
+		});
+		
+		if(data){
+			//要播放的音乐不为null
+			return data;
+		}else{
+			//要播放的音乐为null，则表示没有找到，抛出错误
+			console.log("ListManager getById 没有找到要播放的音乐！id:"+id);
+			return null;
+		}
+	}
+	
+	/**
+	 * 获取并返回指定音乐id在播放列表的下标
+	 * @param {Object} id
+	 */
+	getIndexById(id){
+		//定义index
+		var currentIndex = -1;
+		
+		//遍历音乐播放列表，根据该音乐id查询到要播放的音乐
+		this.datum.forEach(function(s, index, array){
+			if(s.id == id){
+				//找到index，并赋值
+				currentIndex = index;
+				//终止遍历
+				return false;
+			}
+		});
+		
+		//返回下标
+		return currentIndex;
+	}
+	
+	/**
 	 * 播放歌曲
 	 * @param {Object} data
 	 */
@@ -354,4 +404,55 @@ class ListManager{
 		}
 	}
 	
+	/**
+	 * 删除指定id的音乐
+	 * @param {Object} id
+	 */
+	deleteById(id){
+		//获取到当前要删除的音乐
+		let song = this.getById(id);
+		
+		if(song.id == this.data.id){
+			//如果要删除的音乐为当前正在播放的音乐，则删除
+			
+			//先停止播放当前音乐
+			this.pause();
+			
+			//获取下一首音乐
+			var nextSong = this.next();
+			
+			//播放下一首音乐
+			this.play(nextSong);
+		}
+		
+		//从播放列表中删除需要删除的音乐
+		//获取到要删除的音乐在播放列表的下标
+		let index = this.getIndexById(id);
+		
+		//根据下标index来删除：第一个参数意思是：删除index位置上的元素，第二个参数意思是：删除从index开始的后面几个
+		this.datum.splice(index, 1);
+		
+		//将要删除的音乐，从本地储存localStorage中删除
+		PreferenceUtil.savePlayList(this.datum);
+	}
+	
+	/**
+	 * 删除播放列表所有音乐数据
+	 */
+	deleteAll(){
+		//先尝试暂停
+		this.pause();
+		
+		//清空播放列表
+		this.datum = null;
+		
+		//清空当前播放的音乐
+		this.data = null;
+		
+		//删除本地播放列表
+		PreferenceUtil.deletePlayList();
+		
+	}
+	
 }
+
