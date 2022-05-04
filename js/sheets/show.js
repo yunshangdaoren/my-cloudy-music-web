@@ -1,3 +1,9 @@
+/**
+ * 页面加载完成了，进行下面的操作
+ */
+$(function(){
+	getCommentList(0);
+})
 
 /**
  * 歌单的播放全部音乐按钮点击事件
@@ -79,4 +85,18 @@ function onLikeClick(id, self){
  */
 function onReplayClick(id, nickname){
 	
+}
+
+/**
+ * 获取评论列表数据
+ * @param {Object} page
+ */
+function getCommentList(page){
+	$.get("../data/comment/comments.html?sheetId=评论id&page="+page, function(data){
+		console.log();
+		
+		//设置到容器
+		$("#container-comment-new").html(data);
+		
+	});
 }

@@ -230,19 +230,17 @@
 			<div class="row">
 				<div class="col-12">
 					<ul class="list-unstyled">
-						<!-- 一条评论 -->
+						<!-- 一条用户评论 -->
 						<li class="media">
 							<!-- 用户头像 -->
 							<a href="../user/show.html">
 								<img src="../assets/awatar2.jpeg" class="rounded-circle avatar-middel mr-3" class="mr-2"
 									alt="...">
 							</a>
-
 							<!-- 用户昵称、评论内容、评论时间、点赞、回复容器 -->
 							<div class="media-body">
 								<!-- 用户昵称 -->
 								<h5 class="mt-0 mb-1">云上道人</h5>
-
 								<!-- 用户评论内容 -->
 								<div class="">
 									All my girls vintage Chanel baby. So you can have your cake. Tonight, tonight,
@@ -250,7 +248,6 @@
 									into a bolt of lightning. So hot and heavy, 'Til dawn. That fairy tale ending with a
 									knight in shining armor. Heavy is the head that wears the crown.
 								</div>
-
 								<small>
 									<!-- 用户评论时间、点赞、回复容器 -->
 									<div class="d-flex justify-content-between mt-2">
@@ -258,7 +255,8 @@
 										<!-- 点赞及点赞数 -->
 										<div>
 											<!-- 点赞和点赞数 -->
-											<a href="javascript:void(0);" class="text-secondary" onclick="onLikeClick('id', this)">
+											<a href="javascript:void(0);" class="text-secondary"
+												onclick="onLikeClick('id', this)">
 												<i class="far fa-thumbs-up"></i>(<span>100</span>)
 											</a>
 											|
@@ -269,14 +267,41 @@
 										</div>
 									</div>
 								</small>
-							</div>
-						</li>
-						<hr />
 
+								<!-- 被回复评论 -->
+								<div class="media mt-3">
+									<!-- 用户头像 -->
+									<a href="../user/show.html">
+										<img src="../assets/awatar2.jpeg" class="rounded-circle avatar-middel mr-3"
+											class="mr-2" alt="...">
+									</a>
+									<div class="media-body">
+										<h5 class="mt-0">Media heading</h5>
+										<p>Will you do the same for me? It's time to face the music I'm no longer your
+											muse. Heard it's beautiful, be the judge and my girls gonna take a vote. I
+											can feel a phoenix inside of me. Heaven is jealous of our love, angels are
+											crying from up above. Yeah, you take me to utopia.</p>
+									</div>
+								</div> <!-- /被回复评论 -->
+							</div>
+						</li><!-- /一条用户评论 -->
+						<hr />
 					</ul>
 				</div>
+			</div><!-- /热门评论内容行 -->
+
+			<!-- 最新评论标题行 -->
+			<div class="row">
+				<div class="col-12">
+					<h5 id="comment-new" class="pt-4">最新评论</h5>
+					<hr />
+				</div>
+			</div><!-- /最新评论标题行 -->
+
+			<!-- 最新评论容器 -->
+			<div id="container-comment-new">
+				
 			</div>
-			<!-- /热门评论内容行 -->
 		</div>
 		<!-- /歌曲评论容器 -->
 
