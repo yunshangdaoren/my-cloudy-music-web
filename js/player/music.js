@@ -85,7 +85,13 @@ $(function() {
 		$("#volume").val(musicPlayerManager.getVolume());
 
 		//开始播放音乐
-		listManager.resume();
+		//listManager.resume();
+		
+		//有数据，则启用播放页面的所有控制按钮：如下一曲、上一曲、播放...
+		enableControl();
+	}else{
+		//没有数据，则禁用播放页面的所有控制按钮：如下一曲、上一曲、播放...
+		disableControl();
 	}
 
 	/**
@@ -373,9 +379,16 @@ function prepareLyric(data) {
 		//显示歌词
 		$("#container-lyric-list").html(result);
 	}else{
-		//没有歌词，则提示
-		$("#container-lyric-list").html("<li>没有歌词!</li>");
+		//没有歌词，则提示没有歌词
+		showEmptyLyric();
 	}
+}
+
+/**
+ * 显示没有歌词的提示
+ */
+function showEmptyLyric(){
+	$("#container-lyric-list").html("<li>没有歌词!</li>");
 }
 
 /**
@@ -482,6 +495,9 @@ function onDeleteByIdClick(id, obj){
 	
 	//重新绘制音乐播放列表页面
 	showPlayListData(listManager.getDatum());
+	
+	//检查播放列表是否为空
+	checkEnableControl();
 }
 
 
@@ -506,4 +522,82 @@ function onDeleteAllClick(){
 	
 	//关闭音乐播放列表对话框
 	$("#playListModal").modal("hide");
+	
+	//检查播放列表是否为空
+	checkEnableControl();
+}
+
+/**
+ * 检查播放列表是否为空
+ */
+function checkEnableControl(){
+	if(listManager.getDatum()){
+		//如果播放列表不为空，则启用播放页面所有控制按钮
+		enableControl();
+	}else{
+		//如果播放列表为空，则禁用播放页面所有控制按钮
+		disableControl();
+	}
+}
+
+
+/**
+ * 启用或者禁用a标签
+ * @param {*} element 
+ * @param {boolean} enable  
+ */
+function enableA(element, enable){
+	if(enable){
+		//启用
+		element.attr("disabled", false);
+		element.css("pointer-events", "auto");
+	}else{
+		//禁用
+		element.attr("disabled", true);
+		element.css("pointer-events", "none");
+	}
+}
+
+/**
+ * 启用播放页面所有控制按钮
+ */
+function enableControl(){
+	//启用所有button控制按钮
+	$(".control-button").removeClass("disabled");
+	
+	//启用所有表单：为了禁用进度条和音量
+	$(".control-form").attr("disabled", false);
+	
+}
+
+/**
+ * 禁用启用播放页面所有控制按钮
+ */
+function disableControl(){
+	//清除封面，显示默认封面
+	$("#image-cover").attr("src", "../assets/placeholder.png");
+	//显示默认背景
+	$("#img-background").attr("src", "../assets/placeholder.png");
+	
+	//清除歌曲标题
+	$("#title").text("没有数据");
+	$("title-small").text("没有数据");
+	
+	//清除专辑和歌手
+	$("#singer").text("没有数据");
+	
+	//清除歌词
+	showEmptyLyric();
+	
+	//禁用所有button控制按钮
+	$(".control-button").addClass("disabled");
+	
+	//禁用所有表单：为了禁用进度条和音量
+	$(".control-form").attr("disabled", true);
+	
+	//清除进度
+	$("#start").text("00:00");
+	$("#end").text("00:00");
+	$("#progress").attr("max", 0);
+	$("#progress").val(0);
 }
