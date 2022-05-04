@@ -4,6 +4,16 @@
 $(function() {
 	//创建音乐播放列表管理器
 	listManager = new ListManager();
+	
+	//为音乐播放列表管理器，设置一个监听器，用于监听音乐播放列表数据改变了
+	listManager.setListener({
+		onPlayListChanged:function(){
+			console.log("音乐播放列表改变了...");
+			
+			//检查播放列表是否为空
+			checkEnableControl();
+		}
+	});
 
 	//获取音乐播放管理器
 	musicPlayerManager = listManager.musicPlayerManager;
@@ -569,9 +579,6 @@ function onDeleteByIdClick(id, obj) {
 
 	//重新绘制音乐播放列表页面
 	showPlayListData(listManager.getDatum());
-
-	//检查播放列表是否为空
-	checkEnableControl();
 }
 
 
@@ -596,9 +603,6 @@ function onDeleteAllClick() {
 
 	//关闭音乐播放列表对话框
 	$("#playListModal").modal("hide");
-
-	//检查播放列表是否为空
-	checkEnableControl();
 }
 
 /**

@@ -129,6 +129,9 @@ class ListManager{
 					//清空当前播放音乐
 					self.data = null;
 				}
+				
+				//通知音乐播放列表数据改变了
+				self.notifyPlayListChanged();
 			}
 			
 			if(data.key == PLAYER_MUSIC_ID && data.newValue){
@@ -434,6 +437,9 @@ class ListManager{
 		
 		//将要删除的音乐，从本地储存localStorage中删除
 		PreferenceUtil.savePlayList(this.datum);
+		
+		//通知音乐播放列表数据改变了
+		this.notifyPlayListChanged();
 	}
 	
 	/**
@@ -452,6 +458,25 @@ class ListManager{
 		//删除本地播放列表
 		PreferenceUtil.deletePlayList();
 		
+		//通知音乐播放列表数据改变了
+		this.notifyPlayListChanged();
+	}
+	
+	/**
+	 * 通知音乐播放列表数据改变了的事件
+	 */
+	notifyPlayListChanged(){
+		if(this.listener){
+			this.listener.onPlayListChanged();
+		}
+	}
+	
+	/**
+	 * 设置监听器
+	 * @param {Object} listener
+	 */
+	setListener(listener){
+		this.listener = listener;
 	}
 	
 }
