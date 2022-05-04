@@ -56,3 +56,8 @@ let LAST_PLAY_SONG_DURAION = "last_play_song_duraion";
  * 最后播放的音乐的进度的key
  */
 let LAST_PLAY_SONG_PROGRESS = "last_play_song_progress";
+
+/**
+ * 歌词行高，单位为px
+ */
+let LYRIC_ITEM_HEIGHT = 43.2;

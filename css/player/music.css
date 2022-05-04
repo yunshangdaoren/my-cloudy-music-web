@@ -61,6 +61,9 @@
 .container-lyric:hover{
 	overflow-y:scroll;
 }
+/**
+ * 歌词容器滚动条样式
+ */
 .container-lyric::-webkit-scrollbar{
 	width: 4px;
 	color: transparent;
@@ -75,7 +78,7 @@
  * 显示歌词的ul
  */
 .container-lyric-list{
-	line-height: 2.2rem;
+	line-height: 2.7rem;
 	/* 预留，防止滚动条挤占歌词内容宽度 */
 	padding-right: 4px;
 }
@@ -89,7 +92,9 @@
  */
 .container-lyric .container-lyric-list li.active{
 	color: #dd0000;
+	font-size: 1.5rem;
 }
 .container-lyric .container-lyric-list li{
 	text-align: center;
+	font-size: 0.9rem;
 }

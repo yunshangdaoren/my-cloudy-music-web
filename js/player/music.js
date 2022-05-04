@@ -54,6 +54,8 @@ $(function() {
 			//如果有要播放的音乐，则显示播放进度
 			showProgress();
 		}
+		//显示歌词进度
+		showLyricProgress(data.progress);
 	}
 
 	//添加监听器到播放管理器
@@ -82,7 +84,7 @@ $(function() {
 		//显示音乐音量
 		$("#volume").val(musicPlayerManager.getVolume());
 
-		//开始V播放音乐
+		//开始播放音乐
 		listManager.resume();
 	}
 
@@ -102,7 +104,7 @@ $(function() {
 		StackBlur.image('img-background', 'canvas-mask', 150, false);
 	}
 
-	//监听播放列表对话框显示回调
+	//监听播放列表对话框，自动滚到到正在播放的音乐这一行
 	$("#playListModal").on("shown.bs.modal", function(data) {
 
 		//获取当前需要红色高亮的行的索引index
@@ -111,6 +113,8 @@ $(function() {
 		//滚动
 		$("#body-play-list").scrollTop(selectIndex * 50);
 	});
+	
+	
 });
 
 
@@ -386,7 +390,6 @@ function prepareLyric(data) {
 		if(!data.parsedLyric){
 			//需要解析歌词
 			data.parsedLyric = LyricParser.parse(data.style, data.lyric);
-			console.log(data.parsedLyric.datum);
 		}
 		
 		//获取要显示的歌词信息
@@ -400,4 +403,65 @@ function prepareLyric(data) {
 		//没有歌词，则提示
 		$("#container-lyric-list").html("<li>没有歌词!</li>");
 	}
+}
+
+/**
+ * 当前歌词行
+ */
+var lineNumber = -1;
+
+/**
+ * 用于显示歌词播放进度
+ * @param {*} progress 
+ */
+function showLyricProgress(progress){
+	//获取当前正在播放的音乐歌词信息
+	let data = listManager.getData().parsedLyric;
+	
+	if(data){
+		//如果有歌词
+		//获取当前播放进度（时间）对应的歌词行号
+		let newLineNumber = LyricUtil.getLineNumber(data, progress);
+		
+		if(newLineNumber != lineNumber){
+			//如果新的行号不等于原来的行号，则滚动到当前行
+			scrollLyricPosition(newLineNumber);
+			
+			lineNumber = newLineNumber;
+		}
+	}
+	
+}
+
+/**
+ * 上一行选中的歌词
+ */
+var lastLyricItem = null;
+
+/**
+ * 歌词页面，歌词滚动到当前正在播放的行
+ * @param {Object} lineNumber
+ */
+function scrollLyricPosition(lineNumber){
+	if(lastLyricItem){
+		//如果有上一次歌词行，则取消高亮
+		lastLyricItem.removeClass("active");
+	}
+	
+	//获取当前行歌词
+	let lyricItem = $("#lyric-item-"+lineNumber);
+	
+	//选中该行歌词高亮
+	lyricItem.addClass("active");
+	
+	//减去一定行数，目的是为了让高亮歌词行显示歌词中间
+	lineNumber -= 4;
+	
+	if(lineNumber > 0){
+		//歌词列表，滚动到该行歌词
+		$("#container-lyric").scrollTop(LYRIC_ITEM_HEIGHT * lineNumber);
+	}
+	
+	//保存当前歌词行
+	lastLyricItem = lyricItem;
 }
