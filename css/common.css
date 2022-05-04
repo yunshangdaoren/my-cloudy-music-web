@@ -188,3 +188,11 @@ a:hover{
 .textara-fixed{
 	resize: none;
 }
+
+/**
+ * 底部一条灰色横线样式
+ */
+.border-bottom{
+	border-bottom: 1px solid rgba(0,0,0,.1);
+	padding-bottom:0.66rem;
+}

@@ -2,7 +2,8 @@
  * 页面加载完成了，进行下面的操作
  */
 $(function(){
-	getCommentList(0);
+	//获取最新评论列表数据
+	getNewCommentList(0);
 })
 
 /**
@@ -88,10 +89,10 @@ function onReplayClick(id, nickname){
 }
 
 /**
- * 获取评论列表数据
+ * 获取最新评论列表数据
  * @param {Object} page
  */
-function getCommentList(page){
+function getNewCommentList(page){
 	$.get("../data/comment/comments.html?sheetId=评论id&page="+page, function(data){
 		console.log();
 		
