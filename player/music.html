@@ -206,20 +206,20 @@
 									<!-- 判断index+1%2是否等于1 -->
 									{{if ($index+1) % 2 == 1}}
 										<!-- 设置背景为高亮灰色(隔行变色)，通过添加bg实现 -->
-										<div class="row row-song d-flex flex-column align-items-center text-primary bg" data-index="{{$index}}">
+										<div class="row row-song d-flex flex-column align-items-center text-primary bg cursor-point" data-index="{{$index}}" onClick="onPlayByIdClick('{{$value.id}}')">
 									{{else}}
 										<!-- 不设置背景，默认为白色-->
-										<div class="row row-song d-flex flex-column align-items-center text-primary" data-index="{{$index}}">
+										<div class="row row-song d-flex flex-column align-items-center text-primary cursor-point" data-index="{{$index}}"  onClick="onPlayByIdClick('{{$value.id}}')">
 									{{/if}}
 								{{else}}
 									<!-- 不为当前正在播放的音乐，文字不设置红色高亮 -->
 									<!-- 判断index+1%2是否等于1 -->
 									{{ if ($index+1) % 2 == 1 }}
 										<!-- 设置背景为高亮灰色(隔行变色)，通过添加bg实现 -->
-										<div class="row row-song d-flex flex-column align-items-center bg">
+										<div class="row row-song d-flex flex-column align-items-center bg cursor-point"  onClick="onPlayByIdClick('{{$value.id}}')">
 									{{else}}
 										<!-- 不设置背景，默认为白色-->
-										<div class="row row-song d-flex flex-column align-items-center">
+										<div class="row row-song d-flex flex-column align-items-center cursor-point"  onClick="onPlayByIdClick('{{$value.id}}')">
 									{{/if}}
 								{{/if}}
 											<div class="col-1">

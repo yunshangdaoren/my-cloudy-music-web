@@ -150,3 +150,10 @@ a:hover{
 	height:3.125rem;
 	line-height: 3.125rem;
 }
+
+/**
+ * 鼠标放上去显示手掌形状
+ */
+.cursor-point{
+	cursor: pointer;
+}

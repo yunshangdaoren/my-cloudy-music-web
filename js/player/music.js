@@ -364,7 +364,7 @@ function stopRecordRotate() {
 }
 
 /**
- * 准备歌词
+ * 准备在歌词页面显示歌词
  * @param {*} data 
  */
 function prepareLyric(data) {
@@ -464,4 +464,16 @@ function scrollLyricPosition(lineNumber){
 	
 	//保存当前歌词行
 	lastLyricItem = lyricItem;
+}
+
+/**
+ * 根据id播放音乐
+ * @param {Object} id
+ */
+function onPlayByIdClick(id){
+	//播放音乐
+	listManager.playById(id);
+	
+	//关闭音乐播放列表对话框
+	$("#playListModal").modal("hide");
 }
