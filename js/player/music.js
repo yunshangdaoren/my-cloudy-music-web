@@ -180,6 +180,7 @@ function showInitData() {
 
 	//显示歌曲名称标题
 	$("#title").text(data.title);
+	$("#title-small").text(data.title);
 	//让浏览器title显示歌曲名称标题
 	$("title").text(data.title + "-我的云音乐");
 
