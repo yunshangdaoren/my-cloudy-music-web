@@ -123,6 +123,9 @@ $(function() {
 
 	//设置键盘快捷键，实现键盘按钮进行上一曲、播放和暂停、下一曲、调整音量
 	hotkeys("left, space, right, up, down", function(event, handler) {
+		if(!listManager.getDatum()){
+			return;
+		}
 		switch (handler.key) {
 			case 'left':
 				//左箭头：上一曲
