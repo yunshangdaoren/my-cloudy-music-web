@@ -181,3 +181,10 @@ a:hover{
 	width: 3.25rem;
 	height: 3.25rem;
 }
+
+/**
+ * 多行输入框不可调整高度
+ */
+.textara-fixed{
+	resize: none;
+}

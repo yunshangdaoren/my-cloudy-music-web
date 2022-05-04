@@ -100,3 +100,10 @@ function getCommentList(page){
 		
 	});
 }
+
+/**
+ * 取消回复按钮点击事件
+ */
+function onCancelReplayClick(){
+	
+}
