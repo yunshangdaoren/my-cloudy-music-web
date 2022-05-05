@@ -75,6 +75,7 @@ function isSuccess(data){
  * @param {*} erroe 客户端抛出的异常
  */
 function handleRequest(data, error){
+	console.log("handleRequest error.status:"+error.status);
 	if(error != null){
 		//先处理本地错误
 		if(error.status == 400){

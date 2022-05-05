@@ -15,8 +15,83 @@ $(function(){
 		max:140
 	});
 		
+	//配置ajax提交评论表单（根据引入的jquery-form框架依赖）
+	var options = {
+		// target:        '#output1',   // target element(s) to be updated with server response（哪个控件需要更新）
+		beforeSubmit: beforeSubmit, // pre-submit callback（提交表单之前要处理的回调函数）
+		success: onSuccess, // post-submit callback （成功后要处理的回调函数）
+		error: function(data) { //提交失败后执行的回调函数
+			handleRequest(null, data);
+		},
+	
+		// other available options:
+		//url:       url         // override for form's 'action' attribute（默认为form标签的action地址）
+		//type:      type        // 'get' or 'post', override for form's 'method' attribute
+		//dataType:  null        // 'xml', 'script', or 'json' (expected server response type)
+		clearForm: true, // clear all form fields after successful submit
+		resetForm: true // reset the form after successful submit
+	
+		// $.ajax options can be used here too, for example:
+		//timeout:   3000  //超时时间
+	};
+	
+	//将配置的ajax提交评论表单，设置到评论表单上
+	$("#form-comment").ajaxForm(options);
 	
 })
+
+/**
+ * ajax提交评论表单前进行调用
+ * @param {*} formData 
+ * @param {*} jqForm 
+ * @param {*} options 
+ */
+function beforeSubmit(formData, jqForm, options){
+	console.log("beforeSubmit");
+	//循环判断参数是否正确
+	for(let i = 0; i < formData.length; i++){
+		if(formData[1].name == "content"){
+			//只判断评论内容输入项
+			
+			if(!formData[i].value){
+				//评论内容为空，则表示参数有问题
+				
+				//弹出提示，调用ToastUtil.js的shortErrorToast(data)方法
+				shortErrorToast("请输入评论内容！");
+				
+				//不提交表单
+				return false;
+			}
+		}
+	}
+	
+	//默认返回true
+	return true;
+}
+
+/**
+ * ajax提交评论表单成功后进行调用
+ * @param {*} data 
+ * @param {*} statusText 
+ * @param {*} xhr 
+ * @param {*} $form 
+ */
+function onSuccess(data, statusText, xhr, $form){
+	console.log("onSuccess");
+	//HttpUtil的isSuccess(data)方法
+	if(!isSuccess(data)){
+		//发送失败，则处理HTTP请求错误。HttpUtil.js的handleRequest(data, error)方法
+		handleRequest(data, null);
+		return;
+	}
+	
+	//发送成功，调用ToastUtil.js的shortSuccessToast(data)方法
+	shortSuccessToast("发布成功！");
+	
+	//页面滚动到最新评论的位置
+	getNewCommentList(0);
+}
+
 
 /**
  * 歌单的播放全部音乐按钮点击事件
@@ -114,8 +189,6 @@ function onCancelReplayClick(){
  */
 function getNewCommentList(page, isScroll=true){
 	$.get("../data/comment/comments.html?sheetId=评论id&page="+page, function(data){
-		console.log();
-		
 		//设置到最新评论容器
 		$("#container-comment-new").html(data);
 		

@@ -180,7 +180,7 @@
 						桃花庵
 					</div>
 					<!-- 按钮容器 -->
-					<div class="menu-song d-none">
+					<div class="menu-song d-none ">
 						<!-- 播放 -->
 						<button type="button" class="btn btn-link text-primary"
 							data-music-play="5e8acf25eee833556c9854b7">
@@ -227,28 +227,29 @@
 
 				<!-- 发布评论和按钮容器 -->
 				<div class="col-12 mt-2">
-					<form action="/comments.json" method="POST" id="form-comment">
+					<form action="//rap2.taobao.org:38080/app/mock/249746/comments.json" method="POST"
+						id="form-comment">
 						<!-- 歌单id，默认隐藏 -->
 						<input type="hidden" name="sheetId" value="歌单id" />
 
-						<textarea class="form-control textara-fixed" rows="3" name="content"
-							placeholder="期待你的神评论..." id="comment-content"></textarea>
+						<textarea class="form-control textara-fixed" rows="3" name="content" placeholder="期待你的神评论..."
+							id="comment-content"></textarea>
+
+						<!-- 内容字数、提交评论、取消评论 -->
+						<div class="d-flex justify-content-end mt-1 text-secondary align-items-center">
+							<!-- 输入评论内容字数 -->
+							<span>
+								<span id="comment-content-count">0</span>/140
+							</span>
+
+							<!-- 发布提交评论 -->
+							<button type="submit" class="btn btn-primary ml-3" id="buttonSubmit">发布评论</button>
+
+							<!-- 取消评论 -->
+							<button type="button" class="btn btn-secondary ml-3" id="cancelReplayButton"
+								onclick="onCancelReplayClick()">取消回复</button>
+						</div>
 					</form>
-
-					<!-- 内容字数、提交评论、取消评论 -->
-					<div class="d-flex justify-content-end mt-1 text-secondary align-items-center">
-						<!-- 输入评论内容字数 -->
-						<span>
-							<span id="comment-content-count">0</span>/140
-						</span>
-
-						<!-- 发布提交评论 -->
-						<button type="submit" class="btn btn-primary ml-3" id="buttonSubmit">发布评论</button>
-
-						<!-- 取消评论 -->
-						<button type="button" class="btn btn-secondary ml-3" id="cancelReplayButton"
-							onclick="onCancelReplayClick()">取消回复</button>
-					</div>
 				</div>
 			</div>
 		</div>
@@ -410,9 +411,14 @@
 		<script src="../js/constants.js"></script>
 
 		<script src="../js/common.js"></script>
-		
+
 		<!-- 自定义JS：用于输入框字数统计和限制 -->
 		<script src="../lib/jquery-limit/jquery-limit.js"></script>
+
+		<!-- 引入jQuery-form通过ajax提交表单框架 -->
+		<script src="../vender/jquery-form/jquery.form.min.js"></script>
+
+
 		<!-- /==================通用资源 -->
 
 
